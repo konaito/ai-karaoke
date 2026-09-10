@@ -261,10 +261,15 @@ function renderSectionNav() {
 }
 
 function updateLyricRows(time, lineIndex) {
+  const nextIndex = lineIndex >= 0 ? lineIndex + 1 : SONG.lines.findIndex((line) => line.start > time);
+  const previousIndex = lineIndex > 0 ? lineIndex - 1 : -1;
+  els.lines.classList.toggle("has-current", lineIndex >= 0);
   lyricRows.forEach((row, index) => {
     const line = SONG.lines[index];
     const progress = clamp((time - line.start) / Math.max(.1, line.end - line.start));
     row.classList.toggle("current", index === lineIndex);
+    row.classList.toggle("previous", index === previousIndex);
+    row.classList.toggle("next-line", index === nextIndex);
     row.classList.toggle("past", index < lineIndex || (lineIndex < 0 && time >= line.end));
     row.classList.toggle("future", index > lineIndex && !(lineIndex < 0 && time >= line.end));
     setCharProgress(row, progress);
@@ -272,8 +277,6 @@ function updateLyricRows(time, lineIndex) {
 
   if (lineIndex !== activeLineIndex) {
     activeLineIndex = lineIndex;
-    const target = lyricRows[lineIndex >= 0 ? lineIndex : SONG.lines.findIndex((line) => line.start > time)];
-    if (target && time > SONG.lines[0].start - 1) target.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 }
 
