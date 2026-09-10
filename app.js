@@ -736,23 +736,44 @@ function showUpdateAvailable() {
   showToast("新しいバージョンがあります。「更新があります」を押して適用できます。");
 }
 
+function applyWaitingWorker(registration) {
+  const waiting = registration?.waiting;
+  if (!waiting) return false;
+  updateRequested = true;
+  els.update.hidden = false;
+  els.update.disabled = true;
+  els.update.textContent = "更新中…";
+  waiting.postMessage({ type: "SKIP_WAITING" });
+  return true;
+}
+
+function handleInstalledWorker(registration) {
+  if (!navigator.serviceWorker.controller) return;
+  if (isPlaying) showUpdateAvailable();
+  else applyWaitingWorker(registration);
+}
+
 function watchInstallingWorker(registration) {
   const worker = registration.installing;
   if (!worker) return;
   worker.addEventListener("statechange", () => {
-    if (worker.state === "installed" && navigator.serviceWorker.controller) showUpdateAvailable();
+    if (worker.state === "installed") handleInstalledWorker(registration);
   });
 }
 
 async function checkForServiceWorkerUpdate() {
-  try { await serviceWorkerRegistration?.update(); } catch (error) { console.debug("Service Worker update check failed", error); }
+  try {
+    await serviceWorkerRegistration?.update();
+    if (serviceWorkerRegistration?.waiting) handleInstalledWorker(serviceWorkerRegistration);
+  } catch (error) { console.debug("Service Worker update check failed", error); }
 }
 
 async function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) return;
+  const hadController = Boolean(navigator.serviceWorker.controller);
   navigator.serviceWorker.addEventListener("controllerchange", () => {
-    if (isRefreshing) return;
-    if (updateRequested) {
+    if (isRefreshing || !hadController) return;
+    if (updateRequested || !isPlaying) {
       isRefreshing = true;
       window.location.reload();
       return;
@@ -760,9 +781,9 @@ async function registerServiceWorker() {
     showUpdateAvailable();
   });
   try {
-    serviceWorkerRegistration = await navigator.serviceWorker.register("./sw.js");
+    serviceWorkerRegistration = await navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" });
     serviceWorkerRegistration.addEventListener("updatefound", () => watchInstallingWorker(serviceWorkerRegistration));
-    if (serviceWorkerRegistration.waiting && navigator.serviceWorker.controller) showUpdateAvailable();
+    if (serviceWorkerRegistration.waiting) handleInstalledWorker(serviceWorkerRegistration);
     await checkForServiceWorkerUpdate();
   } catch (error) {
     console.error("Service Worker registration failed", error);
@@ -791,12 +812,8 @@ els.drawerTrigger.addEventListener("click", () => setDrawerOpen(true));
 els.closeDrawer.addEventListener("click", () => setDrawerOpen(false));
 els.drawerScrim.addEventListener("click", () => setDrawerOpen(false));
 els.update.addEventListener("click", () => {
-  updateRequested = true;
-  els.update.disabled = true;
-  els.update.textContent = "更新中…";
-  if (serviceWorkerRegistration?.waiting) {
-    serviceWorkerRegistration.waiting.postMessage({ type: "SKIP_WAITING" });
-  } else {
+  if (!applyWaitingWorker(serviceWorkerRegistration)) {
+    updateRequested = true;
     window.location.reload();
   }
 });

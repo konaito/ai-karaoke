@@ -10,7 +10,7 @@
   --yellow: #ffd84a;
   --cyan: #9ee9e1;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --jp: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --jp: "Noto Sans JP", "Noto Sans CJK JP", -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -70,8 +70,8 @@ button { cursor: pointer; }
 .line-text { display: block; width: 100%; min-width: 0; font-size: clamp(1.4rem, 2.6vw, 2.35rem); font-weight: 700; line-height: 1.35; letter-spacing: .02em; text-shadow: 0 3px 0 rgba(0, 0, 0, .84), 0 0 10px rgba(0, 0, 0, .96), 0 0 24px rgba(0, 0, 0, .9); }
 .lyric-line.current .line-text { font-size: clamp(2.3rem, 5.5vw, 5rem); line-height: 1.17; letter-spacing: .01em; }
 .lyric-line.next-line .line-text { font-size: clamp(1.25rem, 2.5vw, 2.15rem); }
-.lyric-char { --fill: 0%; color: var(--white); background: none; -webkit-text-fill-color: var(--white); -webkit-text-stroke: 1px rgba(0, 0, 0, .78); }
-.lyric-line.next-line .lyric-char { color: var(--white); background: none; -webkit-text-fill-color: var(--white); -webkit-text-stroke: 1px rgba(0, 0, 0, .88); }
+.lyric-char { --fill: 0%; color: var(--white); background: none; -webkit-text-fill-color: var(--white); -webkit-text-stroke: 0; }
+.lyric-line.next-line .lyric-char { color: var(--white); background: none; -webkit-text-fill-color: var(--white); -webkit-text-stroke: 0; }
 .lyric-line.current .lyric-char.filled, .lyric-line.current .lyric-char.active { color: var(--yellow); -webkit-text-fill-color: var(--yellow); filter: drop-shadow(0 0 12px rgba(255, 216, 74, .58)); }
 .lyric-line.past .lyric-char { --fill: 100%; }
 
@@ -181,6 +181,10 @@ button { cursor: pointer; }
   .play-button { width: 74px; font-size: 9px; }
   .repeat-button { width: 38px; }
   .drawer-trigger { width: 28px; height: 28px; }
+}
+
+@media (max-width: 700px) and (orientation: portrait) {
+  .video-backdrop img { transform: scale(1.78); }
 }
 
 @media (max-height: 620px) and (orientation: landscape) {

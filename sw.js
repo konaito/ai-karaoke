@@ -1,9 +1,9 @@
-const CACHE_NAME = "ai-karaoke-v12";
+const CACHE_NAME = "ai-karaoke-v13";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=12",
-  "./app.js?v=12",
+  "./styles.css?v=13",
+  "./app.js?v=13",
   "./song-data.js",
   "./alignment.json",
   "./manifest.webmanifest",
@@ -13,7 +13,10 @@ const ASSETS = [
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
+  event.waitUntil(caches.open(CACHE_NAME).then(async (cache) => {
+    await Promise.all(ASSETS.map((asset) => cache.add(new Request(asset, { cache: "reload" }))));
+    await self.skipWaiting();
+  }));
 });
 
 self.addEventListener("message", (event) => {
