@@ -1,9 +1,9 @@
-const CACHE_NAME = "ai-karaoke-v5";
+const CACHE_NAME = "ai-karaoke-v9";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=5",
-  "./app.js?v=5",
+  "./styles.css?v=9",
+  "./app.js?v=9",
   "./song-data.js",
   "./alignment.json",
   "./manifest.webmanifest",
@@ -13,7 +13,11 @@ const ASSETS = [
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data?.type === "SKIP_WAITING") self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {

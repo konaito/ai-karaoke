@@ -5,9 +5,10 @@ const els = {
   play: $("play-button"), playLabel: $("play-label"), seek: $("seek"), currentTime: $("current-time"),
   section: $("section-name"), kicker: $("lyric-kicker"), count: $("lyric-count"),
   viewport: $("lyric-viewport"), lines: $("lyric-lines"),
-  waveform: $("waveform"), pitchCanvas: $("pitch-canvas"), vocal: $("vocal-mode"), key: $("key-select"), volume: $("volume"), hint: $("player-hint"),
+  waveform: $("waveform"), pitchCanvas: $("pitch-canvas"), vocal: $("vocal-mode"), key: $("key-select"), keyBadge: document.querySelector(".key-badge"), volume: $("volume"), hint: $("player-hint"),
   wasmStatus: $("wasm-status"), alignment: $("alignment-chip"), sectionNav: $("section-nav"), micButton: $("mic-button"), micStatus: $("mic-status"),
-  micNote: $("mic-note"), micHz: $("mic-hz"), micMeter: $("mic-meter-fill"), micLevel: $("mic-level"), install: $("install-button"), toast: $("toast"),
+  micNote: $("mic-note"), micHz: $("mic-hz"), micMeter: $("mic-meter-fill"), micLevel: $("mic-level"), install: $("install-button"), update: $("update-button"), toast: $("toast"),
+  analysisToggle: $("analysis-toggle"), analysisOverlay: $("analysis-overlay"), menuButton: $("menu-button"), drawerTrigger: $("drawer-trigger"), drawerScrim: $("drawer-scrim"), drawer: $("control-drawer"), closeDrawer: $("close-drawer"),
 };
 
 let dsp = null;
@@ -22,6 +23,9 @@ let startedAt = 0;
 let isPlaying = false;
 let raf = 0;
 let installPrompt = null;
+let serviceWorkerRegistration = null;
+let updateRequested = false;
+let isRefreshing = false;
 let micContext = null;
 let micAnalyser = null;
 let micStream = null;
@@ -84,8 +88,8 @@ async function loadAlignment() {
     section.end = next?.start ?? SONG.duration;
   });
 
-  els.alignment.textContent = "CHARACTER TIMING / LOCAL ASR";
-  els.hint.textContent = "歌詞は文字単位のローカル解析タイムラインで追います。";
+  els.alignment.textContent = "文字タイムライン / 端末内解析";
+  els.hint.textContent = "音源・歌詞・声はこの端末の中だけで処理されます。";
   renderPosition(audioOffset);
 }
 
@@ -251,6 +255,7 @@ function setCharProgress(row, time, line) {
       const token = line.tokens[index];
       const fill = clamp((time - token.start) / Math.max(.01, token.end - token.start)) * 100;
       char.style.setProperty("--fill", `${fill}%`);
+      char.classList.toggle("filled", time >= token.end);
       char.classList.toggle("active", time >= token.start && time < token.end);
     });
     return;
@@ -264,6 +269,7 @@ function setCharProgress(row, time, line) {
     const end = (cursor + weights[index]) / total;
     const fill = clamp((progress - start) / Math.max(.001, end - start)) * 100;
     char.style.setProperty("--fill", `${fill}%`);
+    char.classList.toggle("filled", progress >= end);
     char.classList.toggle("active", progress >= start && progress < end);
     cursor += weights[index];
   });
@@ -390,6 +396,8 @@ async function changeVocalMode() {
 }
 
 async function changeKey() {
+  const value = Number(els.key.value);
+  els.keyBadge.textContent = `KEY ${value === 0 ? "±0" : value > 0 ? `+${value}` : value}`;
   if (!isPlaying) return;
   const position = currentPosition();
   stopSource();
@@ -495,6 +503,61 @@ function monitorMic() {
   micFrame = requestAnimationFrame(monitorMic);
 }
 
+function setAnalysisVisible(visible) {
+  document.body.classList.toggle("show-analysis", visible);
+  els.analysisOverlay.setAttribute("aria-hidden", String(!visible));
+  els.analysisToggle.setAttribute("aria-expanded", String(visible));
+  els.analysisToggle.textContent = visible ? "音程表示を閉じる" : "音程表示";
+  if (visible) drawPitchHistory();
+}
+
+function setDrawerOpen(open) {
+  document.body.classList.toggle("drawer-open", open);
+  els.drawerScrim.hidden = !open;
+  els.drawer.setAttribute("aria-hidden", String(!open));
+  els.menuButton.setAttribute("aria-expanded", String(open));
+  els.drawerTrigger.setAttribute("aria-expanded", String(open));
+}
+
+function showUpdateAvailable() {
+  if (!els.update.hidden) return;
+  els.update.hidden = false;
+  showToast("新しいバージョンがあります。「更新があります」を押して適用できます。");
+}
+
+function watchInstallingWorker(registration) {
+  const worker = registration.installing;
+  if (!worker) return;
+  worker.addEventListener("statechange", () => {
+    if (worker.state === "installed" && navigator.serviceWorker.controller) showUpdateAvailable();
+  });
+}
+
+async function checkForServiceWorkerUpdate() {
+  try { await serviceWorkerRegistration?.update(); } catch (error) { console.debug("Service Worker update check failed", error); }
+}
+
+async function registerServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (isRefreshing) return;
+    if (updateRequested) {
+      isRefreshing = true;
+      window.location.reload();
+      return;
+    }
+    showUpdateAvailable();
+  });
+  try {
+    serviceWorkerRegistration = await navigator.serviceWorker.register("./sw.js");
+    serviceWorkerRegistration.addEventListener("updatefound", () => watchInstallingWorker(serviceWorkerRegistration));
+    if (serviceWorkerRegistration.waiting && navigator.serviceWorker.controller) showUpdateAvailable();
+    await checkForServiceWorkerUpdate();
+  } catch (error) {
+    console.error("Service Worker registration failed", error);
+  }
+}
+
 window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault(); installPrompt = event; els.install.hidden = false; });
 els.install.addEventListener("click", async () => {
   if (!installPrompt) { showToast("ブラウザの共有メニューから「ホーム画面に追加」を選べます。"); return; }
@@ -509,11 +572,30 @@ els.volume.addEventListener("input", updateVolume);
 els.vocal.addEventListener("change", changeVocalMode);
 els.key.addEventListener("change", changeKey);
 els.micButton.addEventListener("click", toggleMic);
+els.analysisToggle.addEventListener("click", () => setAnalysisVisible(!document.body.classList.contains("show-analysis")));
+els.menuButton.addEventListener("click", () => setDrawerOpen(true));
+els.drawerTrigger.addEventListener("click", () => setDrawerOpen(true));
+els.closeDrawer.addEventListener("click", () => setDrawerOpen(false));
+els.drawerScrim.addEventListener("click", () => setDrawerOpen(false));
+els.update.addEventListener("click", () => {
+  updateRequested = true;
+  els.update.disabled = true;
+  els.update.textContent = "更新中…";
+  if (serviceWorkerRegistration?.waiting) {
+    serviceWorkerRegistration.waiting.postMessage({ type: "SKIP_WAITING" });
+  } else {
+    window.location.reload();
+  }
+});
+document.addEventListener("keydown", (event) => { if (event.key === "Escape") { setDrawerOpen(false); setAnalysisVisible(false); } });
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForServiceWorkerUpdate(); });
+window.addEventListener("focus", checkForServiceWorkerUpdate);
 window.addEventListener("resize", () => { drawWaveform(audioOffset); drawPitchHistory(); });
 
 makeLyricRows();
 renderSectionNav();
-if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(console.error);
+registerServiceWorker();
+window.setInterval(checkForServiceWorkerUpdate, 15 * 60 * 1000);
 loadDsp();
 loadAlignment().catch((error) => {
   els.alignment.textContent = "GRID FALLBACK / ALIGNMENT ERROR";
@@ -523,3 +605,4 @@ loadAlignment().catch((error) => {
 renderPosition(0);
 drawWaveform(0);
 drawPitchHistory();
+changeKey();
