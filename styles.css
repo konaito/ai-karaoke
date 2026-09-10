@@ -41,6 +41,10 @@ button { cursor: pointer; }
 .song-meta i { color: var(--pink); font-style: normal; }
 .song-meta span:last-child { max-width: 190px; overflow: hidden; color: var(--muted); font: 500 10px var(--mono); text-overflow: ellipsis; white-space: nowrap; }
 .screen-tools { display: flex; align-items: center; gap: 10px; }
+.mode-switch { display: flex; flex-shrink: 0; border: 1px solid rgba(255, 255, 255, .28); background: rgba(6, 8, 13, .42); }
+.mode-button { padding: 8px 9px; border: 0; color: var(--muted); background: transparent; font: 600 9px var(--mono); transition: color .15s ease, background .15s ease; }
+.mode-button + .mode-button { border-left: 1px solid rgba(255, 255, 255, .16); }
+.mode-button:hover, .mode-button.active { color: var(--white); background: rgba(255, 79, 154, .2); }
 .tool-button, .update-button, .install-button { padding: 8px 11px; border: 1px solid rgba(255, 255, 255, .3); color: var(--soft-white); background: rgba(6, 8, 13, .42); font-size: 10px; transition: border-color .15s ease, color .15s ease, background .15s ease; }
 .tool-button:hover, .tool-button[aria-expanded="true"], .update-button:hover, .install-button:hover { border-color: var(--yellow); color: var(--yellow); background: rgba(5, 7, 11, .72); }
 .update-button { border-color: var(--yellow); color: var(--yellow); }
@@ -89,11 +93,15 @@ button { cursor: pointer; }
 .analysis-overlay p { margin: 9px 0 0; color: var(--dim); font-size: 9px; }
 
 .player-bar { display: grid; grid-template-columns: 104px minmax(260px, 1fr) minmax(160px, 245px) 34px; align-items: center; gap: 18px; border-top: 1px solid rgba(255, 255, 255, .18); }
+.player-bar { grid-template-columns: 104px 84px minmax(260px, 1fr) minmax(160px, 245px) 34px; }
 .play-button { display: flex; align-items: center; justify-content: center; gap: 8px; width: 104px; height: 38px; border: 1px solid var(--pink); color: var(--black); background: var(--pink); box-shadow: 4px 4px 0 rgba(255, 79, 154, .25); font: 700 10px var(--mono); letter-spacing: .12em; transition: transform .15s ease, box-shadow .15s ease; }
 .play-button:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 rgba(255, 79, 154, .25); }
 .play-button:disabled { cursor: wait; opacity: .62; }
 .play-icon { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 7px solid var(--black); }
 .playing .play-icon { width: 8px; height: 11px; border: 0; background: linear-gradient(90deg, var(--black) 0 35%, transparent 35% 65%, var(--black) 65%); }
+.repeat-button { display: flex; align-items: center; justify-content: center; gap: 5px; width: 84px; height: 32px; padding: 0 5px; border: 1px solid rgba(255, 255, 255, .28); color: var(--muted); background: rgba(6, 8, 13, .42); font: 600 9px var(--mono); transition: border-color .15s ease, color .15s ease, background .15s ease; }
+.repeat-button:hover, .repeat-button.active { border-color: var(--yellow); color: var(--yellow); background: rgba(255, 216, 74, .12); }
+.repeat-icon { font-size: 15px; line-height: 1; }
 .timeline { min-width: 0; }
 .time-row { display: flex; justify-content: space-between; margin-bottom: 5px; color: var(--muted); font: 500 9px var(--mono); }
 .seek { display: block; width: 100%; height: 4px; accent-color: var(--pink); cursor: pointer; }
@@ -129,8 +137,13 @@ button { cursor: pointer; }
 .drawer-status:nth-child(2) { color: var(--yellow); }
 .status-dot { display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
 .drawer-note { margin: 18px 0 0; color: var(--dim); font-size: 10px; line-height: 1.65; }
+.player-only { display: none; }
+.player-mode .player-only { display: block; }
+.player-mode .karaoke-only, .player-mode #analysis-toggle, .player-mode .analysis-overlay { display: none; }
+.player-mode .live-dot { background: var(--cyan); box-shadow: 0 0 14px var(--cyan); }
 .toast { position: fixed; right: 24px; bottom: 100px; z-index: 30; max-width: min(370px, calc(100vw - 48px)); padding: 12px 15px; border: 1px solid rgba(255,79,154,.62); color: var(--white); background: rgba(20,12,22,.94); box-shadow: 4px 4px 0 rgba(255,79,154,.18); opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity .2s ease, transform .2s ease; font-size: 12px; }
 .toast.show { opacity: 1; transform: translateY(0); }
+.native-audio { position: fixed; width: 1px; height: 1px; opacity: .01; pointer-events: none; }
 
 @media (max-width: 900px) {
   .karaoke-app { grid-template-rows: 62px minmax(0,1fr) 75px; padding-right: max(14px, env(safe-area-inset-right)); padding-left: max(14px, env(safe-area-inset-left)); }
@@ -140,15 +153,19 @@ button { cursor: pointer; }
   .lyric-stage { right: 2%; left: 2%; height: 64%; }
   .screen-float-left { left: 2%; }
   .screen-float-right { right: 2%; }
-  .player-bar { grid-template-columns: 82px minmax(0,1fr) 32px; gap: 10px; }
+  .player-bar { grid-template-columns: 82px 44px minmax(0,1fr) 32px; gap: 10px; }
   .play-button { width: 82px; height: 36px; }
   .player-hint { display: none; }
+  .repeat-button { width: 44px; height: 30px; }
+  .repeat-label { display: none; }
 }
 
 @media (max-width: 560px) {
   .karaoke-app { grid-template-rows: 56px minmax(0,1fr) 68px; }
   .brand-copy small { font-size: 7px; }
   .brand-copy strong { font-size: 11px; }
+  .screen-tools { gap: 4px; }
+  .mode-button { padding: 7px 6px; font-size: 8px; }
   .tool-button, .update-button { padding: 7px 8px; font-size: 9px; }
   .update-button { max-width: 94px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .install-button { display: none; }
@@ -160,8 +177,9 @@ button { cursor: pointer; }
   .analysis-overlay { right: 2%; bottom: 5%; left: 2%; width: auto; padding: 12px; }
   .analysis-title small { font-size: 8px; }
   .pitch-card { height: 78px; }
-  .player-bar { grid-template-columns: 74px minmax(0,1fr) 30px; }
+  .player-bar { grid-template-columns: 74px 38px minmax(0,1fr) 30px; }
   .play-button { width: 74px; font-size: 9px; }
+  .repeat-button { width: 38px; }
   .drawer-trigger { width: 28px; height: 28px; }
 }
 

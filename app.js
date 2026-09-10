@@ -8,6 +8,7 @@ const els = {
   waveform: $("waveform"), pitchCanvas: $("pitch-canvas"), vocal: $("vocal-mode"), key: $("key-select"), keyBadge: document.querySelector(".key-badge"), volume: $("volume"), hint: $("player-hint"),
   wasmStatus: $("wasm-status"), alignment: $("alignment-chip"), sectionNav: $("section-nav"), micButton: $("mic-button"), micStatus: $("mic-status"),
   micNote: $("mic-note"), micHz: $("mic-hz"), micMeter: $("mic-meter-fill"), micLevel: $("mic-level"), install: $("install-button"), update: $("update-button"), toast: $("toast"),
+  audio: $("native-audio"), repeat: $("repeat-button"), repeatLabel: $("repeat-label"), screenState: $("screen-state"), modeButtons: [...document.querySelectorAll("[data-playback-mode]")],
   analysisToggle: $("analysis-toggle"), analysisOverlay: $("analysis-overlay"), menuButton: $("menu-button"), drawerTrigger: $("drawer-trigger"), drawerScrim: $("drawer-scrim"), drawer: $("control-drawer"), closeDrawer: $("close-drawer"),
 };
 
@@ -34,6 +35,10 @@ let toastTimer = 0;
 let activeLineIndex = -1;
 let lyricRows = [];
 let pitchHistory = [];
+const storedPlaybackMode = readSetting("ai-karaoke-playback-mode", "karaoke");
+let playbackMode = ["karaoke", "player"].includes(storedPlaybackMode) ? storedPlaybackMode : "karaoke";
+let repeatEnabled = readSetting("ai-karaoke-repeat", "false") === "true";
+let lastMediaSessionPositionUpdate = 0;
 
 const VOCAL_AMOUNTS = { original: 0, light: 0.72, strong: 0.94 };
 const WASM_INPUT_L = 0;
@@ -41,6 +46,14 @@ const WASM_INPUT_R = 131072;
 const WASM_OUTPUT_L = 262144;
 const WASM_OUTPUT_R = 393216;
 const WASM_MIC = 524288;
+
+function readSetting(key, fallback) {
+  try { return localStorage.getItem(key) ?? fallback; } catch (_) { return fallback; }
+}
+
+function saveSetting(key, value) {
+  try { localStorage.setItem(key, value); } catch (_) { /* storage is optional */ }
+}
 
 function formatTime(value) {
   const seconds = Math.max(0, Math.floor(value));
@@ -89,7 +102,9 @@ async function loadAlignment() {
   });
 
   els.alignment.textContent = "文字タイムライン / 端末内解析";
-  els.hint.textContent = "音源・歌詞・声はこの端末の中だけで処理されます。";
+  els.hint.textContent = playbackMode === "player"
+    ? "プレイヤーモード · 歌詞を表示したままバックグラウンド再生"
+    : "音源・歌詞・声はこの端末の中だけで処理されます。";
   renderPosition(audioOffset);
 }
 
@@ -181,27 +196,41 @@ async function getActiveBuffer() {
 }
 
 function currentPosition() {
+  if (playbackMode === "player") {
+    const position = Number(els.audio.currentTime);
+    return Number.isFinite(position) ? clamp(position, 0, SONG.duration) : audioOffset;
+  }
   if (!audioContext || !isPlaying) return audioOffset;
   const rate = activeSource?.playbackRate.value ?? 2 ** (Number(els.key.value) / 12);
   return Math.min(SONG.duration, audioOffset + (audioContext.currentTime - startedAt) * rate);
 }
 
 function stopSource(resetPosition = false) {
+  const position = resetPosition ? 0 : currentPosition();
   if (activeSource) {
     try { activeSource.stop(); } catch (_) { /* already stopped */ }
     activeSource.disconnect();
     activeSource = null;
   }
-  if (isPlaying) audioOffset = currentPosition();
+  if (els.audio && !els.audio.paused) els.audio.pause();
+  if (resetPosition && els.audio) els.audio.currentTime = 0;
+  audioOffset = position;
   isPlaying = false;
-  if (resetPosition) audioOffset = 0;
   cancelAnimationFrame(raf);
   els.play.classList.remove("playing");
   els.playLabel.textContent = "PLAY";
+  updateMediaSessionState();
   renderPosition(audioOffset);
 }
 
+function setPlayButtonState(playing, loading = false) {
+  els.play.classList.toggle("playing", playing);
+  els.playLabel.textContent = loading ? "LOAD" : playing ? "PAUSE" : "PLAY";
+  els.play.setAttribute("aria-label", playing ? "一時停止" : "再生");
+}
+
 async function startPlayback() {
+  if (playbackMode === "player") return startPlayerPlayback();
   if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
   if (audioContext.state === "suspended") await audioContext.resume();
   const buffer = await getActiveBuffer();
@@ -219,26 +248,51 @@ async function startPlayback() {
   startedAt = audioContext.currentTime;
   activeSource.start(0, audioOffset);
   isPlaying = true;
-  els.play.classList.add("playing");
-  els.playLabel.textContent = "PAUSE";
+  setPlayButtonState(true);
+  updateMediaSessionState();
   renderLoop();
   activeSource.onended = () => {
-    if (isPlaying && currentPosition() >= SONG.duration - .12) {
-      audioOffset = 0;
-      isPlaying = false;
+    if (!isPlaying) return;
+    if (repeatEnabled) {
       activeSource = null;
-      els.play.classList.remove("playing");
-      els.playLabel.textContent = "PLAY";
-      renderPosition(0);
+      audioOffset = 0;
+      void startPlayback();
+      return;
     }
+    finishPlayback();
   };
+}
+
+async function startPlayerPlayback() {
+  if (els.audio.ended || els.audio.currentTime >= SONG.duration - 0.05) els.audio.currentTime = 0;
+  els.audio.loop = repeatEnabled;
+  els.audio.volume = Number(els.volume.value);
+  els.audio.playbackRate = 2 ** (Number(els.key.value) / 12);
+  await els.audio.play();
+  isPlaying = true;
+  audioOffset = els.audio.currentTime;
+  setPlayButtonState(true);
+  updateMediaSessionState();
+  renderLoop();
+}
+
+function finishPlayback() {
+  if (els.audio) els.audio.pause();
+  if (playbackMode === "player" && els.audio) els.audio.currentTime = 0;
+  audioOffset = 0;
+  isPlaying = false;
+  activeSource = null;
+  cancelAnimationFrame(raf);
+  setPlayButtonState(false);
+  updateMediaSessionState();
+  renderPosition(0);
 }
 
 async function togglePlayback() {
   if (isPlaying) { stopSource(); return; }
   els.play.disabled = true;
-  els.playLabel.textContent = "LOAD";
-  try { await startPlayback(); } catch (error) { console.error(error); showToast("音源の読み込みに失敗しました。ページを再読み込みしてください。"); els.playLabel.textContent = "PLAY"; }
+  setPlayButtonState(false, true);
+  try { await startPlayback(); } catch (error) { console.error(error); showToast("音源の読み込みに失敗しました。ページを再読み込みしてください。"); setPlayButtonState(false); }
   els.play.disabled = false;
 }
 
@@ -345,6 +399,7 @@ function renderPosition(position) {
   document.querySelectorAll(".section-button").forEach((button) => button.classList.toggle("active", button.dataset.sectionId === section.id));
   updateLyricRows(time, lineIndex);
   drawWaveform(time);
+  updateMediaSessionPosition(time);
 }
 
 function drawWaveform(time = 0) {
@@ -382,12 +437,163 @@ function renderLoop() {
 function jumpTo(time) {
   if (isPlaying) stopSource();
   audioOffset = clamp(time, 0, SONG.duration);
+  if (playbackMode === "player") els.audio.currentTime = audioOffset;
   renderPosition(audioOffset);
 }
 
-function updateVolume() { if (masterGain) masterGain.gain.value = Number(els.volume.value); }
+function seekFromControl(time) {
+  const next = clamp(time, 0, SONG.duration);
+  if (playbackMode === "player") {
+    els.audio.currentTime = next;
+    audioOffset = next;
+    renderPosition(next);
+    return;
+  }
+  jumpTo(next);
+}
+
+function updateVolume() {
+  const volume = Number(els.volume.value);
+  if (masterGain) masterGain.gain.value = volume;
+  if (els.audio) els.audio.volume = volume;
+}
+
+function updateRepeatUI() {
+  els.audio.loop = repeatEnabled;
+  els.repeat.classList.toggle("active", repeatEnabled);
+  els.repeat.setAttribute("aria-pressed", String(repeatEnabled));
+  els.repeatLabel.textContent = repeatEnabled ? "リピート中" : "リピート";
+  els.repeat.title = repeatEnabled ? "リピート再生を解除" : "リピート再生";
+}
+
+function toggleRepeat() {
+  repeatEnabled = !repeatEnabled;
+  saveSetting("ai-karaoke-repeat", String(repeatEnabled));
+  updateRepeatUI();
+  showToast(repeatEnabled ? "リピート再生をONにしました。" : "リピート再生をOFFにしました。");
+}
+
+function updateModeUI() {
+  const isPlayer = playbackMode === "player";
+  document.body.classList.toggle("player-mode", isPlayer);
+  els.modeButtons.forEach((button) => {
+    const active = button.dataset.playbackMode === playbackMode;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  els.screenState.textContent = isPlayer ? "再生中" : "歌唱中";
+  if (isPlayer && document.body.classList.contains("show-analysis")) setAnalysisVisible(false);
+  els.hint.textContent = isPlayer
+    ? "プレイヤーモード · 歌詞を表示したままバックグラウンド再生"
+    : "音源・歌詞・声はこの端末の中だけで処理されます。";
+  renderPosition(currentPosition());
+}
+
+async function setPlaybackMode(mode) {
+  if (!['karaoke', 'player'].includes(mode) || mode === playbackMode) return;
+  const position = currentPosition();
+  const wasPlaying = isPlaying;
+  stopSource();
+  playbackMode = mode;
+  saveSetting("ai-karaoke-playback-mode", playbackMode);
+  audioOffset = position;
+  if (playbackMode === "player") {
+    els.audio.currentTime = position;
+    els.audio.loop = repeatEnabled;
+    els.audio.playbackRate = 2 ** (Number(els.key.value) / 12);
+  }
+  updateModeUI();
+  if (wasPlaying) {
+    els.play.disabled = true;
+    setPlayButtonState(false, true);
+    try { await startPlayback(); } catch (error) { console.error(error); showToast("モード切替後の再生に失敗しました。"); setPlayButtonState(false); }
+    els.play.disabled = false;
+  }
+}
+
+function seekRelative(offset) {
+  const next = clamp(currentPosition() + offset, 0, SONG.duration);
+  if (playbackMode === "player") {
+    els.audio.currentTime = next;
+    audioOffset = next;
+    renderPosition(next);
+    return;
+  }
+  jumpTo(next);
+}
+
+function updateMediaSessionState() {
+  if ("mediaSession" in navigator) navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
+}
+
+function updateMediaSessionPosition(time) {
+  if (!("mediaSession" in navigator) || typeof navigator.mediaSession.setPositionState !== "function" || !isPlaying) return;
+  const now = performance.now();
+  if (now - lastMediaSessionPositionUpdate < 250) return;
+  try {
+    navigator.mediaSession.setPositionState({
+      duration: SONG.duration,
+      playbackRate: Math.max(0.1, playbackMode === "player" ? els.audio.playbackRate : activeSource?.playbackRate.value ?? 1),
+      position: clamp(time, 0, SONG.duration),
+    });
+    lastMediaSessionPositionUpdate = now;
+  } catch (_) { /* Media Session is optional */ }
+}
+
+function setupMediaSession() {
+  if (!("mediaSession" in navigator)) return;
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: SONG.title,
+    artist: SONG.artist,
+    album: "konaito",
+    artwork: [{ src: "./cover.jpeg", sizes: "1024x1024", type: "image/jpeg" }],
+  });
+  const handlers = {
+    play: () => { if (!isPlaying) void togglePlayback(); },
+    pause: () => { if (isPlaying) stopSource(); },
+    seekbackward: (details) => seekRelative(-(details.seekOffset || 10)),
+    seekforward: (details) => seekRelative(details.seekOffset || 10),
+    previoustrack: () => seekRelative(-15),
+    nexttrack: () => seekRelative(15),
+  };
+  for (const [action, handler] of Object.entries(handlers)) {
+    try { navigator.mediaSession.setActionHandler(action, handler); } catch (_) { /* unsupported action */ }
+  }
+}
+
+function setupNativeAudio() {
+  els.audio.volume = Number(els.volume.value);
+  els.audio.loop = repeatEnabled;
+  els.audio.addEventListener("play", () => {
+    if (playbackMode !== "player") return;
+    isPlaying = true;
+    setPlayButtonState(true);
+    updateMediaSessionState();
+    renderLoop();
+  });
+  els.audio.addEventListener("pause", () => {
+    if (playbackMode !== "player") return;
+    audioOffset = Number.isFinite(els.audio.currentTime) ? els.audio.currentTime : audioOffset;
+    if (!els.audio.ended) isPlaying = false;
+    cancelAnimationFrame(raf);
+    setPlayButtonState(false);
+    updateMediaSessionState();
+    renderPosition(audioOffset);
+  });
+  els.audio.addEventListener("timeupdate", () => {
+    if (playbackMode === "player") renderPosition(els.audio.currentTime);
+  });
+  els.audio.addEventListener("ended", () => {
+    if (playbackMode === "player" && !repeatEnabled) finishPlayback();
+  });
+  els.audio.addEventListener("error", () => showToast("音源を読み込めませんでした。ページを再読み込みしてください。"));
+}
 
 async function changeVocalMode() {
+  if (playbackMode === "player") {
+    showToast("ボーカル設定はカラオケモードで使用できます。");
+    return;
+  }
   if (!isPlaying) { els.hint.textContent = "次の再生からボーカル設定を適用します。"; return; }
   const position = currentPosition();
   stopSource();
@@ -398,6 +604,11 @@ async function changeVocalMode() {
 async function changeKey() {
   const value = Number(els.key.value);
   els.keyBadge.textContent = `KEY ${value === 0 ? "±0" : value > 0 ? `+${value}` : value}`;
+  if (playbackMode === "player") {
+    els.audio.playbackRate = 2 ** (value / 12);
+    renderPosition(currentPosition());
+    return;
+  }
   if (!isPlaying) return;
   const position = currentPosition();
   stopSource();
@@ -567,7 +778,9 @@ els.install.addEventListener("click", async () => {
   els.install.hidden = true;
 });
 els.play.addEventListener("click", togglePlayback);
-els.seek.addEventListener("input", () => jumpTo(Number(els.seek.value)));
+els.repeat.addEventListener("click", toggleRepeat);
+els.modeButtons.forEach((button) => button.addEventListener("click", () => { void setPlaybackMode(button.dataset.playbackMode); }));
+els.seek.addEventListener("input", () => seekFromControl(Number(els.seek.value)));
 els.volume.addEventListener("input", updateVolume);
 els.vocal.addEventListener("change", changeVocalMode);
 els.key.addEventListener("change", changeKey);
@@ -592,6 +805,10 @@ document.addEventListener("visibilitychange", () => { if (document.visibilitySta
 window.addEventListener("focus", checkForServiceWorkerUpdate);
 window.addEventListener("resize", () => { drawWaveform(audioOffset); drawPitchHistory(); });
 
+setupNativeAudio();
+updateRepeatUI();
+updateModeUI();
+setupMediaSession();
 makeLyricRows();
 renderSectionNav();
 registerServiceWorker();
