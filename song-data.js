@@ -85,7 +85,7 @@ export const SONG = {
     correlation: 0.8407,
     centerRms: 0.1041,
     sideRms: 0.0307,
-    alignment: "audio-energy-corrected-grid",
-    alignmentNote: "歌唱帯域のエネルギーを検出し、2小節グリッドを行単位で補正。音素強制アライメントではない。",
+    alignment: "known-lyrics-asr-word-timestamps",
+    alignmentNote: "既知歌詞を正として日本語ASRの単語タイムスタンプを文字へ展開。音素強制アライメントではない。",
   },
 };

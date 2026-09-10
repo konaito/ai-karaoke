@@ -52,6 +52,43 @@ function showToast(message) {
   toastTimer = setTimeout(() => els.toast.classList.remove("show"), 3600);
 }
 
+async function loadAlignment() {
+  const response = await fetch("./alignment.json");
+  if (!response.ok) throw new Error(`ALIGNMENT ${response.status}`);
+  const data = await response.json();
+  if (!Array.isArray(data.lines) || data.lines.length !== SONG.lines.length) {
+    throw new Error("Alignment line count does not match the song data");
+  }
+
+  data.lines.forEach((aligned, index) => {
+    const line = SONG.lines[index];
+    if (line.text !== aligned.text) throw new Error(`Alignment text mismatch at line ${index + 1}`);
+    line.start = aligned.start;
+    line.end = aligned.end;
+    line.tokens = aligned.tokens;
+  });
+
+  const visibleSections = SONG.sections.filter((section) => section.lines.length > 0);
+  visibleSections.forEach((section) => {
+    const sectionLines = SONG.lines.filter((line) => line.sectionId === section.id);
+    if (sectionLines.length) {
+      section.start = sectionLines[0].start;
+      section.end = sectionLines[sectionLines.length - 1].end;
+    }
+  });
+  SONG.sections.forEach((section, index) => {
+    if (section.lines.length) return;
+    const previous = [...visibleSections].reverse().find((item) => item.index < index);
+    const next = visibleSections.find((item) => item.index > index);
+    section.start = previous?.end ?? 0;
+    section.end = next?.start ?? SONG.duration;
+  });
+
+  els.alignment.textContent = "CHARACTER TIMING / LOCAL ASR";
+  els.hint.textContent = "歌詞は文字単位のローカル解析タイムラインで追います。";
+  renderPosition(audioOffset);
+}
+
 async function loadDsp() {
   try {
     const response = await fetch("./dsp.wasm");
@@ -207,10 +244,20 @@ function charWeight(char) {
   return 1;
 }
 
-function setCharProgress(row, progress) {
+function setCharProgress(row, time, line) {
   const chars = row.querySelectorAll(".lyric-char");
+  if (line.tokens?.length === chars.length) {
+    chars.forEach((char, index) => {
+      const token = line.tokens[index];
+      const fill = clamp((time - token.start) / Math.max(.01, token.end - token.start)) * 100;
+      char.style.setProperty("--fill", `${fill}%`);
+      char.classList.toggle("active", time >= token.start && time < token.end);
+    });
+    return;
+  }
   const weights = [...chars].map((char) => charWeight(char.textContent));
   const total = weights.reduce((sum, weight) => sum + weight, 0);
+  const progress = clamp((time - line.start) / Math.max(.1, line.end - line.start));
   let cursor = 0;
   chars.forEach((char, index) => {
     const start = cursor / total;
@@ -272,7 +319,7 @@ function updateLyricRows(time, lineIndex) {
     row.classList.toggle("next-line", index === nextIndex);
     row.classList.toggle("past", index < lineIndex || (lineIndex < 0 && time >= line.end));
     row.classList.toggle("future", index > lineIndex && !(lineIndex < 0 && time >= line.end));
-    setCharProgress(row, progress);
+    setCharProgress(row, time, line);
   });
 
   if (lineIndex !== activeLineIndex) {
@@ -478,6 +525,11 @@ makeLyricRows();
 renderSectionNav();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(console.error);
 loadDsp();
+loadAlignment().catch((error) => {
+  els.alignment.textContent = "GRID FALLBACK / ALIGNMENT ERROR";
+  els.hint.textContent = "文字タイムラインの読み込みに失敗しました。行単位の予備データで再生します。";
+  console.error(error);
+});
 renderPosition(0);
 drawWaveform(0);
 drawPitchHistory();
