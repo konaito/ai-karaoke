@@ -326,37 +326,19 @@
     },
     {
       "sectionId": "verse-1",
-      "text": "かいぎょうを消して ふとじも消して",
+      "text": "改行を消して 太字も消して",
       "start": 26.26,
       "end": 29.2,
       "tokens": [
         {
-          "text": "か",
+          "text": "改",
           "start": 26.26,
-          "end": 26.46,
-          "confidence": 0.96
-        },
-        {
-          "text": "い",
-          "start": 26.46,
           "end": 26.62,
           "confidence": 0.96
         },
         {
-          "text": "ぎ",
+          "text": "行",
           "start": 26.62,
-          "end": 26.8,
-          "confidence": 0.96
-        },
-        {
-          "text": "ょ",
-          "start": 26.8,
-          "end": 26.9,
-          "confidence": 0.96
-        },
-        {
-          "text": "う",
-          "start": 26.9,
           "end": 27.1,
           "confidence": 0.96
         },
@@ -391,19 +373,13 @@
           "confidence": 0.3
         },
         {
-          "text": "ふ",
+          "text": "太",
           "start": 27.62,
-          "end": 27.96,
-          "confidence": 0.96
-        },
-        {
-          "text": "と",
-          "start": 27.96,
           "end": 28.2,
           "confidence": 0.96
         },
         {
-          "text": "じ",
+          "text": "字",
           "start": 28.2,
           "end": 28.4,
           "confidence": 0.96
