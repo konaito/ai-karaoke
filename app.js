@@ -3,19 +3,20 @@ import { SONG } from "./song-data.js";
 const $ = (id) => document.getElementById(id);
 const els = {
   play: $("play-button"), playLabel: $("play-label"), seek: $("seek"), currentTime: $("current-time"),
-  section: $("section-name"), lyricKicker: $("lyric-kicker"), current: $("lyric-current"), next: $("lyric-next"), list: $("lyric-list"),
-  waveform: $("waveform"), vocal: $("vocal-mode"), key: $("key-select"), volume: $("volume"), hint: $("player-hint"),
-  wasmStatus: $("wasm-status"), micButton: $("mic-button"), micStatus: $("mic-status"), micNote: $("mic-note"), micHz: $("mic-hz"), micMeter: $("mic-meter-fill"),
-  install: $("install-button"), toast: $("toast"),
+  section: $("section-name"), kicker: $("lyric-kicker"), next: $("lyric-next"), count: $("lyric-count"),
+  viewport: $("lyric-viewport"), lines: $("lyric-lines"), intro: $("intro-message"),
+  waveform: $("waveform"), pitchCanvas: $("pitch-canvas"), vocal: $("vocal-mode"), key: $("key-select"), volume: $("volume"), hint: $("player-hint"),
+  wasmStatus: $("wasm-status"), alignment: $("alignment-chip"), sectionNav: $("section-nav"), micButton: $("mic-button"), micStatus: $("mic-status"),
+  micNote: $("mic-note"), micHz: $("mic-hz"), micMeter: $("mic-meter-fill"), micLevel: $("mic-level"), install: $("install-button"), toast: $("toast"),
 };
 
 let dsp = null;
 let sourceBuffer = null;
+let waveformData = [];
 const processedBuffers = new Map();
 let audioContext = null;
 let activeSource = null;
 let masterGain = null;
-let analyser = null;
 let audioOffset = 0;
 let startedAt = 0;
 let isPlaying = false;
@@ -24,8 +25,11 @@ let installPrompt = null;
 let micContext = null;
 let micAnalyser = null;
 let micStream = null;
-let micFrame = null;
+let micFrame = 0;
 let toastTimer = 0;
+let activeLineIndex = -1;
+let lyricRows = [];
+let pitchHistory = [];
 
 const VOCAL_AMOUNTS = { original: 0, light: 0.72, strong: 0.94 };
 const WASM_INPUT_L = 0;
@@ -38,6 +42,8 @@ function formatTime(value) {
   const seconds = Math.max(0, Math.floor(value));
   return `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
 }
+
+function clamp(value, min = 0, max = 1) { return Math.min(max, Math.max(min, value)); }
 
 function showToast(message) {
   els.toast.textContent = message;
@@ -60,12 +66,37 @@ async function loadDsp() {
   }
 }
 
+function buildWaveformData(buffer) {
+  const bins = 240;
+  const channels = Array.from({ length: buffer.numberOfChannels }, (_, index) => buffer.getChannelData(index));
+  const data = [];
+  for (let bin = 0; bin < bins; bin += 1) {
+    const start = Math.floor((bin / bins) * buffer.length);
+    const end = Math.max(start + 1, Math.floor(((bin + 1) / bins) * buffer.length));
+    const stride = Math.max(1, Math.floor((end - start) / 180));
+    let sum = 0;
+    let count = 0;
+    for (let offset = start; offset < end; offset += stride) {
+      let sample = 0;
+      for (const channel of channels) sample += channel[offset] || 0;
+      sample /= channels.length;
+      sum += sample * sample;
+      count += 1;
+    }
+    data.push(Math.sqrt(sum / Math.max(1, count)));
+  }
+  const peak = Math.max(...data, 0.001);
+  waveformData = data.map((value) => clamp(value / peak));
+}
+
 async function loadSourceBuffer() {
   if (sourceBuffer) return sourceBuffer;
-  if (!audioContext) audioContext = new AudioContext();
+  if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
   const response = await fetch(SONG.source);
   const bytes = await response.arrayBuffer();
   sourceBuffer = await audioContext.decodeAudioData(bytes);
+  buildWaveformData(sourceBuffer);
+  drawWaveform(audioOffset);
   return sourceBuffer;
 }
 
@@ -124,24 +155,25 @@ function stopSource(resetPosition = false) {
   isPlaying = false;
   if (resetPosition) audioOffset = 0;
   cancelAnimationFrame(raf);
+  els.play.classList.remove("playing");
+  els.playLabel.textContent = "PLAY";
   renderPosition(audioOffset);
 }
 
 async function startPlayback() {
-  if (!audioContext) audioContext = new AudioContext();
+  if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
   if (audioContext.state === "suspended") await audioContext.resume();
   const buffer = await getActiveBuffer();
   if (!masterGain) {
     masterGain = audioContext.createGain();
     masterGain.gain.value = Number(els.volume.value);
-    analyser = audioContext.createAnalyser();
-    analyser.fftSize = 2048;
-    masterGain.connect(analyser).connect(audioContext.destination);
+    masterGain.connect(audioContext.destination);
   }
-  if (audioOffset >= buffer.duration / (2 ** (Number(els.key.value) / 12)) - 0.05) audioOffset = 0;
+  const playbackRate = 2 ** (Number(els.key.value) / 12);
+  if (audioOffset >= buffer.duration / playbackRate - 0.05) audioOffset = 0;
   activeSource = audioContext.createBufferSource();
   activeSource.buffer = buffer;
-  activeSource.playbackRate.value = 2 ** (Number(els.key.value) / 12);
+  activeSource.playbackRate.value = playbackRate;
   activeSource.connect(masterGain);
   startedAt = audioContext.currentTime;
   activeSource.start(0, audioOffset);
@@ -153,6 +185,7 @@ async function startPlayback() {
     if (isPlaying && currentPosition() >= SONG.duration - .12) {
       audioOffset = 0;
       isPlaying = false;
+      activeSource = null;
       els.play.classList.remove("playing");
       els.playLabel.textContent = "PLAY";
       renderPosition(0);
@@ -161,16 +194,87 @@ async function startPlayback() {
 }
 
 async function togglePlayback() {
-  if (isPlaying) {
-    stopSource();
-    els.play.classList.remove("playing");
-    els.playLabel.textContent = "PLAY";
-    return;
-  }
+  if (isPlaying) { stopSource(); return; }
   els.play.disabled = true;
   els.playLabel.textContent = "LOAD";
-  try { await startPlayback(); } catch (error) { console.error(error); showToast("音源の読み込みに失敗しました。ページを再読み込みしてください。"); }
+  try { await startPlayback(); } catch (error) { console.error(error); showToast("音源の読み込みに失敗しました。ページを再読み込みしてください。"); els.playLabel.textContent = "PLAY"; }
   els.play.disabled = false;
+}
+
+function charWeight(char) {
+  if (/\s/.test(char)) return .35;
+  if (/[、。！？「」『』]/.test(char)) return .45;
+  return 1;
+}
+
+function setCharProgress(row, progress) {
+  const chars = row.querySelectorAll(".lyric-char");
+  const weights = [...chars].map((char) => charWeight(char.textContent));
+  const total = weights.reduce((sum, weight) => sum + weight, 0);
+  let cursor = 0;
+  chars.forEach((char, index) => {
+    const start = cursor / total;
+    const end = (cursor + weights[index]) / total;
+    const fill = clamp((progress - start) / Math.max(.001, end - start)) * 100;
+    char.style.setProperty("--fill", `${fill}%`);
+    char.classList.toggle("active", progress >= start && progress < end);
+    cursor += weights[index];
+  });
+}
+
+function makeLyricRows() {
+  lyricRows = SONG.lines.map((line, index) => {
+    const row = document.createElement("button");
+    row.type = "button";
+    row.className = "lyric-line future";
+    row.dataset.index = String(index);
+    row.setAttribute("aria-label", `${index + 1}行目 ${line.text}`);
+    row.addEventListener("click", () => jumpTo(line.start));
+
+    const number = document.createElement("span");
+    number.className = "line-number";
+    number.textContent = String(index + 1).padStart(2, "0");
+    const text = document.createElement("span");
+    text.className = "line-text";
+    for (const char of [...line.text]) {
+      const charElement = document.createElement("span");
+      charElement.className = "lyric-char";
+      charElement.textContent = char;
+      text.append(charElement);
+    }
+    row.append(number, text);
+    els.lines.append(row);
+    return row;
+  });
+}
+
+function renderSectionNav() {
+  for (const section of SONG.sections.filter((item) => item.lines.length > 0)) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "section-button";
+    button.dataset.sectionId = section.id;
+    button.innerHTML = `<small>${section.type}</small>${section.label}`;
+    button.addEventListener("click", () => jumpTo(section.start));
+    els.sectionNav.append(button);
+  }
+}
+
+function updateLyricRows(time, lineIndex) {
+  lyricRows.forEach((row, index) => {
+    const line = SONG.lines[index];
+    const progress = clamp((time - line.start) / Math.max(.1, line.end - line.start));
+    row.classList.toggle("current", index === lineIndex);
+    row.classList.toggle("past", index < lineIndex || (lineIndex < 0 && time >= line.end));
+    row.classList.toggle("future", index > lineIndex && !(lineIndex < 0 && time >= line.end));
+    setCharProgress(row, progress);
+  });
+
+  if (lineIndex !== activeLineIndex) {
+    activeLineIndex = lineIndex;
+    const target = lyricRows[lineIndex >= 0 ? lineIndex : SONG.lines.findIndex((line) => line.start > time)];
+    if (target && time > SONG.lines[0].start - 1) target.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
 
 function renderPosition(position) {
@@ -179,13 +283,21 @@ function renderPosition(position) {
   els.currentTime.textContent = formatTime(time);
   const lineIndex = SONG.lines.findIndex((line) => time >= line.start && time < line.end);
   const line = lineIndex >= 0 ? SONG.lines[lineIndex] : null;
-  const next = lineIndex >= 0 ? SONG.lines[lineIndex + 1] : SONG.lines.find((item) => item.start > time);
+  const next = SONG.lines.find((item) => item.start > time);
   const section = [...SONG.sections].reverse().find((item) => time >= item.start) ?? SONG.sections[0];
-  els.section.textContent = section.name;
-  els.lyricKicker.textContent = line ? `♪ ${line.section}` : time < SONG.sections[1].start ? "音が始まる。まだ、言葉の前。" : "余韻 / 今日の言葉を返してもらう";
-  els.current.textContent = line?.text ?? (time < SONG.sections[1].start ? "愛を伝えるだとか" : "言ってくれる 君がいるうちに");
-  els.next.textContent = next?.text ?? "—";
-  els.list.replaceChildren(...SONG.lines.slice(Math.max(0, lineIndex + 1), Math.max(0, lineIndex + 4)).map((item) => { const span = document.createElement("span"); span.textContent = item.text; return span; }));
+  els.section.textContent = `${section.type} · ${section.label}`;
+  els.next.textContent = next ? `NEXT · ${next.text}` : "—";
+  els.kicker.textContent = line ? `♪ ${line.section} · ${line.sectionLabel}` : time < SONG.lines[0].start ? "音が始まる。まだ、言葉の前。" : section.type === "INSTRUMENTAL" ? "♪ 間奏 · 次の歌詞まで" : "余韻 · 君がいるうちに";
+  els.count.textContent = line ? `${String(lineIndex + 1).padStart(2, "0")} / ${SONG.lines.length}` : next ? `${String(SONG.lines.indexOf(next) + 1).padStart(2, "0")} / ${SONG.lines.length}` : "— / 56";
+  els.intro.hidden = Boolean(line);
+  if (!line) {
+    const label = els.intro.querySelector("strong");
+    const note = els.intro.querySelector("span:last-child");
+    label.textContent = time < SONG.lines[0].start ? "音が始まる" : section.type === "INSTRUMENTAL" ? "間奏" : "余韻";
+    note.textContent = time < SONG.lines[0].start ? "最初の歌詞まで待機中" : section.type === "INSTRUMENTAL" ? "次の歌詞まで聴く" : "曲の終わりまで";
+  }
+  document.querySelectorAll(".section-button").forEach((button) => button.classList.toggle("active", button.dataset.sectionId === section.id));
+  updateLyricRows(time, lineIndex);
   drawWaveform(time);
 }
 
@@ -194,24 +306,37 @@ function drawWaveform(time = 0) {
   const ctx = canvas.getContext("2d");
   const ratio = window.devicePixelRatio || 1;
   const width = canvas.clientWidth || 900;
-  const height = 62;
+  const height = 50;
   if (canvas.width !== width * ratio) { canvas.width = width * ratio; canvas.height = height * ratio; }
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
   ctx.clearRect(0, 0, width, height);
+  const data = waveformData.length ? waveformData : Array.from({ length: 240 }, (_, index) => .28 + .2 * Math.abs(Math.sin(index * 1.43)) + .13 * Math.abs(Math.sin(index * .31 + 1)));
   const progress = time / SONG.duration;
-  const bars = Math.max(80, Math.floor(width / 6));
-  for (let i = 0; i < bars; i += 1) {
-    const x = (i / bars) * width;
-    const base = .15 + .18 * Math.abs(Math.sin(i * 1.43)) + .13 * Math.abs(Math.sin(i * .31 + 1));
-    const heightValue = base * height * (i / bars < progress ? 1 : .63);
-    ctx.fillStyle = i / bars < progress ? "#ff5b9e" : "rgba(255, 245, 238, .19)";
-    ctx.fillRect(x, height / 2 - heightValue / 2, 2.4, heightValue);
+  const barWidth = width / data.length;
+  data.forEach((value, index) => {
+    const x = index * barWidth;
+    const barHeight = Math.max(3, value * height * .82);
+    ctx.fillStyle = index / data.length <= progress ? "#ff5b9e" : "rgba(255,245,238,.2)";
+    ctx.fillRect(x, height / 2 - barHeight / 2, Math.max(1, barWidth - 1), barHeight);
+  });
+  ctx.fillStyle = "#ffb16d";
+  ctx.fillRect(progress * width - 1, 0, 2, height);
+  ctx.fillStyle = "rgba(255,177,109,.7)";
+  for (const line of SONG.lines) {
+    const x = (line.start / SONG.duration) * width;
+    ctx.fillRect(x, height - 3, 1, 3);
   }
 }
 
 function renderLoop() {
   renderPosition(currentPosition());
   if (isPlaying) raf = requestAnimationFrame(renderLoop);
+}
+
+function jumpTo(time) {
+  if (isPlaying) stopSource();
+  audioOffset = clamp(time, 0, SONG.duration);
+  renderPosition(audioOffset);
 }
 
 function updateVolume() { if (masterGain) masterGain.gain.value = Number(els.volume.value); }
@@ -239,29 +364,64 @@ function noteName(frequency) {
   return `${names[(midi + 120) % 12]}${Math.floor(midi / 12) - 1}`;
 }
 
+function drawPitchHistory() {
+  const canvas = els.pitchCanvas;
+  const ctx = canvas.getContext("2d");
+  const ratio = window.devicePixelRatio || 1;
+  const width = canvas.clientWidth || 450;
+  const height = canvas.clientHeight || 115;
+  if (canvas.width !== width * ratio) { canvas.width = width * ratio; canvas.height = height * ratio; }
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.clearRect(0, 0, width, height);
+  const now = performance.now();
+  const minMidi = 42;
+  const maxMidi = 84;
+  ctx.strokeStyle = "rgba(139,231,218,.22)";
+  ctx.lineWidth = 1;
+  for (let midi = 48; midi <= 84; midi += 12) {
+    const y = height - ((midi - minMidi) / (maxMidi - minMidi)) * height;
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+  }
+  const points = pitchHistory.filter((item) => now - item.time < 6000 && item.pitch > 0);
+  if (points.length < 2) return;
+  ctx.beginPath();
+  points.forEach((item, index) => {
+    const x = width - ((now - item.time) / 6000) * width;
+    const midi = 69 + 12 * Math.log2(item.pitch / 440);
+    const y = height - clamp((midi - minMidi) / (maxMidi - minMidi)) * height;
+    if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = "#8be7da";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
 async function toggleMic() {
   if (micStream) {
     micStream.getTracks().forEach((track) => track.stop());
     micStream = null;
     cancelAnimationFrame(micFrame);
+    pitchHistory = [];
     els.micButton.classList.remove("active");
     els.micButton.innerHTML = '<span class="mic-symbol">◉</span> マイクを有効化';
-    els.micStatus.textContent = "音程と声量を端末内で表示";
+    els.micStatus.textContent = "音程と声量を端末内で表示。採点は行いません。";
     els.micNote.textContent = "--";
     els.micHz.textContent = "マイク待機中";
     els.micMeter.style.width = "0";
+    els.micLevel.textContent = "0%";
+    drawPitchHistory();
     return;
   }
   try {
     micStream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: false } });
-    micContext = new AudioContext();
+    micContext = new (window.AudioContext || window.webkitAudioContext)();
     const input = micContext.createMediaStreamSource(micStream);
     micAnalyser = micContext.createAnalyser();
     micAnalyser.fftSize = 2048;
     input.connect(micAnalyser);
     els.micButton.classList.add("active");
     els.micButton.innerHTML = '<span class="mic-symbol">●</span> マイクを停止';
-    els.micStatus.textContent = "端末内で解析中";
+    els.micStatus.textContent = "端末内で解析中 · 曲との比較は未実施";
     monitorMic();
   } catch (error) {
     els.micStatus.textContent = "マイクへのアクセスが許可されていません";
@@ -286,7 +446,12 @@ function monitorMic() {
   }
   els.micNote.textContent = pitch > 0 ? noteName(pitch) : "--";
   els.micHz.textContent = pitch > 0 ? `${Math.round(pitch)} Hz` : "声を入れてください";
-  els.micMeter.style.width = `${Math.min(100, level * 520)}%`;
+  const levelPercent = Math.round(clamp(level * 520) * 100);
+  els.micMeter.style.width = `${levelPercent}%`;
+  els.micLevel.textContent = `${levelPercent}%`;
+  if (pitch > 0 && level > .015) pitchHistory.push({ time: performance.now(), pitch });
+  pitchHistory = pitchHistory.filter((item) => performance.now() - item.time < 6000);
+  drawPitchHistory();
   micFrame = requestAnimationFrame(monitorMic);
 }
 
@@ -299,14 +464,17 @@ els.install.addEventListener("click", async () => {
   els.install.hidden = true;
 });
 els.play.addEventListener("click", togglePlayback);
-els.seek.addEventListener("input", () => { if (isPlaying) stopSource(); audioOffset = Number(els.seek.value); renderPosition(audioOffset); });
+els.seek.addEventListener("input", () => jumpTo(Number(els.seek.value)));
 els.volume.addEventListener("input", updateVolume);
 els.vocal.addEventListener("change", changeVocalMode);
 els.key.addEventListener("change", changeKey);
 els.micButton.addEventListener("click", toggleMic);
-window.addEventListener("resize", () => drawWaveform(audioOffset));
+window.addEventListener("resize", () => { drawWaveform(audioOffset); drawPitchHistory(); });
 
+makeLyricRows();
+renderSectionNav();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(console.error);
 loadDsp();
 renderPosition(0);
 drawWaveform(0);
+drawPitchHistory();

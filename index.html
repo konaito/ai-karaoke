@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#0d0b10" />
-    <meta name="description" content="愛を伝えるだとか — ローカルで動く、この曲だけのカラオケ" />
+    <meta name="theme-color" content="#101018" />
+    <meta name="description" content="愛を伝えるだとか — konaito / one-song karaoke" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./cover.jpeg" type="image/jpeg" />
     <link rel="stylesheet" href="./styles.css" />
@@ -16,127 +16,107 @@
       <a class="wordmark" href="./" aria-label="愛を伝えるだとか カラオケ ホーム">
         <span class="wordmark-mark">A</span>
         <span>
-          <small>PRIVATE KARAOKE</small>
+          <small>ONE SONG KARAOKE</small>
           <strong>愛を伝えるだとか</strong>
         </span>
       </a>
       <div class="topbar-actions">
-        <span class="local-chip"><i></i> LOCAL ONLY</span>
+        <span class="artist-chip"><i></i> konaito</span>
         <button class="text-button" id="install-button" type="button" hidden>INSTALL APP</button>
       </div>
     </header>
 
     <main class="page">
-      <section class="hero" aria-labelledby="song-title">
-        <div class="hero-copy">
+      <section class="song-header" aria-labelledby="song-title">
+        <div class="song-cover"><img src="./cover.jpeg" alt="愛を伝えるだとか ジャケット" /></div>
+        <div class="song-heading">
           <p class="eyebrow">KARAOKE / SONG 001</p>
-          <h1 id="song-title">愛を伝える<br /><em>だとか</em></h1>
-          <p class="hero-lede">完成前の僕のままで、<br />君の今日に間に合いたい。</p>
-          <div class="hero-meta">
-            <span>D MAJOR</span><b>·</b><span>133 BPM</span><b>·</b><span>03:52</span>
-          </div>
+          <h1 id="song-title">愛を伝えるだとか</h1>
+          <p class="artist-line"><span>歌手</span> konaito</p>
         </div>
-        <figure class="cover-wrap">
-          <div class="cover-halo"></div>
-          <img src="./cover.jpeg" alt="愛を伝えるだとか ジャケット" class="cover" />
-          <figcaption>ORIGINAL TRACK / LOCAL PLAYBACK</figcaption>
-        </figure>
+        <dl class="song-facts">
+          <div><dt>KEY</dt><dd>D major</dd></div>
+          <div><dt>TEMPO</dt><dd>133 BPM</dd></div>
+          <div><dt>LENGTH</dt><dd>03:52</dd></div>
+        </dl>
       </section>
 
-      <section class="player-card" aria-label="カラオケプレイヤー">
-        <div class="player-head">
+      <section class="karaoke-card" aria-label="カラオケ画面">
+        <div class="karaoke-head">
           <div>
             <p class="section-label">NOW SINGING</p>
-            <p class="section-name" id="section-name">INTRO / 言葉の前</p>
+            <p class="section-name" id="section-name">INTRO · 言葉の前</p>
           </div>
-          <p class="wasm-status" id="wasm-status"><span class="status-dot"></span> WASM DSP READY</p>
-        </div>
-
-        <div class="lyric-stage">
-          <p class="lyric-kicker" id="lyric-kicker">音が始まる。まだ、言葉の前。</p>
-          <p class="lyric-current" id="lyric-current">愛を伝えるだとか</p>
-          <p class="lyric-next" id="lyric-next">くだらない話だとか</p>
-        </div>
-
-        <div class="lyric-list" id="lyric-list" aria-live="polite"></div>
-
-        <div class="timeline-wrap">
-          <canvas id="waveform" class="waveform" width="1200" height="100" aria-label="音声波形"></canvas>
-          <input id="seek" class="seek" type="range" min="0" max="231.56" step="0.01" value="0" aria-label="再生位置" />
-          <div class="time-row"><span id="current-time">00:00</span><span>03:52</span></div>
-        </div>
-
-        <div class="main-controls">
-          <button class="play-button" id="play-button" type="button" aria-label="再生">
-            <span class="play-icon"></span>
-            <span id="play-label">PLAY</span>
-          </button>
-          <div class="control-cluster">
-            <label class="control-field">
-              <span>VOCAL</span>
-              <select id="vocal-mode" aria-label="ボーカル低減モード">
-                <option value="original">原音</option>
-                <option value="light" selected>ボーカル低減</option>
-                <option value="strong">ボーカル強め</option>
-              </select>
-            </label>
-            <label class="control-field">
-              <span>KEY</span>
-              <select id="key-select" aria-label="移調">
-                <option value="-3">-3</option>
-                <option value="-2">-2</option>
-                <option value="-1">-1</option>
-                <option value="0" selected>±0</option>
-                <option value="1">+1</option>
-                <option value="2">+2</option>
-                <option value="3">+3</option>
-              </select>
-            </label>
-            <label class="control-field volume-field">
-              <span>VOLUME</span>
-              <input id="volume" type="range" min="0" max="1" step="0.01" value="0.84" aria-label="音量" />
-            </label>
+          <div class="head-status">
+            <span class="alignment-chip" id="alignment-chip">LINE TIMING / AUDIO ENERGY</span>
+            <p class="wasm-status" id="wasm-status"><span class="status-dot"></span> WASM DSP READY</p>
           </div>
         </div>
-        <p class="hint" id="player-hint">最初の再生で音源を端末内に準備します。通信は不要です。</p>
-      </section>
 
-      <section class="lower-grid">
-        <article class="info-card analysis-card">
-          <div class="card-heading">
-            <div><p class="section-label">TRACK ANALYSIS</p><h2>この曲の設計図</h2></div>
-            <span class="card-index">01</span>
+        <div class="karaoke-layout">
+          <div class="lyric-column">
+            <div class="lyric-context">
+              <span>歌詞を追う</span>
+              <span id="lyric-count">01 / 56</span>
+            </div>
+            <div class="lyric-viewport" id="lyric-viewport" aria-live="polite">
+              <div class="lyric-lines" id="lyric-lines"></div>
+              <div class="intro-message" id="intro-message">
+                <span class="intro-mark">♪</span>
+                <strong>音が始まる</strong>
+                <span>最初の歌詞まで待機中</span>
+              </div>
+            </div>
+            <div class="lyric-caption"><span id="lyric-kicker">音が始まる。まだ、言葉の前。</span><span id="lyric-next">—</span></div>
           </div>
-          <div class="stat-grid">
-            <div><strong>133</strong><span>BPM / 推定</span></div>
-            <div><strong>D</strong><span>MAJOR / 推定</span></div>
-            <div><strong>48k</strong><span>サンプルレート</span></div>
-            <div><strong>03:52</strong><span>ランタイム</span></div>
-          </div>
-          <p class="card-copy">中央定位の声をWASM DSPで周波数依存に抑えます。低域のキックやベースを残すため、単純な左右反転より歌いやすい設定です。</p>
-        </article>
 
-        <article class="info-card mic-card">
-          <div class="card-heading">
-            <div><p class="section-label">VOICE MONITOR</p><h2>声を重ねる</h2></div>
-            <span class="card-index">02</span>
-          </div>
-          <div class="mic-readout"><span id="mic-note">--</span><span id="mic-hz">マイク待機中</span></div>
-          <div class="meter"><span id="mic-meter-fill"></span></div>
-          <div class="mic-actions">
+          <aside class="voice-rail" aria-label="声のモニター">
+            <div class="rail-label"><span>VOICE MONITOR</span><span class="rail-index">02</span></div>
+            <div class="pitch-readout"><strong id="mic-note">--</strong><span id="mic-hz">マイク待機中</span></div>
+            <canvas id="pitch-canvas" width="480" height="180" aria-label="マイク音程の履歴"></canvas>
+            <div class="meter-label"><span>INPUT LEVEL</span><span id="mic-level">0%</span></div>
+            <div class="meter"><span id="mic-meter-fill"></span></div>
             <button class="outline-button" id="mic-button" type="button"><span class="mic-symbol">◉</span> マイクを有効化</button>
-            <span class="mic-status" id="mic-status">音程と声量を端末内で表示</span>
+            <p class="rail-note" id="mic-status">音程と声量を端末内で表示。採点は行いません。</p>
+          </aside>
+        </div>
+
+        <div class="transport">
+          <canvas id="waveform" class="waveform" width="1200" height="76" aria-label="音源から計算した波形"></canvas>
+          <div class="transport-line"><span id="current-time">00:00</span><input id="seek" class="seek" type="range" min="0" max="231.56" step="0.01" value="0" aria-label="再生位置" /><span>03:52</span></div>
+          <div class="transport-controls">
+            <button class="play-button" id="play-button" type="button" aria-label="再生"><span class="play-icon"></span><span id="play-label">PLAY</span></button>
+            <div class="control-cluster">
+              <label class="control-field"><span>VOCAL</span><select id="vocal-mode" aria-label="ボーカル低減モード"><option value="original">原音</option><option value="light" selected>ボーカル低減</option><option value="strong">ボーカル強め</option></select></label>
+              <label class="control-field"><span>KEY</span><select id="key-select" aria-label="移調"><option value="-3">-3</option><option value="-2">-2</option><option value="-1">-1</option><option value="0" selected>±0</option><option value="1">+1</option><option value="2">+2</option><option value="3">+3</option></select></label>
+              <label class="control-field volume-field"><span>VOLUME</span><input id="volume" type="range" min="0" max="1" step="0.01" value="0.84" aria-label="音量" /></label>
+            </div>
           </div>
-        </article>
+          <p class="hint" id="player-hint">再生を押すと音源を端末内に準備します。歌詞タイミングは音源解析データを使用します。</p>
+        </div>
       </section>
 
-      <section class="privacy-note">
-        <span class="privacy-icon">◎</span>
-        <p><strong>あなたの声は外へ出ません。</strong><br />音源・歌詞・マイク解析は、この端末のブラウザ内だけで処理されます。ホーム画面に追加すると、機内モードでも使えます。</p>
+      <section class="section-nav-card" aria-label="曲の構成">
+        <div class="nav-heading"><div><p class="section-label">SONG MAP</p><h2>曲の構成</h2></div><span>タップして移動</span></div>
+        <div class="section-nav" id="section-nav"></div>
+      </section>
+
+      <section class="proof-grid">
+        <article class="info-card">
+          <div class="card-heading"><div><p class="section-label">TIMING DATA</p><h2>歌唱位置の解析</h2></div><span class="card-index">01</span></div>
+          <div class="analysis-row"><strong>56</strong><span>歌詞ラインを音源の歌唱帯域に合わせて配置</span></div>
+          <div class="analysis-row"><strong>48k</strong><span>48,000 Hz / stereo WAV から抽出</span></div>
+          <p class="card-copy">BPMグリッドを土台に、歌唱帯域のエネルギーの立ち上がりで各行の入口を補正しています。音素単位の強制アライメントではないため、精度の境界もこの画面に残しています。</p>
+        </article>
+        <article class="info-card privacy-card">
+          <div class="card-heading"><div><p class="section-label">LOCAL ENGINE</p><h2>声を外へ出さない</h2></div><span class="card-index">02</span></div>
+          <div class="privacy-big"><span>◎</span><strong>PRIVATE BY DEFAULT</strong></div>
+          <p class="card-copy">音源再生、ボーカル低減、マイクの音程検出はブラウザとWASMだけで処理します。サーバー、ログイン、音声アップロードはありません。</p>
+        </article>
       </section>
     </main>
 
-    <footer class="footer"><span>愛を伝えるだとか</span><span>BUILT FOR ONE SONG</span><span>© 2026 KONAITO</span></footer>
+    <footer class="footer"><span>愛を伝えるだとか / konaito</span><span>BUILT FOR ONE SONG</span><span>© 2026 KONAITO</span></footer>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script type="module" src="./app.js"></script>
   </body>
