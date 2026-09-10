@@ -1,7 +1,7 @@
 {
   "name": "愛を伝えるだとか / KARAOKE",
   "short_name": "愛を伝えるだとか",
-  "description": "konaito / 愛を伝えるだとか — ローカル完結カラオケアプリ",
+  "description": "konaito / 愛を伝えるだとか — ローカル完結カラオケ・音楽プレイヤー",
   "lang": "ja",
   "start_url": "./",
   "scope": "./",
