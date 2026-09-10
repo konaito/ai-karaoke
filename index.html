@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d0b10" />
+    <meta name="description" content="愛を伝えるだとか — ローカルで動く、この曲だけのカラオケ" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./cover.jpeg" type="image/jpeg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>愛を伝えるだとか / KARAOKE</title>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="wordmark" href="./" aria-label="愛を伝えるだとか カラオケ ホーム">
+        <span class="wordmark-mark">A</span>
+        <span>
+          <small>PRIVATE KARAOKE</small>
+          <strong>愛を伝えるだとか</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <span class="local-chip"><i></i> LOCAL ONLY</span>
+        <button class="text-button" id="install-button" type="button" hidden>INSTALL APP</button>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero" aria-labelledby="song-title">
+        <div class="hero-copy">
+          <p class="eyebrow">KARAOKE / SONG 001</p>
+          <h1 id="song-title">愛を伝える<br /><em>だとか</em></h1>
+          <p class="hero-lede">完成前の僕のままで、<br />君の今日に間に合いたい。</p>
+          <div class="hero-meta">
+            <span>D MAJOR</span><b>·</b><span>133 BPM</span><b>·</b><span>03:52</span>
+          </div>
+        </div>
+        <figure class="cover-wrap">
+          <div class="cover-halo"></div>
+          <img src="./cover.jpeg" alt="愛を伝えるだとか ジャケット" class="cover" />
+          <figcaption>ORIGINAL TRACK / LOCAL PLAYBACK</figcaption>
+        </figure>
+      </section>
+
+      <section class="player-card" aria-label="カラオケプレイヤー">
+        <div class="player-head">
+          <div>
+            <p class="section-label">NOW SINGING</p>
+            <p class="section-name" id="section-name">INTRO / 言葉の前</p>
+          </div>
+          <p class="wasm-status" id="wasm-status"><span class="status-dot"></span> WASM DSP READY</p>
+        </div>
+
+        <div class="lyric-stage">
+          <p class="lyric-kicker" id="lyric-kicker">音が始まる。まだ、言葉の前。</p>
+          <p class="lyric-current" id="lyric-current">愛を伝えるだとか</p>
+          <p class="lyric-next" id="lyric-next">くだらない話だとか</p>
+        </div>
+
+        <div class="lyric-list" id="lyric-list" aria-live="polite"></div>
+
+        <div class="timeline-wrap">
+          <canvas id="waveform" class="waveform" width="1200" height="100" aria-label="音声波形"></canvas>
+          <input id="seek" class="seek" type="range" min="0" max="231.56" step="0.01" value="0" aria-label="再生位置" />
+          <div class="time-row"><span id="current-time">00:00</span><span>03:52</span></div>
+        </div>
+
+        <div class="main-controls">
+          <button class="play-button" id="play-button" type="button" aria-label="再生">
+            <span class="play-icon"></span>
+            <span id="play-label">PLAY</span>
+          </button>
+          <div class="control-cluster">
+            <label class="control-field">
+              <span>VOCAL</span>
+              <select id="vocal-mode" aria-label="ボーカル低減モード">
+                <option value="original">原音</option>
+                <option value="light" selected>ボーカル低減</option>
+                <option value="strong">ボーカル強め</option>
+              </select>
+            </label>
+            <label class="control-field">
+              <span>KEY</span>
+              <select id="key-select" aria-label="移調">
+                <option value="-3">-3</option>
+                <option value="-2">-2</option>
+                <option value="-1">-1</option>
+                <option value="0" selected>±0</option>
+                <option value="1">+1</option>
+                <option value="2">+2</option>
+                <option value="3">+3</option>
+              </select>
+            </label>
+            <label class="control-field volume-field">
+              <span>VOLUME</span>
+              <input id="volume" type="range" min="0" max="1" step="0.01" value="0.84" aria-label="音量" />
+            </label>
+          </div>
+        </div>
+        <p class="hint" id="player-hint">最初の再生で音源を端末内に準備します。通信は不要です。</p>
+      </section>
+
+      <section class="lower-grid">
+        <article class="info-card analysis-card">
+          <div class="card-heading">
+            <div><p class="section-label">TRACK ANALYSIS</p><h2>この曲の設計図</h2></div>
+            <span class="card-index">01</span>
+          </div>
+          <div class="stat-grid">
+            <div><strong>133</strong><span>BPM / 推定</span></div>
+            <div><strong>D</strong><span>MAJOR / 推定</span></div>
+            <div><strong>48k</strong><span>サンプルレート</span></div>
+            <div><strong>03:52</strong><span>ランタイム</span></div>
+          </div>
+          <p class="card-copy">中央定位の声をWASM DSPで周波数依存に抑えます。低域のキックやベースを残すため、単純な左右反転より歌いやすい設定です。</p>
+        </article>
+
+        <article class="info-card mic-card">
+          <div class="card-heading">
+            <div><p class="section-label">VOICE MONITOR</p><h2>声を重ねる</h2></div>
+            <span class="card-index">02</span>
+          </div>
+          <div class="mic-readout"><span id="mic-note">--</span><span id="mic-hz">マイク待機中</span></div>
+          <div class="meter"><span id="mic-meter-fill"></span></div>
+          <div class="mic-actions">
+            <button class="outline-button" id="mic-button" type="button"><span class="mic-symbol">◉</span> マイクを有効化</button>
+            <span class="mic-status" id="mic-status">音程と声量を端末内で表示</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="privacy-note">
+        <span class="privacy-icon">◎</span>
+        <p><strong>あなたの声は外へ出ません。</strong><br />音源・歌詞・マイク解析は、この端末のブラウザ内だけで処理されます。ホーム画面に追加すると、機内モードでも使えます。</p>
+      </section>
+    </main>
+
+    <footer class="footer"><span>愛を伝えるだとか</span><span>BUILT FOR ONE SONG</span><span>© 2026 KONAITO</span></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

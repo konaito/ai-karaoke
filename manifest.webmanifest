@@ -1,0 +1,15 @@
+{
+  "name": "愛を伝えるだとか / KARAOKE",
+  "short_name": "愛を伝えるだとか",
+  "description": "この曲だけの、ローカル完結カラオケアプリ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d0b10",
+  "theme_color": "#0d0b10",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "./cover.jpeg", "sizes": "1024x1024", "type": "image/jpeg", "purpose": "any maskable" }
+  ]
+}
