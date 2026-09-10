@@ -7,7 +7,7 @@
     <meta name="description" content="愛を伝えるだとか — konaito / one-song karaoke" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./cover.jpeg" type="image/jpeg" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=5" />
     <title>愛を伝えるだとか / KARAOKE</title>
   </head>
   <body>
@@ -59,16 +59,10 @@
           </div>
 
           <div class="performance-stage">
-            <div class="stage-meta"><span id="lyric-kicker">音が始まる。まだ、言葉の前。</span><span id="lyric-count">01 / 56</span></div>
+            <div class="stage-meta"><span id="lyric-kicker"></span><span id="lyric-count">01 / 56</span></div>
             <div class="lyric-viewport" id="lyric-viewport" aria-live="polite">
               <div class="lyric-lines" id="lyric-lines"></div>
-              <div class="intro-message" id="intro-message">
-                <span class="intro-mark">♪</span>
-                <strong>音が始まる</strong>
-                <span>最初の歌詞まで待機中</span>
-              </div>
             </div>
-            <div class="stage-next"><span>NEXT</span><strong id="lyric-next">—</strong></div>
           </div>
 
           <div class="transport">
@@ -104,6 +98,6 @@
       <footer class="footer"><span>愛を伝えるだとか / konaito</span><span>NO SCROLL · ONE SCREEN</span><span>© 2026 KONAITO</span></footer>
     </main>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js?v=5"></script>
   </body>
 </html>

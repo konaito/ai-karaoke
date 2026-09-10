@@ -3,8 +3,8 @@ import { SONG } from "./song-data.js";
 const $ = (id) => document.getElementById(id);
 const els = {
   play: $("play-button"), playLabel: $("play-label"), seek: $("seek"), currentTime: $("current-time"),
-  section: $("section-name"), kicker: $("lyric-kicker"), next: $("lyric-next"), count: $("lyric-count"),
-  viewport: $("lyric-viewport"), lines: $("lyric-lines"), intro: $("intro-message"),
+  section: $("section-name"), kicker: $("lyric-kicker"), count: $("lyric-count"),
+  viewport: $("lyric-viewport"), lines: $("lyric-lines"),
   waveform: $("waveform"), pitchCanvas: $("pitch-canvas"), vocal: $("vocal-mode"), key: $("key-select"), volume: $("volume"), hint: $("player-hint"),
   wasmStatus: $("wasm-status"), alignment: $("alignment-chip"), sectionNav: $("section-nav"), micButton: $("mic-button"), micStatus: $("mic-status"),
   micNote: $("mic-note"), micHz: $("mic-hz"), micMeter: $("mic-meter-fill"), micLevel: $("mic-level"), install: $("install-button"), toast: $("toast"),
@@ -309,13 +309,11 @@ function renderSectionNav() {
 
 function updateLyricRows(time, lineIndex) {
   const nextIndex = lineIndex >= 0 ? lineIndex + 1 : SONG.lines.findIndex((line) => line.start > time);
-  const previousIndex = lineIndex > 0 ? lineIndex - 1 : -1;
   els.lines.classList.toggle("has-current", lineIndex >= 0);
   lyricRows.forEach((row, index) => {
     const line = SONG.lines[index];
     const progress = clamp((time - line.start) / Math.max(.1, line.end - line.start));
     row.classList.toggle("current", index === lineIndex);
-    row.classList.toggle("previous", index === previousIndex);
     row.classList.toggle("next-line", index === nextIndex);
     row.classList.toggle("past", index < lineIndex || (lineIndex < 0 && time >= line.end));
     row.classList.toggle("future", index > lineIndex && !(lineIndex < 0 && time >= line.end));
@@ -336,16 +334,8 @@ function renderPosition(position) {
   const next = SONG.lines.find((item) => item.start > time);
   const section = [...SONG.sections].reverse().find((item) => time >= item.start) ?? SONG.sections[0];
   els.section.textContent = `${section.type} · ${section.label}`;
-  els.next.textContent = next ? `NEXT · ${next.text}` : "—";
-  els.kicker.textContent = line ? `♪ ${line.section} · ${line.sectionLabel}` : time < SONG.lines[0].start ? "音が始まる。まだ、言葉の前。" : section.type === "INSTRUMENTAL" ? "♪ 間奏 · 次の歌詞まで" : "余韻 · 君がいるうちに";
+  els.kicker.textContent = line ? `♪ ${line.section} · ${line.sectionLabel}` : "";
   els.count.textContent = line ? `${String(lineIndex + 1).padStart(2, "0")} / ${SONG.lines.length}` : next ? `${String(SONG.lines.indexOf(next) + 1).padStart(2, "0")} / ${SONG.lines.length}` : "— / 56";
-  els.intro.hidden = Boolean(line);
-  if (!line) {
-    const label = els.intro.querySelector("strong");
-    const note = els.intro.querySelector("span:last-child");
-    label.textContent = time < SONG.lines[0].start ? "音が始まる" : section.type === "INSTRUMENTAL" ? "間奏" : "余韻";
-    note.textContent = time < SONG.lines[0].start ? "最初の歌詞まで待機中" : section.type === "INSTRUMENTAL" ? "次の歌詞まで聴く" : "曲の終わりまで";
-  }
   document.querySelectorAll(".section-button").forEach((button) => button.classList.toggle("active", button.dataset.sectionId === section.id));
   updateLyricRows(time, lineIndex);
   drawWaveform(time);
