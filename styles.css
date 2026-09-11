@@ -58,18 +58,20 @@ button { cursor: pointer; }
 .key-badge { padding: 4px 7px; border: 1px solid rgba(255,255,255,.2); color: var(--soft-white); background: rgba(5, 7, 11, .32); font-size: 8px; }
 
 .lyric-stage { position: absolute; right: 5%; bottom: 4%; left: 5%; height: 61%; }
-.lyric-caption { display: flex; align-items: center; gap: 12px; height: 20px; color: var(--soft-white); font: 600 10px var(--mono); letter-spacing: .1em; text-shadow: 0 1px 10px #000; }
-.caption-rule { width: 52px; height: 1px; background: var(--pink); box-shadow: 0 0 12px rgba(255, 79, 154, .8); }
+.lyric-caption { display: flex; align-items: center; height: 20px; color: var(--pink); font: 600 10px var(--mono); letter-spacing: .1em; text-shadow: 0 1px 10px #000; }
 .lyric-viewport { position: absolute; inset: 26px 0 0; overflow: hidden; }
 .lyric-lines { position: relative; width: 100%; height: 100%; }
 .lyric-line { position: absolute; right: 0; left: 0; display: none; width: 100%; padding: 0; border: 0; color: var(--white); background: transparent; font-family: var(--jp); text-align: center; transition: opacity .18s ease, transform .18s ease; }
 .lyric-line.next-line { bottom: 1%; display: grid; opacity: .82; transform: scale(.72); transform-origin: center bottom; }
+.lyric-line.following-line { display: none; }
 .lyric-line.current { top: 46%; display: grid; transform: translateY(-50%); color: var(--white); }
 .lyric-lines:not(.has-current) .lyric-line.next-line { top: 42%; bottom: auto; transform: translateY(-50%); opacity: .94; }
+.lyric-lines:not(.has-current) .lyric-line.following-line { bottom: 1%; display: grid; opacity: .62; transform: scale(.64); transform-origin: center bottom; }
 .line-number { display: none; }
 .line-text { display: block; width: 100%; min-width: 0; font-size: clamp(1.4rem, 2.6vw, 2.35rem); font-weight: 700; line-height: 1.35; letter-spacing: .02em; text-shadow: 0 3px 0 rgba(0, 0, 0, .84), 0 0 10px rgba(0, 0, 0, .96), 0 0 24px rgba(0, 0, 0, .9); }
 .lyric-line.current .line-text { font-size: clamp(2.3rem, 5.5vw, 5rem); line-height: 1.17; letter-spacing: .01em; }
 .lyric-line.next-line .line-text { font-size: clamp(1.25rem, 2.5vw, 2.15rem); }
+.lyric-line.following-line .line-text { font-size: clamp(1.05rem, 2.1vw, 1.8rem); }
 .lyric-char { --fill: 0%; color: var(--white); background: none; -webkit-text-fill-color: var(--white); -webkit-text-stroke: 0; }
 .lyric-line.next-line .lyric-char { color: var(--white); background: none; -webkit-text-fill-color: var(--white); -webkit-text-stroke: 0; }
 .lyric-line.current .lyric-char.filled, .lyric-line.current .lyric-char.active { color: var(--yellow); -webkit-text-fill-color: var(--yellow); filter: drop-shadow(0 0 12px rgba(255, 216, 74, .58)); }
@@ -174,6 +176,7 @@ button { cursor: pointer; }
   .lyric-caption { padding: 0 8px; font-size: 8px; }
   .lyric-line.current .line-text { font-size: clamp(1.75rem, 9vw, 3rem); }
   .lyric-line.next-line .line-text { font-size: clamp(1.05rem, 5vw, 1.55rem); }
+  .lyric-line.following-line .line-text { font-size: clamp(.95rem, 4.5vw, 1.4rem); }
   .analysis-overlay { right: 2%; bottom: 5%; left: 2%; width: auto; padding: 12px; }
   .analysis-title small { font-size: 8px; }
   .pitch-card { height: 78px; }

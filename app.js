@@ -33,6 +33,7 @@ let micStream = null;
 let micFrame = 0;
 let toastTimer = 0;
 let activeLineIndex = -1;
+let lastLyricCaption = "";
 let lyricRows = [];
 let pitchHistory = [];
 const storedPlaybackMode = readSetting("ai-karaoke-playback-mode", "karaoke");
@@ -369,12 +370,14 @@ function renderSectionNav() {
 
 function updateLyricRows(time, lineIndex) {
   const nextIndex = lineIndex >= 0 ? lineIndex + 1 : SONG.lines.findIndex((line) => line.start > time);
+  const followingIndex = lineIndex < 0 && nextIndex >= 0 ? nextIndex + 1 : -1;
   els.lines.classList.toggle("has-current", lineIndex >= 0);
   lyricRows.forEach((row, index) => {
     const line = SONG.lines[index];
     const progress = clamp((time - line.start) / Math.max(.1, line.end - line.start));
     row.classList.toggle("current", index === lineIndex);
     row.classList.toggle("next-line", index === nextIndex);
+    row.classList.toggle("following-line", index === followingIndex);
     row.classList.toggle("past", index < lineIndex || (lineIndex < 0 && time >= line.end));
     row.classList.toggle("future", index > lineIndex && !(lineIndex < 0 && time >= line.end));
     setCharProgress(row, time, line);
@@ -393,8 +396,10 @@ function renderPosition(position) {
   const line = lineIndex >= 0 ? SONG.lines[lineIndex] : null;
   const next = SONG.lines.find((item) => item.start > time);
   const section = [...SONG.sections].reverse().find((item) => time >= item.start) ?? SONG.sections[0];
+  const captionLine = line ?? next;
   els.section.textContent = `${section.type} · ${section.label}`;
-  els.kicker.textContent = line ? `♪ ${line.section} · ${line.sectionLabel}` : "";
+  if (captionLine) lastLyricCaption = `${captionLine.section} · ${captionLine.sectionLabel}`;
+  els.kicker.textContent = lastLyricCaption;
   els.count.textContent = line ? `${String(lineIndex + 1).padStart(2, "0")} / ${SONG.lines.length}` : next ? `${String(SONG.lines.indexOf(next) + 1).padStart(2, "0")} / ${SONG.lines.length}` : "— / 56";
   document.querySelectorAll(".section-button").forEach((button) => button.classList.toggle("active", button.dataset.sectionId === section.id));
   updateLyricRows(time, lineIndex);
