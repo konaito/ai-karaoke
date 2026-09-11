@@ -449,11 +449,23 @@ export function createScoringController(api) {
     $("mic-button").textContent = "この曲の採点は準備中";
     $("mic-status").textContent = "歌詞を見ながら歌う・聴くことができます。";
     $("pitch-feedback").textContent = "この曲の採点データは未登録です。";
-  } else loadReference().catch(() => {
-    $("pitch-feedback").textContent =
-      "ガイドを読み込めません。開始時に再試行します。";
-  });
+  }
   return {
+    setSong(songId, referenceUrl) {
+      api.songId = songId;
+      api.referenceUrl = referenceUrl;
+      reference = null;
+      referencePromise = null;
+      session = null;
+      trace = [];
+      lastResult = null;
+      $("score-result").hidden = true;
+      $("mic-button").disabled = !referenceUrl;
+      $("mic-button").textContent = referenceUrl ? "採点をはじめる" : "この曲の採点は準備中";
+      $("pitch-feedback").textContent = referenceUrl ? "イヤホンをつけて、最初から採点" : "この曲の採点データは未登録です。";
+      $("mic-status").textContent = referenceUrl ? "イヤホンをつけて採点を開始できます。" : "歌詞を見ながら歌う・聴くことができます。";
+      draw();
+    },
     toggle,
     draw,
     finish,
