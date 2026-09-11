@@ -17,7 +17,7 @@ const sectionDefinitions = [
   ]},
   { id: "instrumental", type: "INSTRUMENTAL", label: "間奏", startBar: 48, lines: [] },
   { id: "verse-2", type: "VERSE", label: "君の好きな色", startBar: 56, timingOffsets: [0.35, -0.12, -0.34, 0.42, -0.09, -0.20, -0.13, 0.37], lines: [
-    "君の好きな色 ふたりの記憶", "予算と予定を エーアイに渡す", "僕の三日を 三秒で越す", "答えが三つ 光っていた",
+    "君の好きな色 ふたりの記憶", "予算と予定を AIに渡す", "僕の三日を 三秒で越す", "答えが三つ 光っていた",
     "「こんなに考えてくれたんだ」", "君は嬉しそうに 包みを開く", "喜ばせたかった 嘘じゃなかった", "じゃあこの沈黙は なんなんだ"
   ]},
   { id: "pre-2", type: "PRE-CHORUS", label: "気持ちは本当", startBar: 72, timingOffsets: [-0.19, 0.06, -0.10, 0.44], lines: [
