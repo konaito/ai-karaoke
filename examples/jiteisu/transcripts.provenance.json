@@ -1,0 +1,34 @@
+{
+  "audioSha256": "92e7c73a32bb978362d83c10930997995647f3c8d460dbbc8d133aeca77157df",
+  "configSha256": "f86232522e22ff6d04c5362c56fbb0040b4bff8127f796907789390c6f2d0a42",
+  "transcriptsSha256": "ae599e0974056838a0f4f3ba2fc24fdb87e6bd9272c0da89ad6f6380b3d84e78",
+  "model": "Systran/faster-whisper-small",
+  "revision": "536b0662742c02347bc0e980a01041f333bce120",
+  "device": "cpu",
+  "computeType": "int8",
+  "cpuThreads": 4,
+  "options": {
+    "language": "ja",
+    "task": "transcribe",
+    "beam_size": 5,
+    "best_of": 5,
+    "vad_filter": false,
+    "word_timestamps": true,
+    "condition_on_previous_text": false,
+    "temperature": 0
+  },
+  "python": "3.14.2 (main, Dec  9 2025, 19:29:30) [Clang 21.1.4 ]",
+  "packages": {
+    "faster-whisper": "1.2.1",
+    "ctranslate2": "4.8.2",
+    "huggingface-hub": "1.31.0"
+  },
+  "modelFiles": {
+    "model.bin": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671",
+    "config.json": "b55496ac7940a7ae47d2c01eab40edfd8701feec1229d9cce3b40014383fb828",
+    "tokenizer.json": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab",
+    "README.md": "329373481008c7c38654aff8ecdcf0163c211557cc7ba8e2ef6f2f84b4f75ec8",
+    ".gitattributes": "db7c0371f46f0840b8f25794c1e3321c9b5820a8cb6ba9694a46fc64b8fae5a6",
+    "vocabulary.txt": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913"
+  }
+}

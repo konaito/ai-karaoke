@@ -980,3 +980,8 @@ select {
     transition: none !important;
   }
 }
+
+/* Native selection is keyboard and touch accessible without another overlay. */
+.brand-copy { min-width: 0; }
+#song-select { width: 100%; max-width: 100%; min-width: 0; min-height: 44px; color: inherit; background: #101413; border: 0; border-bottom: 1px solid #566148; border-radius: 0; padding: 4px 20px 4px 0; font: inherit; font-weight: 700; text-overflow: ellipsis; }
+#song-select:focus-visible { outline: 2px solid #dafa93; outline-offset: 2px; }

@@ -1,4 +1,4 @@
-import { SONG } from "./song-data.js";
+import { SONG, CATALOG, SONG_ID } from "./song-data.js";
 
 const $ = (id) => document.getElementById(id);
 const els = {
@@ -71,7 +71,7 @@ function showToast(message) {
 }
 
 async function loadAlignment() {
-  const response = await fetch("./alignment.json");
+  const response = await fetch(SONG.alignmentSource);
   if (!response.ok) throw new Error(`ALIGNMENT ${response.status}`);
   const data = await response.json();
   if (!Array.isArray(data.lines) || data.lines.length !== SONG.lines.length) {
@@ -414,7 +414,7 @@ function renderPosition(position) {
   $("countdown").hidden = !(isPlaying && !line && hasCountdownGap && wait > 0 && wait <= 4);
   $("countdown").textContent = String(Math.ceil(wait));
   $("lyric-guide").textContent = !isPlaying ? (time > 0 ? "続きから再生 · 歌詞をタップして移動" : "再生を押して、歌いはじめよう") : !line && next ? `歌い出しまで ${Math.ceil(wait)} 秒` : !line ? "余韻を、最後まで。" : "次の歌詞をタップして先へ";
-  els.count.textContent = line ? `${String(lineIndex + 1).padStart(2, "0")} / ${SONG.lines.length}` : next ? `${String(SONG.lines.indexOf(next) + 1).padStart(2, "0")} / ${SONG.lines.length}` : "— / 56";
+  els.count.textContent = line ? `${String(lineIndex + 1).padStart(2, "0")} / ${SONG.lines.length}` : next ? `${String(SONG.lines.indexOf(next) + 1).padStart(2, "0")} / ${SONG.lines.length}` : `— / ${SONG.lines.length}`;
   document.querySelectorAll(".section-button").forEach((button) => button.classList.toggle("active", button.dataset.sectionId === section.id));
   updateLyricRows(time, lineIndex);
   drawWaveform(time);
@@ -577,8 +577,8 @@ function setupMediaSession() {
   navigator.mediaSession.metadata = new MediaMetadata({
     title: SONG.title,
     artist: SONG.artist,
-    album: "konaito",
-    artwork: [{ src: "./cover.png", sizes: "1254x1254", type: "image/png" }],
+    album: SONG.artist,
+    artwork: [{ src: SONG.cover, type: SONG.coverType }],
   });
   const handlers = {
     play: () => { if (!isPlaying) void togglePlayback(); },
@@ -890,6 +890,37 @@ document.addEventListener("visibilitychange", () => { if (document.visibilitySta
 window.addEventListener("focus", checkForServiceWorkerUpdate);
 window.addEventListener("resize", () => { drawWaveform(audioOffset); drawPitchHistory(); });
 
+function setupSong() {
+  document.title = `${SONG.title} / KARAOKE`;
+  document.querySelector('meta[name="description"]').content = `${SONG.title} — ${SONG.artist} / KARAOKE`;
+  const select = document.getElementById('song-select');
+  for (const song of CATALOG.songs) {
+    const option = document.createElement('option');
+    option.value = song.id;
+    option.textContent = song.title;
+    option.selected = song.id === SONG_ID;
+    select.append(option);
+  }
+  select.addEventListener('change', () => {
+    stopSource();
+    els.audio.pause();
+    const url = new URL(location.href);
+    url.searchParams.set('song', select.value);
+    location.assign(url.href);
+  });
+  document.querySelector('.brand-copy small').textContent = SONG.artist;
+  document.querySelector('.art-title').textContent = SONG.title;
+  document.querySelector('.art-eyebrow').textContent = SONG.artist;
+  const art = document.querySelector('.cover-art');
+  art.src = SONG.cover;
+  art.alt = `${SONG.title} ジャケット`;
+  document.querySelector('.drawer-head h2').textContent = SONG.title;
+  document.querySelector('.drawer-head h2 + p').textContent = `歌手 ${SONG.artist}`;
+  els.audio.src = SONG.source;
+  els.seek.max = SONG.duration;
+  document.querySelector('#current-time + span').textContent = formatTime(SONG.duration);
+}
+setupSong();
 setupNativeAudio();
 updateRepeatUI();
 updateModeUI();

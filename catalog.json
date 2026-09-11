@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "defaultSong": "ai-wo-tsutaeru",
+  "songs": [
+    {
+      "id": "ai-wo-tsutaeru",
+      "title": "愛を伝えるだとか",
+      "artist": "konaito",
+      "data": "./songs/ai-wo-tsutaeru/song.json",
+      "assets": [
+        "./audio/track.mp3",
+        "./songs/ai-wo-tsutaeru/cover.png",
+        "./songs/ai-wo-tsutaeru/alignment.json"
+      ]
+    },
+    {
+      "id": "jiteisu",
+      "title": "時定数の低い世界で",
+      "artist": "konaito",
+      "data": "./songs/jiteisu/song.json",
+      "assets": [
+        "./songs/jiteisu/track.mp3",
+        "./songs/jiteisu/cover.webp",
+        "./songs/jiteisu/alignment.json"
+      ]
+    }
+  ]
+}
