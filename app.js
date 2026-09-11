@@ -575,7 +575,7 @@ function setupMediaSession() {
     title: SONG.title,
     artist: SONG.artist,
     album: "konaito",
-    artwork: [{ src: "./cover.jpeg", sizes: "1024x1024", type: "image/jpeg" }],
+    artwork: [{ src: "./cover.png", sizes: "1254x1254", type: "image/png" }],
   });
   const handlers = {
     play: () => { if (!isPlaying) void togglePlayback(); },

@@ -10,6 +10,6 @@
   "theme_color": "#101413",
   "orientation": "any",
   "icons": [
-    { "src": "./cover.jpeg", "sizes": "1024x1024", "type": "image/jpeg", "purpose": "any maskable" }
+    { "src": "./cover.png", "sizes": "1254x1254", "type": "image/png", "purpose": "any maskable" }
   ]
 }
