@@ -816,5 +816,7 @@
   },
   "cover": "./songs/ai-wo-tsutaeru/cover.png",
   "coverType": "image/png",
-  "alignmentSource": "./songs/ai-wo-tsutaeru/alignment.json"
+  "alignmentSource": "./songs/ai-wo-tsutaeru/alignment.json",
+  "melodySource": "./melody.json",
+  "accompanimentSource": "./audio/accompaniment.mp3"
 }

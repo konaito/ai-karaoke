@@ -1,4 +1,4 @@
-name: Validate song library
+name: Validate song library and scoring
 on:
   pull_request:
   push:
@@ -17,3 +17,6 @@ jobs:
       - run: python3 scripts/check-library.py
       - run: python3 -m unittest discover -s pipeline -v
       - run: node --check app.js && node --check song-data.js && node --check sw.js
+      - run: node --test tests/scoring.test.mjs
+      - run: node --check scoring.js && node --check scoring-ui.js
+      - run: git diff --check

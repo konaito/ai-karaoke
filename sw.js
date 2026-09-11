@@ -1,5 +1,5 @@
-const CACHE_NAME = 'ai-karaoke-v20';
-const SHELL = ['./', './index.html', './styles.css?v=20', './app.js?v=20', './song-data.js', './catalog.json', './manifest.webmanifest', './icon.svg', './dsp.wasm'];
+const CACHE_NAME = 'ai-karaoke-v21';
+const SHELL = ['./', './index.html', './styles.css?v=21', './app.js?v=21', './song-data.js', './catalog.json', './manifest.webmanifest', './icon.svg', './dsp.wasm', './scoring.js', './scoring-ui.js'];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);

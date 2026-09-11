@@ -201,6 +201,10 @@ def build(args):
         (out/'cover.svg').unlink()
     assets=['./','./index.html','./app.js','./styles.css','./dsp.wasm','./song-data.js','./alignment.json','./audio/track.mp3','./cover.svg','./manifest.webmanifest']
     assets=[a.replace('cover.svg',cover_name) for a in assets]
+    for module in ['scoring.js','scoring-ui.js']:
+        if (template/module).exists():
+            shutil.copyfile(template/module,out/module)
+            assets.append('./'+module)
     key=hashlib.sha256(''.join(digest(out/f[2:]) for f in assets if f!='./').encode()).hexdigest()[:16]
     (out/'sw.js').write_text('const CACHE="karaoke-'+key+'";\nconst ASSETS='+json.dumps(assets)+';\n'+'''
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));

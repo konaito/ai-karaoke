@@ -12,6 +12,9 @@ for entry in catalog['songs']:
     song=json.loads((root/entry['data']).read_text())
     for field in ['title','artist']: assert song[field]==entry[field]
     assert all(song[k] in entry['assets'] for k in ['source','cover','alignmentSource'])
+    assert bool(song.get('melodySource'))==bool(song.get('accompanimentSource')), 'Scoring needs both reference and backing'
+    for key in ['melodySource','accompanimentSource']:
+        if song.get(key): assert song[key] in entry['assets'] and (root/song[key]).is_file()
     alignment=json.loads((root/song['alignmentSource']).read_text())
     assert len(song['lines'])==len(alignment['lines'])>0
     for line,aligned in zip(song['lines'],alignment['lines']):

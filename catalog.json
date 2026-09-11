@@ -10,7 +10,9 @@
       "assets": [
         "./audio/track.mp3",
         "./songs/ai-wo-tsutaeru/cover.png",
-        "./songs/ai-wo-tsutaeru/alignment.json"
+        "./songs/ai-wo-tsutaeru/alignment.json",
+        "./melody.json",
+        "./audio/accompaniment.mp3"
       ]
     },
     {
