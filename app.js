@@ -408,7 +408,10 @@ function renderPosition(position) {
   const sectionNames = { VERSE: "Aメロ", "PRE-CHORUS": "Bメロ", CHORUS: "サビ", "FINAL CHORUS": "ラストサビ", BRIDGE: "Cメロ" };
   els.kicker.textContent = captionLine ? `${sectionNames[captionLine.section] || captionLine.section} · ${captionLine.sectionLabel}` : "アウトロ";
   const wait = next ? next.start - time : 0;
-  $("countdown").hidden = !(isPlaying && !line && wait > 0 && wait <= 4);
+  // Judge the whole lyric gap so a long countdown keeps its final 2 → 1.
+  const previousEnd = next ? Math.max(0, ...SONG.lines.filter((item) => item.start < next.start).map((item) => item.end)) : 0;
+  const hasCountdownGap = next && next.start - previousEnd >= 3;
+  $("countdown").hidden = !(isPlaying && !line && hasCountdownGap && wait > 0 && wait <= 4);
   $("countdown").textContent = String(Math.ceil(wait));
   $("lyric-guide").textContent = !isPlaying ? (time > 0 ? "続きから再生 · 歌詞をタップして移動" : "再生を押して、歌いはじめよう") : !line && next ? `歌い出しまで ${Math.ceil(wait)} 秒` : !line ? "余韻を、最後まで。" : "次の歌詞をタップして先へ";
   els.count.textContent = line ? `${String(lineIndex + 1).padStart(2, "0")} / ${SONG.lines.length}` : next ? `${String(SONG.lines.indexOf(next) + 1).padStart(2, "0")} / ${SONG.lines.length}` : "— / 56";
