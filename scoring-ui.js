@@ -4,7 +4,7 @@ import {
   validateReference,
   frequencyToMidi,
   pitchError,
-} from "./scoring.js?v=25";
+} from "./scoring.js?v=26";
 
 export function createScoringController(api) {
   const $ = (id) => document.getElementById(id);
@@ -42,7 +42,7 @@ export function createScoringController(api) {
   function loadReference() {
     const requestedUrl = api.referenceUrl;
     if (!referencePromise)
-      referencePromise = fetch(`${api.referenceUrl}?v=25`)
+      referencePromise = fetch(`${api.referenceUrl}?v=26`)
         .then((response) => {
           if (!response.ok) throw new Error("Reference unavailable");
           return response.json();
