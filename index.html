@@ -2,83 +2,371 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#05070b" />
-    <meta name="description" content="愛を伝えるだとか — konaito / one-song karaoke and music player" />
+    <meta name="theme-color" content="#101413" />
+    <meta
+      name="description"
+      content="愛を伝えるだとか — konaito / one-song karaoke and music player"
+    />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./cover.jpeg" type="image/jpeg" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" href="./styles.css?v=17" />
+    <link rel="stylesheet" href="./styles.css?v=19.1" />
     <title>愛を伝えるだとか / KARAOKE</title>
   </head>
   <body>
-    <div class="video-backdrop" aria-hidden="true">
-      <img src="./cover.jpeg" alt="" />
-      <div class="video-vignette"></div>
-      <div class="video-bars"></div>
-    </div>
-
     <main class="karaoke-app">
       <header class="screen-header">
-        <a class="brand" href="./" aria-label="愛を伝えるだとか カラオケ">
-          <span class="brand-mark">K</span>
-          <span class="brand-copy"><small>NOW PLAYING</small><strong>愛を伝えるだとか</strong></span>
-        </a>
-        <div class="song-meta"><span>歌手</span><strong>konaito</strong><i>/</i><span id="section-name">INTRO · 言葉の前</span></div>
-        <div class="screen-tools">
-          <div class="mode-switch" role="group" aria-label="再生モード">
-            <button class="mode-button" data-playback-mode="karaoke" type="button" aria-pressed="true">カラオケ</button>
-            <button class="mode-button" data-playback-mode="player" type="button" aria-pressed="false">プレイヤー</button>
-          </div>
-          <button class="tool-button" id="analysis-toggle" type="button" aria-expanded="false">音程表示</button>
-          <button class="tool-button menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="control-drawer">設定</button>
-          <button class="update-button" id="update-button" type="button" hidden>更新があります</button>
-          <button class="install-button" id="install-button" type="button" hidden>アプリを追加</button>
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">♪</span
+          ><span class="brand-copy"
+            ><strong>愛を伝えるだとか</strong><small>konaito</small></span
+          >
         </div>
+        <button
+          class="icon-button"
+          id="fullscreen-button"
+          type="button"
+          aria-label="全画面にする"
+        >
+          ⛶
+        </button>
+        <button
+          class="icon-button"
+          id="menu-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="control-drawer"
+          aria-label="設定を開く"
+        >
+          •••
+        </button>
       </header>
-
+      <div class="mode-switch" role="group" aria-label="再生モード">
+        <button
+          class="mode-button"
+          data-playback-mode="karaoke"
+          type="button"
+          aria-pressed="true"
+        >
+          うたう
+        </button>
+        <button
+          class="mode-button"
+          data-playback-mode="player"
+          type="button"
+          aria-pressed="false"
+        >
+          聴く
+        </button>
+      </div>
       <section class="singing-screen" aria-label="歌唱画面">
-        <div class="screen-float screen-float-left"><span class="live-dot"></span><span id="screen-state">歌唱中</span></div>
-        <div class="screen-float screen-float-right"><span id="lyric-count">01 / 56</span><span class="key-badge">KEY ±0</span></div>
-
-        <div class="lyric-stage">
-          <div class="lyric-caption"><span id="lyric-kicker"></span></div>
-          <div class="lyric-viewport" id="lyric-viewport" aria-live="polite">
-            <div class="lyric-lines" id="lyric-lines"></div>
+        <div class="art-stage">
+          <img
+            class="cover-art"
+            src="./cover.jpeg"
+            alt="愛を伝えるだとか ジャケット"
+          />
+          <div class="art-shade"></div>
+          <div class="stage-top">
+            <span class="state-badge"
+              ><i class="live-dot"></i
+              ><span id="screen-state">スタンバイ</span></span
+            ><span class="key-badge">KEY ±0</span>
           </div>
+          <div class="art-caption">
+            <span class="art-eyebrow">KONAITO / ORIGINAL SONG</span
+            ><span class="art-title">愛を伝える<br />だとか</span
+            ><span id="section-name">INTRO · 言葉の前</span>
+          </div>
+          <div class="countdown" id="countdown" hidden></div>
         </div>
-
-        <div class="analysis-overlay" id="analysis-overlay" aria-hidden="true">
-          <div class="analysis-title"><span>音程モニター</span><small>マイクを有効にすると入力音程を表示</small></div>
-          <div class="pitch-card"><canvas id="pitch-canvas" width="960" height="160" aria-label="マイク音程の履歴"></canvas></div>
-          <div class="analysis-readout"><strong id="mic-note">--</strong><span id="mic-hz">マイク待機中</span><span class="analysis-meter-label">入力 <b id="mic-level">0%</b></span><span class="analysis-meter"><i id="mic-meter-fill"></i></span></div>
-          <button class="mic-button" id="mic-button" type="button"><span class="mic-symbol">●</span> マイクを有効化</button>
+        <div
+          class="analysis-overlay"
+          id="analysis-overlay"
+          aria-hidden="true"
+          inert
+        >
+          <div class="analysis-title">
+            <span>音程モニター</span><small>あなたの声の高さ</small>
+          </div>
+          <div class="pitch-card">
+            <canvas
+              id="pitch-canvas"
+              width="960"
+              height="160"
+              aria-label="マイク音程の履歴"
+            ></canvas>
+          </div>
+          <div class="analysis-readout">
+            <strong id="mic-note">--</strong
+            ><span id="mic-hz">マイク待機中</span
+            ><span class="analysis-meter-label"
+              >入力 <b id="mic-level">0%</b></span
+            ><span class="analysis-meter"><i id="mic-meter-fill"></i></span>
+          </div>
+          <button class="mic-button" id="mic-button" type="button">
+            マイクを有効化
+          </button>
           <p id="mic-status">音程と声量を端末内で表示。採点は行いません。</p>
         </div>
+        <div class="lyric-stage">
+          <div class="lyric-caption">
+            <span id="lyric-kicker">まもなく歌い出し</span
+            ><span id="lyric-count">01 / 56</span>
+          </div>
+          <div class="lyric-viewport" id="lyric-viewport" aria-live="off">
+            <div class="lyric-lines" id="lyric-lines"></div>
+          </div>
+          <p class="lyric-guide" id="lyric-guide">
+            再生を押して、歌いはじめよう
+          </p>
+        </div>
       </section>
-
       <footer class="player-bar">
-        <button class="play-button" id="play-button" type="button" aria-label="再生"><span class="play-icon"></span><span id="play-label">再生</span></button>
-        <button class="repeat-button" id="repeat-button" type="button" aria-label="リピート再生" aria-pressed="false"><span class="repeat-icon">↻</span><span id="repeat-label">リピート</span></button>
-        <div class="timeline"><div class="time-row"><span id="current-time">00:00</span><span>03:52</span></div><input id="seek" class="seek" type="range" min="0" max="231.56" step="0.01" value="0" aria-label="再生位置" /><canvas id="waveform" class="waveform" width="1200" height="30" aria-hidden="true"></canvas></div>
-        <p class="player-hint" id="player-hint">音源・歌詞・声はこの端末の中だけで処理されます。</p>
-        <button class="drawer-trigger" id="drawer-trigger" type="button" aria-label="曲の設定を開く">⋮</button>
+        <div class="timeline">
+          <input
+            id="seek"
+            class="seek"
+            type="range"
+            min="0"
+            max="231.56"
+            step="0.01"
+            value="0"
+            aria-label="再生位置"
+          />
+          <div class="time-row">
+            <span id="current-time">00:00</span><span>03:52</span>
+          </div>
+          <canvas
+            id="waveform"
+            hidden
+            width="1200"
+            height="30"
+            aria-hidden="true"
+          ></canvas>
+        </div>
+        <div class="transport">
+          <button
+            class="repeat-button compact-control"
+            id="repeat-button"
+            type="button"
+            aria-label="リピート再生"
+            aria-pressed="false"
+          >
+            <span class="control-symbol">↻</span
+            ><span id="repeat-label">リピート</span>
+          </button>
+          <button
+            class="phrase-button"
+            id="previous-phrase"
+            type="button"
+            aria-label="前のフレーズ"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 5v14M19 5 8 12l11 7z" />
+            </svg>
+          </button>
+          <button
+            class="play-button"
+            id="play-button"
+            type="button"
+            aria-label="再生"
+          >
+            <span class="play-icon"></span
+            ><span id="play-label" class="sr-only">再生</span>
+          </button>
+          <button
+            class="phrase-button"
+            id="next-phrase"
+            type="button"
+            aria-label="次のフレーズ"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 5v14M5 5l11 7-11 7z" />
+            </svg>
+          </button>
+          <button
+            class="compact-control"
+            id="drawer-trigger"
+            type="button"
+            aria-label="曲の構成を開く"
+          >
+            <span class="control-symbol">≡</span><span>歌詞移動</span>
+          </button>
+        </div>
+        <div class="session-tools">
+          <button id="vocal-toggle" type="button" aria-pressed="true">
+            伴奏優先</button
+          ><span class="tools-divider"></span
+          ><button
+            class="tool-button"
+            id="analysis-toggle"
+            type="button"
+            aria-expanded="false"
+          >
+            音程モニター
+          </button>
+        </div>
+        <p class="player-hint" id="player-hint" hidden></p>
       </footer>
     </main>
 
-    <audio id="native-audio" class="native-audio" preload="auto" src="./audio/track.mp3" playsinline aria-hidden="true" tabindex="-1" hidden></audio>
+    <audio
+      id="native-audio"
+      class="native-audio"
+      preload="auto"
+      src="./audio/track.mp3"
+      playsinline
+      aria-hidden="true"
+      tabindex="-1"
+      hidden
+    ></audio>
 
     <div class="drawer-scrim" id="drawer-scrim" hidden></div>
-    <aside class="control-drawer" id="control-drawer" aria-label="曲の設定" aria-hidden="true">
-      <div class="drawer-head"><div><p class="drawer-eyebrow">曲の設定</p><h2>愛を伝えるだとか</h2><p>歌手 konaito</p></div><button class="close-button" id="close-drawer" type="button" aria-label="閉じる">×</button></div>
-      <div class="drawer-section"><p class="drawer-label">音源</p><div class="control-grid"><label class="control-field karaoke-only"><span>ボーカル</span><select id="vocal-mode" aria-label="ボーカル低減モード"><option value="original">原音</option><option value="light" selected>ボーカル低減</option><option value="strong">ボーカル強め</option></select></label><label class="control-field"><span>キー</span><select id="key-select" aria-label="移調"><option value="-3">-3</option><option value="-2">-2</option><option value="-1">-1</option><option value="0" selected>±0</option><option value="1">+1</option><option value="2">+2</option><option value="3">+3</option></select></label></div><label class="volume-field"><span>音量</span><input id="volume" type="range" min="0" max="1" step="0.01" value="0.84" aria-label="音量" /></label><p class="mode-note player-only">プレイヤーモードは端末の標準音声再生を使うため、画面を閉じても再生を継続できます。</p></div>
-      <div class="drawer-section"><div class="drawer-label-row"><p class="drawer-label">曲の構成</p><span>タップで移動</span></div><nav class="section-nav" id="section-nav" aria-label="曲の構成"></nav></div>
-      <div class="drawer-foot"><p class="drawer-status" id="wasm-status"><span class="status-dot"></span> WASM 音声処理 準備完了</p><p class="drawer-status" id="alignment-chip">文字タイムライン / 端末内解析</p><p class="drawer-note">音源・歌詞・マイク音声を外部へ送信しません。採点は行わず、歌唱位置と入力音程を表示します。</p></div>
+    <aside
+      class="control-drawer"
+      id="control-drawer"
+      role="dialog"
+      aria-modal="true"
+      aria-label="曲の設定"
+      aria-hidden="true"
+      inert
+    >
+      <div class="drawer-head">
+        <div>
+          <p class="drawer-eyebrow">曲の設定</p>
+          <h2>愛を伝えるだとか</h2>
+          <p>歌手 konaito</p>
+        </div>
+        <button
+          class="close-button"
+          id="close-drawer"
+          type="button"
+          aria-label="閉じる"
+        >
+          ×
+        </button>
+      </div>
+      <div class="sheet-tabs" role="tablist" aria-label="設定ページ">
+        <button
+          id="sound-tab"
+          role="tab"
+          aria-selected="true"
+          aria-controls="sound-panel"
+          data-sheet-tab="sound"
+        >
+          音づくり</button
+        ><button
+          id="lyrics-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="lyrics-panel"
+          data-sheet-tab="lyrics"
+        >
+          歌詞移動</button
+        ><button
+          id="about-tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="about-panel"
+          data-sheet-tab="about"
+        >
+          アプリ
+        </button>
+      </div>
+      <div
+        class="drawer-section"
+        id="sound-panel"
+        role="tabpanel"
+        aria-labelledby="sound-tab"
+      >
+        <p class="drawer-label">音源</p>
+        <div class="control-grid">
+          <label class="control-field karaoke-only"
+            ><span>ボーカル</span
+            ><select id="vocal-mode" aria-label="ボーカル低減モード">
+              <option value="original">原音</option>
+              <option value="light" selected>ボーカル低減</option>
+              <option value="strong">ボーカル低減・強</option>
+            </select></label
+          ><label class="control-field"
+            ><span>キー</span
+            ><select id="key-select" aria-label="移調">
+              <option value="-3">-3</option>
+              <option value="-2">-2</option>
+              <option value="-1">-1</option>
+              <option value="0" selected>±0</option>
+              <option value="1">+1</option>
+              <option value="2">+2</option>
+              <option value="3">+3</option>
+            </select></label
+          >
+        </div>
+        <label class="volume-field"
+          ><span>音量</span
+          ><input
+            id="volume"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.84"
+            aria-label="音量"
+        /></label>
+        <p class="mode-note player-only">
+          プレイヤーモードは端末の標準音声再生を使うため、画面を閉じても再生を継続できます。
+        </p>
+      </div>
+      <div
+        class="drawer-section"
+        id="lyrics-panel"
+        role="tabpanel"
+        aria-labelledby="lyrics-tab"
+        hidden
+      >
+        <div class="drawer-label-row">
+          <p class="drawer-label">曲の構成</p>
+          <span>タップで移動</span>
+        </div>
+        <nav class="section-nav" id="section-nav" aria-label="曲の構成"></nav>
+      </div>
+      <div
+        class="drawer-foot"
+        id="about-panel"
+        role="tabpanel"
+        aria-labelledby="about-tab"
+        hidden
+      >
+        <button class="update-button" id="update-button" type="button" hidden>
+          更新があります</button
+        ><button
+          class="install-button"
+          id="install-button"
+          type="button"
+          hidden
+        >
+          アプリを追加
+        </button>
+        <p class="app-version">STAGE / v19.1</p>
+        <p class="drawer-status" id="wasm-status">
+          <span class="status-dot"></span> WASM 音声処理 準備完了
+        </p>
+        <p class="drawer-status" id="alignment-chip">
+          文字タイムライン / 端末内解析
+        </p>
+        <p class="drawer-note">
+          音源・歌詞・マイク音声を外部へ送信しません。採点は行わず、歌唱位置と入力音程を表示します。
+        </p>
+      </div>
     </aside>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script type="module" src="./app.js?v=17"></script>
+    <script type="module" src="./app.js?v=19.1"></script>
   </body>
 </html>
