@@ -28,6 +28,7 @@ export function createScoringController(api) {
     page = 0,
     returnFocus = null;
   const locked = [
+    "song-select",
     "seek",
     "previous-phrase",
     "next-phrase",
@@ -40,7 +41,7 @@ export function createScoringController(api) {
 
   function loadReference() {
     if (!referencePromise)
-      referencePromise = fetch("./melody.json")
+      referencePromise = fetch(api.referenceUrl)
         .then((response) => {
           if (!response.ok) throw new Error("Reference unavailable");
           return response.json();
@@ -84,6 +85,7 @@ export function createScoringController(api) {
     $("mic-button").disabled = false;
   }
   async function toggle() {
+    if (!api.referenceUrl) { api.toast("この曲は採点準備中です。うたう・聴くは利用できます。"); return; }
     if (active) {
       finish(api.position(), false);
       return;
@@ -306,7 +308,7 @@ export function createScoringController(api) {
     api.beforeResults();
     if (completed && lastResult.enough) {
       try {
-        const storageKey = `karaoke-best-${lastResult.version}-${lastResult.referenceVersion}-${lastResult.key}`;
+        const storageKey = `karaoke-best-${api.songId}-${lastResult.version}-${lastResult.referenceVersion}-${lastResult.key}`;
         const best = Number(localStorage.getItem(storageKey) || 0);
         $("score-best").textContent =
           lastResult.score > best
@@ -437,7 +439,12 @@ export function createScoringController(api) {
     stopMic();
     lock(false);
   });
-  loadReference().catch(() => {
+  if (!api.referenceUrl) {
+    $("mic-button").disabled = true;
+    $("mic-button").textContent = "この曲の採点は準備中";
+    $("mic-status").textContent = "歌詞を見ながら歌う・聴くことができます。";
+    $("pitch-feedback").textContent = "この曲の採点データは未登録です。";
+  } else loadReference().catch(() => {
     $("pitch-feedback").textContent =
       "ガイドを読み込めません。開始時に再試行します。";
   });

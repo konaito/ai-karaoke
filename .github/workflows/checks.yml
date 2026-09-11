@@ -1,18 +1,22 @@
-name: Check karaoke scoring
+name: Validate song library and scoring
 on:
   pull_request:
   push:
     branches: [main]
-permissions:
-  contents: read
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: python3 scripts/check-library.py
+      - run: python3 -m unittest discover -s pipeline -v
+      - run: node --check app.js && node --check song-data.js && node --check sw.js
       - run: node --test tests/scoring.test.mjs
-      - run: node --check app.js && node --check scoring-ui.js && node --check sw.js
+      - run: node --check scoring.js && node --check scoring-ui.js
       - run: git diff --check

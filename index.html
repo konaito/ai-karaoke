@@ -13,10 +13,10 @@
       content="愛を伝えるだとか — konaito / one-song karaoke and music player"
     />
     <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="icon" href="./cover.png" type="image/png" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" href="./styles.css?v=20.2" />
+    <link rel="stylesheet" href="./styles.css?v=21" />
     <title>愛を伝えるだとか / KARAOKE</title>
   </head>
   <body>
@@ -25,7 +25,7 @@
         <div class="brand">
           <span class="brand-mark" aria-hidden="true">♪</span
           ><span class="brand-copy"
-            ><strong>愛を伝えるだとか</strong><small>konaito</small></span
+            ><select id="song-select" aria-label="曲を選ぶ"></select><small>konaito</small></span
           >
         </div>
         <button
@@ -227,7 +227,7 @@
       id="native-audio"
       class="native-audio"
       preload="auto"
-      src="./audio/track.mp3"
+
       playsinline
       aria-hidden="true"
       tabindex="-1"
@@ -453,6 +453,6 @@
       </footer>
     </section>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script type="module" src="./app.js?v=20.2"></script>
+    <script type="module" src="./app.js?v=21"></script>
   </body>
 </html>

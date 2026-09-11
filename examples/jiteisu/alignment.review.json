@@ -1,0 +1,221 @@
+{
+  "note": "confidence is a mapping heuristic, not ASR probability or timing accuracy",
+  "issues": [
+    {
+      "line": 0,
+      "token": 0,
+      "kind": "interpolated",
+      "text": "2"
+    },
+    {
+      "line": 0,
+      "token": 1,
+      "kind": "interpolated",
+      "text": "0"
+    },
+    {
+      "line": 0,
+      "token": 2,
+      "kind": "interpolated",
+      "text": "2"
+    },
+    {
+      "line": 0,
+      "token": 3,
+      "kind": "interpolated",
+      "text": "5"
+    },
+    {
+      "line": 0,
+      "token": 4,
+      "kind": "interpolated",
+      "text": "年"
+    },
+    {
+      "line": 18,
+      "token": 9,
+      "kind": "interpolated",
+      "text": "ロ"
+    },
+    {
+      "line": 18,
+      "token": 10,
+      "kind": "interpolated",
+      "text": "ジ"
+    },
+    {
+      "line": 18,
+      "token": 11,
+      "kind": "interpolated",
+      "text": "ッ"
+    },
+    {
+      "line": 18,
+      "token": 12,
+      "kind": "interpolated",
+      "text": "ク"
+    },
+    {
+      "line": 21,
+      "token": 10,
+      "kind": "interpolated",
+      "text": "は"
+    },
+    {
+      "line": 21,
+      "token": 12,
+      "kind": "interpolated",
+      "text": "音"
+    },
+    {
+      "line": 40,
+      "token": 0,
+      "kind": "interpolated",
+      "text": "あ"
+    },
+    {
+      "line": 40,
+      "token": 1,
+      "kind": "interpolated",
+      "text": "あ"
+    },
+    {
+      "line": 42,
+      "token": 0,
+      "kind": "interpolated",
+      "text": "4"
+    },
+    {
+      "line": 42,
+      "token": 1,
+      "kind": "interpolated",
+      "text": "0"
+    },
+    {
+      "line": 44,
+      "token": 0,
+      "kind": "interpolated",
+      "text": "4"
+    },
+    {
+      "line": 44,
+      "token": 1,
+      "kind": "interpolated",
+      "text": "0"
+    }
+  ],
+  "metrics": [
+    {
+      "sectionId": "verse-1",
+      "target_chars": 67,
+      "recognized_chars": 73,
+      "ratio": 0.886,
+      "segments": 1,
+      "words": 60
+    },
+    {
+      "sectionId": "verse-2",
+      "target_chars": 68,
+      "recognized_chars": 68,
+      "ratio": 1.0,
+      "segments": 3,
+      "words": 61
+    },
+    {
+      "sectionId": "chorus-1",
+      "target_chars": 67,
+      "recognized_chars": 67,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 53
+    },
+    {
+      "sectionId": "verse-3",
+      "target_chars": 64,
+      "recognized_chars": 64,
+      "ratio": 1.0,
+      "segments": 2,
+      "words": 55
+    },
+    {
+      "sectionId": "verse-4",
+      "target_chars": 70,
+      "recognized_chars": 65,
+      "ratio": 0.963,
+      "segments": 1,
+      "words": 55
+    },
+    {
+      "sectionId": "chorus-2",
+      "target_chars": 67,
+      "recognized_chars": 65,
+      "ratio": 0.985,
+      "segments": 1,
+      "words": 51
+    },
+    {
+      "sectionId": "bridge",
+      "target_chars": 70,
+      "recognized_chars": 70,
+      "ratio": 0.986,
+      "segments": 1,
+      "words": 58
+    },
+    {
+      "sectionId": "verse-5",
+      "target_chars": 79,
+      "recognized_chars": 79,
+      "ratio": 1.0,
+      "segments": 2,
+      "words": 61
+    },
+    {
+      "sectionId": "chorus-3",
+      "target_chars": 67,
+      "recognized_chars": 67,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 53
+    },
+    {
+      "sectionId": "outro",
+      "target_chars": 78,
+      "recognized_chars": 76,
+      "ratio": 0.987,
+      "segments": 4,
+      "words": 62
+    },
+    {
+      "sectionId": "chant-1",
+      "target_chars": 8,
+      "recognized_chars": 8,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 6
+    },
+    {
+      "sectionId": "chant-2",
+      "target_chars": 8,
+      "recognized_chars": 9,
+      "ratio": 0.706,
+      "segments": 1,
+      "words": 8
+    },
+    {
+      "sectionId": "chant-3",
+      "target_chars": 8,
+      "recognized_chars": 8,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 6
+    },
+    {
+      "sectionId": "chant-4",
+      "target_chars": 8,
+      "recognized_chars": 8,
+      "ratio": 0.75,
+      "segments": 1,
+      "words": 7
+    }
+  ]
+}

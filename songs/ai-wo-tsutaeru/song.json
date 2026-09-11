@@ -1,0 +1,822 @@
+{
+  "title": "愛を伝えるだとか",
+  "artist": "konaito",
+  "duration": 231.56,
+  "bpm": 133,
+  "key": "D major",
+  "source": "./audio/track.mp3",
+  "sections": [
+    {
+      "id": "intro",
+      "type": "INTRO",
+      "label": "言葉の前",
+      "startBar": 0,
+      "lines": [],
+      "index": 0,
+      "start": 0,
+      "end": 14.436090225563909
+    },
+    {
+      "id": "verse-1",
+      "type": "VERSE",
+      "label": "昨日より",
+      "startBar": 8,
+      "timingOffsets": [
+        0.28,
+        0.12,
+        0.29,
+        0.24,
+        0.15,
+        -0.38,
+        -0.42,
+        -0.41
+      ],
+      "lines": [
+        "昨日よりうまくなった僕を",
+        "昨日より誰も呼ばなくなった",
+        "明日のために覚えたことを",
+        "明日が先に済ませていた",
+        "改行を消して 太字も消して",
+        "僕の名前を 最後に足して",
+        "「君のおかげ」と 笑うあなたに",
+        "僕はどの僕で 笑えばいい"
+      ],
+      "index": 1,
+      "start": 14.436090225563909,
+      "end": 43.30827067669173
+    },
+    {
+      "id": "pre-1",
+      "type": "PRE-CHORUS",
+      "label": "いつでも",
+      "startBar": 24,
+      "timingOffsets": [
+        0.22,
+        0.24,
+        0.21,
+        -0.04
+      ],
+      "lines": [
+        "「いつでもできる」の「いつでも」に",
+        "君もいるって 誰が決めた？",
+        "上手くなるまで 取っておいた",
+        "言葉はどこへ 届ければいい？"
+      ],
+      "index": 2,
+      "start": 43.30827067669173,
+      "end": 57.744360902255636
+    },
+    {
+      "id": "chorus-1",
+      "type": "CHORUS",
+      "label": "愛を伝えるだとか",
+      "startBar": 32,
+      "timingOffsets": [
+        0.26,
+        0.43,
+        -0.4,
+        0.34,
+        0.05,
+        0.05,
+        -0.37,
+        -0.21
+      ],
+      "lines": [
+        "愛を伝えるだとか",
+        "くだらない話だとか",
+        "そんなことまで 急がせるなよ",
+        "まだうまくも 言えてないんだよ",
+        "僕の代わりに 僕よりうまく",
+        "君を喜ばせる 答えがある",
+        "君が笑えば 嬉しいはずだろ",
+        "どうして少し 寂しいんだろ"
+      ],
+      "index": 3,
+      "start": 57.744360902255636,
+      "end": 86.61654135338345
+    },
+    {
+      "id": "instrumental",
+      "type": "INSTRUMENTAL",
+      "label": "間奏",
+      "startBar": 48,
+      "lines": [],
+      "index": 4,
+      "start": 86.61654135338345,
+      "end": 101.05263157894737
+    },
+    {
+      "id": "verse-2",
+      "type": "VERSE",
+      "label": "君の好きな色",
+      "startBar": 56,
+      "timingOffsets": [
+        0.35,
+        -0.12,
+        -0.34,
+        0.42,
+        -0.09,
+        -0.2,
+        -0.13,
+        0.37
+      ],
+      "lines": [
+        "君の好きな色 ふたりの記憶",
+        "予算と予定を AIに渡す",
+        "僕の三日を 三秒で越す",
+        "答えが三つ 光っていた",
+        "「こんなに考えてくれたんだ」",
+        "君は嬉しそうに 包みを開く",
+        "喜ばせたかった 嘘じゃなかった",
+        "じゃあこの沈黙は なんなんだ"
+      ],
+      "index": 5,
+      "start": 101.05263157894737,
+      "end": 129.92481203007517
+    },
+    {
+      "id": "pre-2",
+      "type": "PRE-CHORUS",
+      "label": "気持ちは本当",
+      "startBar": 72,
+      "timingOffsets": [
+        -0.19,
+        0.06,
+        -0.1,
+        0.44
+      ],
+      "lines": [
+        "「気持ちは本当」 それだけで",
+        "足りると思って いたんだ",
+        "「自分で考えた？」のひと言が",
+        "ふたりの真ん中に 座っていた"
+      ],
+      "index": 6,
+      "start": 129.92481203007517,
+      "end": 144.36090225563908
+    },
+    {
+      "id": "chorus-2",
+      "type": "CHORUS",
+      "label": "愛を伝えるだとか",
+      "startBar": 80,
+      "timingOffsets": [
+        0.31,
+        0.43,
+        -0.09,
+        -0.36,
+        0.16,
+        -0.01,
+        -0.36,
+        0.45
+      ],
+      "lines": [
+        "愛を伝えるだとか",
+        "くだらない話だとか",
+        "そんなことまで 急がせるなよ",
+        "まだうまくも 言えてないんだよ",
+        "僕の代わりに 僕よりうまく",
+        "君を喜ばせる 答えがある",
+        "君が笑えば 嬉しいはずだろ",
+        "どうして少し 寂しいんだろ"
+      ],
+      "index": 7,
+      "start": 144.36090225563908,
+      "end": 173.2330827067669
+    },
+    {
+      "id": "bridge",
+      "type": "BRIDGE",
+      "label": "百点満点の",
+      "startBar": 96,
+      "timingOffsets": [
+        0.32,
+        -0.01,
+        -0.09,
+        0.38,
+        -0.46,
+        0.39,
+        0.11,
+        0.13
+      ],
+      "lines": [
+        "百点満点の 言葉より",
+        "僕のゼロ点を 愛してくれ",
+        "そんなわがまま 飲み込んだけど",
+        "言いたいことまで 飲み込むなよ",
+        "大事なことほど あと回しにした",
+        "大事にしてる つもりのままで",
+        "「いつか言おう」の いつかの僕に",
+        "今日の言葉を 返してもらう"
+      ],
+      "index": 8,
+      "start": 173.2330827067669,
+      "end": 202.10526315789474
+    },
+    {
+      "id": "final-chorus",
+      "type": "FINAL CHORUS",
+      "label": "君の今日に",
+      "startBar": 112,
+      "timingOffsets": [
+        -0.4,
+        0.21,
+        -0.25,
+        0.39,
+        -0.17,
+        0.13,
+        -0.06,
+        -0.09
+      ],
+      "lines": [
+        "愛を伝えるだとか",
+        "くだらない話だとか",
+        "そんなことまで 急がせるなよ",
+        "文句を言いながら 靴を履いた",
+        "完成前の 僕のままで",
+        "君の今日に 間に合いたい",
+        "まだ僕に やってほしいと",
+        "言ってくれる 君がいるうちに"
+      ],
+      "index": 9,
+      "start": 202.10526315789474,
+      "end": 230.97744360902254
+    }
+  ],
+  "lines": [
+    {
+      "id": "verse-1-1",
+      "text": "昨日よりうまくなった僕を",
+      "section": "VERSE",
+      "sectionLabel": "昨日より",
+      "sectionId": "verse-1",
+      "sectionIndex": 1,
+      "start": 14.716090225563908,
+      "end": 18.105112781954887
+    },
+    {
+      "id": "verse-1-2",
+      "text": "昨日より誰も呼ばなくなった",
+      "section": "VERSE",
+      "sectionLabel": "昨日より",
+      "sectionId": "verse-1",
+      "sectionIndex": 1,
+      "start": 18.165112781954885,
+      "end": 21.884135338345864
+    },
+    {
+      "id": "verse-1-3",
+      "text": "明日のために覚えたことを",
+      "section": "VERSE",
+      "sectionLabel": "昨日より",
+      "sectionId": "verse-1",
+      "sectionIndex": 1,
+      "start": 21.944135338345863,
+      "end": 25.443157894736842
+    },
+    {
+      "id": "verse-1-4",
+      "text": "明日が先に済ませていた",
+      "section": "VERSE",
+      "sectionLabel": "昨日より",
+      "sectionId": "verse-1",
+      "sectionIndex": 1,
+      "start": 25.50315789473684,
+      "end": 28.962180451127818
+    },
+    {
+      "id": "verse-1-5",
+      "text": "改行を消して 太字も消して",
+      "section": "VERSE",
+      "sectionLabel": "昨日より",
+      "sectionId": "verse-1",
+      "sectionIndex": 1,
+      "start": 29.022180451127817,
+      "end": 32.04120300751879
+    },
+    {
+      "id": "verse-1-6",
+      "text": "僕の名前を 最後に足して",
+      "section": "VERSE",
+      "sectionLabel": "昨日より",
+      "sectionId": "verse-1",
+      "sectionIndex": 1,
+      "start": 32.10120300751879,
+      "end": 35.610225563909765
+    },
+    {
+      "id": "verse-1-7",
+      "text": "「君のおかげ」と 笑うあなたに",
+      "section": "VERSE",
+      "sectionLabel": "昨日より",
+      "sectionId": "verse-1",
+      "sectionIndex": 1,
+      "start": 35.67022556390977,
+      "end": 39.22924812030075
+    },
+    {
+      "id": "verse-1-8",
+      "text": "僕はどの僕で 笑えばいい",
+      "section": "VERSE",
+      "sectionLabel": "昨日より",
+      "sectionId": "verse-1",
+      "sectionIndex": 1,
+      "start": 39.289248120300755,
+      "end": 43.248270676691725
+    },
+    {
+      "id": "pre-1-1",
+      "text": "「いつでもできる」の「いつでも」に",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "いつでも",
+      "sectionId": "pre-1",
+      "sectionIndex": 2,
+      "start": 43.528270676691726,
+      "end": 47.0972932330827
+    },
+    {
+      "id": "pre-1-2",
+      "text": "君もいるって 誰が決めた？",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "いつでも",
+      "sectionId": "pre-1",
+      "sectionIndex": 2,
+      "start": 47.157293233082704,
+      "end": 50.67631578947368
+    },
+    {
+      "id": "pre-1-3",
+      "text": "上手くなるまで 取っておいた",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "いつでも",
+      "sectionId": "pre-1",
+      "sectionIndex": 2,
+      "start": 50.736315789473686,
+      "end": 54.03533834586466
+    },
+    {
+      "id": "pre-1-4",
+      "text": "言葉はどこへ 届ければいい？",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "いつでも",
+      "sectionId": "pre-1",
+      "sectionIndex": 2,
+      "start": 54.09533834586466,
+      "end": 57.684360902255634
+    },
+    {
+      "id": "chorus-1-1",
+      "text": "愛を伝えるだとか",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-1",
+      "sectionIndex": 3,
+      "start": 58.004360902255634,
+      "end": 61.72338345864661
+    },
+    {
+      "id": "chorus-1-2",
+      "text": "くだらない話だとか",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-1",
+      "sectionIndex": 3,
+      "start": 61.78338345864661,
+      "end": 64.50240601503758
+    },
+    {
+      "id": "chorus-1-3",
+      "text": "そんなことまで 急がせるなよ",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-1",
+      "sectionIndex": 3,
+      "start": 64.56240601503758,
+      "end": 68.85142857142857
+    },
+    {
+      "id": "chorus-1-4",
+      "text": "まだうまくも 言えてないんだよ",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-1",
+      "sectionIndex": 3,
+      "start": 68.91142857142857,
+      "end": 72.17045112781953
+    },
+    {
+      "id": "chorus-1-5",
+      "text": "僕の代わりに 僕よりうまく",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-1",
+      "sectionIndex": 3,
+      "start": 72.23045112781953,
+      "end": 75.77947368421052
+    },
+    {
+      "id": "chorus-1-6",
+      "text": "君を喜ばせる 答えがある",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-1",
+      "sectionIndex": 3,
+      "start": 75.83947368421052,
+      "end": 78.9684962406015
+    },
+    {
+      "id": "chorus-1-7",
+      "text": "君が笑えば 嬉しいはずだろ",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-1",
+      "sectionIndex": 3,
+      "start": 79.0284962406015,
+      "end": 82.73751879699249
+    },
+    {
+      "id": "chorus-1-8",
+      "text": "どうして少し 寂しいんだろ",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-1",
+      "sectionIndex": 3,
+      "start": 82.79751879699249,
+      "end": 86.55654135338345
+    },
+    {
+      "id": "verse-2-1",
+      "text": "君の好きな色 ふたりの記憶",
+      "section": "VERSE",
+      "sectionLabel": "君の好きな色",
+      "sectionId": "verse-2",
+      "sectionIndex": 5,
+      "start": 101.40263157894736,
+      "end": 104.48165413533835
+    },
+    {
+      "id": "verse-2-2",
+      "text": "予算と予定を AIに渡す",
+      "section": "VERSE",
+      "sectionLabel": "君の好きな色",
+      "sectionId": "verse-2",
+      "sectionIndex": 5,
+      "start": 104.54165413533835,
+      "end": 107.87067669172932
+    },
+    {
+      "id": "verse-2-3",
+      "text": "僕の三日を 三秒で越す",
+      "section": "VERSE",
+      "sectionLabel": "君の好きな色",
+      "sectionId": "verse-2",
+      "sectionIndex": 5,
+      "start": 107.93067669172932,
+      "end": 112.2396992481203
+    },
+    {
+      "id": "verse-2-4",
+      "text": "答えが三つ 光っていた",
+      "section": "VERSE",
+      "sectionLabel": "君の好きな色",
+      "sectionId": "verse-2",
+      "sectionIndex": 5,
+      "start": 112.2996992481203,
+      "end": 115.33872180451127
+    },
+    {
+      "id": "verse-2-5",
+      "text": "「こんなに考えてくれたんだ」",
+      "section": "VERSE",
+      "sectionLabel": "君の好きな色",
+      "sectionId": "verse-2",
+      "sectionIndex": 5,
+      "start": 115.39872180451127,
+      "end": 118.83774436090225
+    },
+    {
+      "id": "verse-2-6",
+      "text": "君は嬉しそうに 包みを開く",
+      "section": "VERSE",
+      "sectionLabel": "君の好きな色",
+      "sectionId": "verse-2",
+      "sectionIndex": 5,
+      "start": 118.89774436090225,
+      "end": 122.51676691729324
+    },
+    {
+      "id": "verse-2-7",
+      "text": "喜ばせたかった 嘘じゃなかった",
+      "section": "VERSE",
+      "sectionLabel": "君の好きな色",
+      "sectionId": "verse-2",
+      "sectionIndex": 5,
+      "start": 122.57676691729324,
+      "end": 126.62578947368422
+    },
+    {
+      "id": "verse-2-8",
+      "text": "じゃあこの沈黙は なんなんだ",
+      "section": "VERSE",
+      "sectionLabel": "君の好きな色",
+      "sectionId": "verse-2",
+      "sectionIndex": 5,
+      "start": 126.68578947368422,
+      "end": 129.67481203007517
+    },
+    {
+      "id": "pre-2-1",
+      "text": "「気持ちは本当」 それだけで",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "気持ちは本当",
+      "sectionId": "pre-2",
+      "sectionIndex": 6,
+      "start": 129.73481203007518,
+      "end": 133.53383458646616
+    },
+    {
+      "id": "pre-2-2",
+      "text": "足りると思って いたんだ",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "気持ちは本当",
+      "sectionId": "pre-2",
+      "sectionIndex": 6,
+      "start": 133.59383458646616,
+      "end": 136.98285714285714
+    },
+    {
+      "id": "pre-2-3",
+      "text": "「自分で考えた？」のひと言が",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "気持ちは本当",
+      "sectionId": "pre-2",
+      "sectionIndex": 6,
+      "start": 137.04285714285714,
+      "end": 141.1318796992481
+    },
+    {
+      "id": "pre-2-4",
+      "text": "ふたりの真ん中に 座っていた",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "気持ちは本当",
+      "sectionId": "pre-2",
+      "sectionIndex": 6,
+      "start": 141.1918796992481,
+      "end": 144.30090225563907
+    },
+    {
+      "id": "chorus-2-1",
+      "text": "愛を伝えるだとか",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-2",
+      "sectionIndex": 7,
+      "start": 144.67090225563908,
+      "end": 148.33992481203006
+    },
+    {
+      "id": "chorus-2-2",
+      "text": "くだらない話だとか",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-2",
+      "sectionIndex": 7,
+      "start": 148.39992481203006,
+      "end": 151.42894736842103
+    },
+    {
+      "id": "chorus-2-3",
+      "text": "そんなことまで 急がせるなよ",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-2",
+      "sectionIndex": 7,
+      "start": 151.48894736842104,
+      "end": 154.76796992481198
+    },
+    {
+      "id": "chorus-2-4",
+      "text": "まだうまくも 言えてないんだよ",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-2",
+      "sectionIndex": 7,
+      "start": 154.82796992481198,
+      "end": 158.89699248120297
+    },
+    {
+      "id": "chorus-2-5",
+      "text": "僕の代わりに 僕よりうまく",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-2",
+      "sectionIndex": 7,
+      "start": 158.95699248120297,
+      "end": 162.33601503759397
+    },
+    {
+      "id": "chorus-2-6",
+      "text": "君を喜ばせる 答えがある",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-2",
+      "sectionIndex": 7,
+      "start": 162.39601503759397,
+      "end": 165.59503759398493
+    },
+    {
+      "id": "chorus-2-7",
+      "text": "君が笑えば 嬉しいはずだろ",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-2",
+      "sectionIndex": 7,
+      "start": 165.65503759398493,
+      "end": 170.0140601503759
+    },
+    {
+      "id": "chorus-2-8",
+      "text": "どうして少し 寂しいんだろ",
+      "section": "CHORUS",
+      "sectionLabel": "愛を伝えるだとか",
+      "sectionId": "chorus-2",
+      "sectionIndex": 7,
+      "start": 170.0740601503759,
+      "end": 173.1730827067669
+    },
+    {
+      "id": "bridge-1",
+      "text": "百点満点の 言葉より",
+      "section": "BRIDGE",
+      "sectionLabel": "百点満点の",
+      "sectionId": "bridge",
+      "sectionIndex": 8,
+      "start": 173.5530827067669,
+      "end": 176.7721052631579
+    },
+    {
+      "id": "bridge-2",
+      "text": "僕のゼロ点を 愛してくれ",
+      "section": "BRIDGE",
+      "sectionLabel": "百点満点の",
+      "sectionId": "bridge",
+      "sectionIndex": 8,
+      "start": 176.8321052631579,
+      "end": 180.30112781954887
+    },
+    {
+      "id": "bridge-3",
+      "text": "そんなわがまま 飲み込んだけど",
+      "section": "BRIDGE",
+      "sectionLabel": "百点満点の",
+      "sectionId": "bridge",
+      "sectionIndex": 8,
+      "start": 180.36112781954887,
+      "end": 184.38015037593982
+    },
+    {
+      "id": "bridge-4",
+      "text": "言いたいことまで 飲み込むなよ",
+      "section": "BRIDGE",
+      "sectionLabel": "百点満点の",
+      "sectionId": "bridge",
+      "sectionIndex": 8,
+      "start": 184.44015037593982,
+      "end": 187.1491729323308
+    },
+    {
+      "id": "bridge-5",
+      "text": "大事なことほど あと回しにした",
+      "section": "BRIDGE",
+      "sectionLabel": "百点満点の",
+      "sectionId": "bridge",
+      "sectionIndex": 8,
+      "start": 187.2091729323308,
+      "end": 191.60819548872178
+    },
+    {
+      "id": "bridge-6",
+      "text": "大事にしてる つもりのままで",
+      "section": "BRIDGE",
+      "sectionLabel": "百点満点の",
+      "sectionId": "bridge",
+      "sectionIndex": 8,
+      "start": 191.66819548872178,
+      "end": 194.9372180451128
+    },
+    {
+      "id": "bridge-7",
+      "text": "「いつか言おう」の いつかの僕に",
+      "section": "BRIDGE",
+      "sectionLabel": "百点満点の",
+      "sectionId": "bridge",
+      "sectionIndex": 8,
+      "start": 194.9972180451128,
+      "end": 198.56624060150375
+    },
+    {
+      "id": "bridge-8",
+      "text": "今日の言葉を 返してもらう",
+      "section": "BRIDGE",
+      "sectionLabel": "百点満点の",
+      "sectionId": "bridge",
+      "sectionIndex": 8,
+      "start": 198.62624060150375,
+      "end": 201.64526315789473
+    },
+    {
+      "id": "final-chorus-1",
+      "text": "愛を伝えるだとか",
+      "section": "FINAL CHORUS",
+      "sectionLabel": "君の今日に",
+      "sectionId": "final-chorus",
+      "sectionIndex": 9,
+      "start": 201.70526315789473,
+      "end": 205.86428571428573
+    },
+    {
+      "id": "final-chorus-2",
+      "text": "くだらない話だとか",
+      "section": "FINAL CHORUS",
+      "sectionLabel": "君の今日に",
+      "sectionId": "final-chorus",
+      "sectionIndex": 9,
+      "start": 205.92428571428573,
+      "end": 209.0133082706767
+    },
+    {
+      "id": "final-chorus-3",
+      "text": "そんなことまで 急がせるなよ",
+      "section": "FINAL CHORUS",
+      "sectionLabel": "君の今日に",
+      "sectionId": "final-chorus",
+      "sectionIndex": 9,
+      "start": 209.0733082706767,
+      "end": 213.26233082706764
+    },
+    {
+      "id": "final-chorus-4",
+      "text": "文句を言いながら 靴を履いた",
+      "section": "FINAL CHORUS",
+      "sectionLabel": "君の今日に",
+      "sectionId": "final-chorus",
+      "sectionIndex": 9,
+      "start": 213.32233082706765,
+      "end": 216.31135338345865
+    },
+    {
+      "id": "final-chorus-5",
+      "text": "完成前の 僕のままで",
+      "section": "FINAL CHORUS",
+      "sectionLabel": "君の今日に",
+      "sectionId": "final-chorus",
+      "sectionIndex": 9,
+      "start": 216.37135338345865,
+      "end": 220.22037593984962
+    },
+    {
+      "id": "final-chorus-6",
+      "text": "君の今日に 間に合いたい",
+      "section": "FINAL CHORUS",
+      "sectionLabel": "君の今日に",
+      "sectionId": "final-chorus",
+      "sectionIndex": 9,
+      "start": 220.28037593984962,
+      "end": 223.6393984962406
+    },
+    {
+      "id": "final-chorus-7",
+      "text": "まだ僕に やってほしいと",
+      "section": "FINAL CHORUS",
+      "sectionLabel": "君の今日に",
+      "sectionId": "final-chorus",
+      "sectionIndex": 9,
+      "start": 223.6993984962406,
+      "end": 227.21842105263158
+    },
+    {
+      "id": "final-chorus-8",
+      "text": "言ってくれる 君がいるうちに",
+      "section": "FINAL CHORUS",
+      "sectionLabel": "君の今日に",
+      "sectionId": "final-chorus",
+      "sectionIndex": 9,
+      "start": 227.2784210526316,
+      "end": 230.91744360902254
+    }
+  ],
+  "analysis": {
+    "sampleRate": 48000,
+    "channels": 2,
+    "correlation": 0.8407,
+    "centerRms": 0.1041,
+    "sideRms": 0.0307,
+    "alignment": "known-lyrics-asr-word-timestamps",
+    "alignmentNote": "既知歌詞を正として日本語ASRの単語タイムスタンプを文字へ展開。音素強制アライメントではない。"
+  },
+  "cover": "./songs/ai-wo-tsutaeru/cover.png",
+  "coverType": "image/png",
+  "alignmentSource": "./songs/ai-wo-tsutaeru/alignment.json",
+  "melodySource": "./melody.json",
+  "accompanimentSource": "./audio/accompaniment.mp3"
+}

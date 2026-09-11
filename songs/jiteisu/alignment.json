@@ -1,0 +1,5042 @@
+{
+  "version": 1,
+  "method": "known-lyrics-asr-word-timestamps",
+  "model": "faster-whisper-small",
+  "source": "https://www.youtube.com/watch?v=XgYgRNQJ13A",
+  "lines": [
+    {
+      "sectionId": "verse-1",
+      "text": "2025年、想像超える速度で",
+      "start": 16.3,
+      "end": 20.3,
+      "tokens": [
+        {
+          "text": "2",
+          "start": 16.3,
+          "end": 16.688,
+          "confidence": 0.55
+        },
+        {
+          "text": "0",
+          "start": 16.688,
+          "end": 17.076,
+          "confidence": 0.55
+        },
+        {
+          "text": "2",
+          "start": 17.076,
+          "end": 17.464,
+          "confidence": 0.55
+        },
+        {
+          "text": "5",
+          "start": 17.464,
+          "end": 17.852,
+          "confidence": 0.55
+        },
+        {
+          "text": "年",
+          "start": 17.852,
+          "end": 18.24,
+          "confidence": 0.55
+        },
+        {
+          "text": "、",
+          "start": 18.24,
+          "end": 18.24,
+          "confidence": 0.3
+        },
+        {
+          "text": "想",
+          "start": 18.24,
+          "end": 18.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "像",
+          "start": 18.38,
+          "end": 18.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "超",
+          "start": 18.52,
+          "end": 18.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 18.78,
+          "end": 18.99,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 18.99,
+          "end": 19.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "速",
+          "start": 19.2,
+          "end": 19.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "度",
+          "start": 19.54,
+          "end": 19.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 19.9,
+          "end": 20.3,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-1",
+      "text": "知的業務（ホワイトワーク）が侵食されてく",
+      "start": 20.38,
+      "end": 24.06,
+      "tokens": [
+        {
+          "text": "知",
+          "start": 20.38,
+          "end": 20.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "的",
+          "start": 20.74,
+          "end": 21.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "業",
+          "start": 21.12,
+          "end": 21.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "務",
+          "start": 21.6,
+          "end": 21.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "（",
+          "start": 21.76,
+          "end": 21.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "ホ",
+          "start": 21.92,
+          "end": 21.932,
+          "confidence": 0.96
+        },
+        {
+          "text": "ワ",
+          "start": 21.92,
+          "end": 22.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "イ",
+          "start": 22.12,
+          "end": 22.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "ト",
+          "start": 22.14,
+          "end": 22.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "ワ",
+          "start": 22.3,
+          "end": 22.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "ー",
+          "start": 22.62,
+          "end": 22.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "ク",
+          "start": 22.66,
+          "end": 22.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "）",
+          "start": 22.78,
+          "end": 22.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 22.82,
+          "end": 22.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "侵",
+          "start": 22.9,
+          "end": 23.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "食",
+          "start": 23.12,
+          "end": 23.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 23.34,
+          "end": 23.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 23.58,
+          "end": 23.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 23.66,
+          "end": 23.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "く",
+          "start": 23.74,
+          "end": 24.06,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-1",
+      "text": "リサーチ、書類、コンサルのドラフト",
+      "start": 24.76,
+      "end": 28.18,
+      "tokens": [
+        {
+          "text": "リ",
+          "start": 24.76,
+          "end": 24.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "サ",
+          "start": 24.88,
+          "end": 25.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "ー",
+          "start": 25.18,
+          "end": 25.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "チ",
+          "start": 25.32,
+          "end": 25.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 25.46,
+          "end": 25.46,
+          "confidence": 0.3
+        },
+        {
+          "text": "書",
+          "start": 25.66,
+          "end": 25.672,
+          "confidence": 0.96
+        },
+        {
+          "text": "類",
+          "start": 25.66,
+          "end": 25.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 25.94,
+          "end": 25.94,
+          "confidence": 0.3
+        },
+        {
+          "text": "コ",
+          "start": 26.14,
+          "end": 26.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "ン",
+          "start": 26.4,
+          "end": 26.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "サ",
+          "start": 26.48,
+          "end": 26.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "ル",
+          "start": 26.64,
+          "end": 26.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 26.82,
+          "end": 27.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "ド",
+          "start": 27.1,
+          "end": 27.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "ラ",
+          "start": 27.46,
+          "end": 27.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "フ",
+          "start": 27.7,
+          "end": 27.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "ト",
+          "start": 27.86,
+          "end": 28.18,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-1",
+      "text": "AIエージェントがもう自動でこなす",
+      "start": 28.74,
+      "end": 31.56,
+      "tokens": [
+        {
+          "text": "A",
+          "start": 28.74,
+          "end": 28.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "I",
+          "start": 28.96,
+          "end": 29.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "エ",
+          "start": 29.18,
+          "end": 29.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "ー",
+          "start": 29.54,
+          "end": 29.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "ジ",
+          "start": 29.58,
+          "end": 29.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "ェ",
+          "start": 29.62,
+          "end": 29.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "ン",
+          "start": 29.82,
+          "end": 29.87,
+          "confidence": 0.96
+        },
+        {
+          "text": "ト",
+          "start": 29.87,
+          "end": 29.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 29.92,
+          "end": 30.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 30.1,
+          "end": 30.21,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 30.21,
+          "end": 30.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "自",
+          "start": 30.32,
+          "end": 30.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "動",
+          "start": 30.5,
+          "end": 30.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 30.76,
+          "end": 31.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "こ",
+          "start": 31.0,
+          "end": 31.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 31.14,
+          "end": 31.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "す",
+          "start": 31.34,
+          "end": 31.56,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-2",
+      "text": "熱中したプログラミング、時定数が低いと知る",
+      "start": 32.66,
+      "end": 37.455,
+      "tokens": [
+        {
+          "text": "熱",
+          "start": 32.66,
+          "end": 33.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "中",
+          "start": 33.1,
+          "end": 33.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "し",
+          "start": 33.44,
+          "end": 33.55,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 33.55,
+          "end": 33.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "プ",
+          "start": 33.66,
+          "end": 33.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "ロ",
+          "start": 33.88,
+          "end": 33.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "グ",
+          "start": 33.94,
+          "end": 34.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "ラ",
+          "start": 34.1,
+          "end": 34.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "ミ",
+          "start": 34.22,
+          "end": 34.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "ン",
+          "start": 34.36,
+          "end": 34.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "グ",
+          "start": 34.52,
+          "end": 34.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 34.68,
+          "end": 34.68,
+          "confidence": 0.3
+        },
+        {
+          "text": "時",
+          "start": 34.68,
+          "end": 34.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "定",
+          "start": 34.84,
+          "end": 35.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "数",
+          "start": 35.18,
+          "end": 35.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 35.56,
+          "end": 35.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "低",
+          "start": 35.98,
+          "end": 36.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 36.2,
+          "end": 36.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 36.68,
+          "end": 36.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "知",
+          "start": 36.92,
+          "end": 37.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 37.16,
+          "end": 37.455,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-2",
+      "text": "いずれ陳腐化する前に、使い切らねばと焦る",
+      "start": 37.48,
+      "end": 41.26,
+      "tokens": [
+        {
+          "text": "い",
+          "start": 37.48,
+          "end": 37.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "ず",
+          "start": 37.68,
+          "end": 37.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 37.76,
+          "end": 37.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "陳",
+          "start": 37.94,
+          "end": 38.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "腐",
+          "start": 38.14,
+          "end": 38.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "化",
+          "start": 38.32,
+          "end": 38.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "す",
+          "start": 38.48,
+          "end": 38.63,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 38.63,
+          "end": 38.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "前",
+          "start": 38.78,
+          "end": 39.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 39.0,
+          "end": 39.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 39.24,
+          "end": 39.24,
+          "confidence": 0.3
+        },
+        {
+          "text": "使",
+          "start": 39.28,
+          "end": 39.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 39.42,
+          "end": 39.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "切",
+          "start": 39.6,
+          "end": 39.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "ら",
+          "start": 39.74,
+          "end": 39.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "ね",
+          "start": 39.88,
+          "end": 40.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "ば",
+          "start": 40.0,
+          "end": 40.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 40.16,
+          "end": 40.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "焦",
+          "start": 40.46,
+          "end": 40.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 40.88,
+          "end": 41.26,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-2",
+      "text": "若手が積むべき、集計・分析の場",
+      "start": 41.44,
+      "end": 45.04,
+      "tokens": [
+        {
+          "text": "若",
+          "start": 41.44,
+          "end": 41.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "手",
+          "start": 41.66,
+          "end": 41.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 41.96,
+          "end": 42.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "積",
+          "start": 42.14,
+          "end": 42.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "む",
+          "start": 42.54,
+          "end": 42.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "べ",
+          "start": 42.7,
+          "end": 43.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 43.06,
+          "end": 43.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 43.3,
+          "end": 43.3,
+          "confidence": 0.3
+        },
+        {
+          "text": "集",
+          "start": 43.46,
+          "end": 43.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "計",
+          "start": 43.6,
+          "end": 43.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "・",
+          "start": 43.9,
+          "end": 43.9,
+          "confidence": 0.3
+        },
+        {
+          "text": "分",
+          "start": 44.04,
+          "end": 44.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "析",
+          "start": 44.16,
+          "end": 44.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 44.38,
+          "end": 44.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "場",
+          "start": 44.82,
+          "end": 45.04,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-2",
+      "text": "「やって覚える」土壌が今、奪われていく",
+      "start": 45.32,
+      "end": 48.6,
+      "tokens": [
+        {
+          "text": "「",
+          "start": 45.32,
+          "end": 45.32,
+          "confidence": 0.3
+        },
+        {
+          "text": "や",
+          "start": 45.32,
+          "end": 45.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 45.4,
+          "end": 45.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 45.48,
+          "end": 45.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "覚",
+          "start": 45.56,
+          "end": 46.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 46.08,
+          "end": 46.23,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 46.23,
+          "end": 46.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "」",
+          "start": 46.38,
+          "end": 46.38,
+          "confidence": 0.3
+        },
+        {
+          "text": "土",
+          "start": 46.5,
+          "end": 46.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "壌",
+          "start": 46.52,
+          "end": 46.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 46.78,
+          "end": 46.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "今",
+          "start": 46.96,
+          "end": 47.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 47.14,
+          "end": 47.14,
+          "confidence": 0.3
+        },
+        {
+          "text": "奪",
+          "start": 47.4,
+          "end": 47.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "わ",
+          "start": 47.68,
+          "end": 47.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 47.96,
+          "end": 48.09,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 48.09,
+          "end": 48.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 48.22,
+          "end": 48.41,
+          "confidence": 0.96
+        },
+        {
+          "text": "く",
+          "start": 48.41,
+          "end": 48.6,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-1",
+      "text": "もっと焦ったほうがいい、時間はもう無い",
+      "start": 48.64,
+      "end": 52.82,
+      "tokens": [
+        {
+          "text": "も",
+          "start": 48.64,
+          "end": 49.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 49.16,
+          "end": 49.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 49.3,
+          "end": 49.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "焦",
+          "start": 49.44,
+          "end": 49.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 49.7,
+          "end": 49.85,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 49.85,
+          "end": 50.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "ほ",
+          "start": 50.0,
+          "end": 50.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 50.2,
+          "end": 50.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 50.4,
+          "end": 50.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 50.54,
+          "end": 50.67,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 50.67,
+          "end": 50.8,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 50.8,
+          "end": 50.8,
+          "confidence": 0.3
+        },
+        {
+          "text": "時",
+          "start": 51.04,
+          "end": 51.21,
+          "confidence": 0.96
+        },
+        {
+          "text": "間",
+          "start": 51.21,
+          "end": 51.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 51.38,
+          "end": 51.8,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 51.8,
+          "end": 51.97,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 51.97,
+          "end": 52.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "無",
+          "start": 52.14,
+          "end": 52.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 52.56,
+          "end": 52.82,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-1",
+      "text": "20代のロードマップは、音を立てて崩壊",
+      "start": 52.94,
+      "end": 57.0,
+      "tokens": [
+        {
+          "text": "2",
+          "start": 52.94,
+          "end": 53.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "0",
+          "start": 53.1,
+          "end": 53.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "代",
+          "start": 53.26,
+          "end": 53.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 53.64,
+          "end": 53.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "ロ",
+          "start": 53.86,
+          "end": 54.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "ー",
+          "start": 54.16,
+          "end": 54.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "ド",
+          "start": 54.24,
+          "end": 54.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "マ",
+          "start": 54.32,
+          "end": 54.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 54.52,
+          "end": 54.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "プ",
+          "start": 54.62,
+          "end": 54.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 54.72,
+          "end": 55.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 55.24,
+          "end": 55.24,
+          "confidence": 0.3
+        },
+        {
+          "text": "音",
+          "start": 55.3,
+          "end": 55.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 55.52,
+          "end": 55.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "立",
+          "start": 55.78,
+          "end": 55.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 55.82,
+          "end": 56.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 56.1,
+          "end": 56.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "崩",
+          "start": 56.3,
+          "end": 56.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "壊",
+          "start": 56.54,
+          "end": 57.0,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-1",
+      "text": "最終チェックの席さえ、すぐに消えるだろう",
+      "start": 57.26,
+      "end": 61.06,
+      "tokens": [
+        {
+          "text": "最",
+          "start": 57.26,
+          "end": 57.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "終",
+          "start": 57.46,
+          "end": 57.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "チ",
+          "start": 57.7,
+          "end": 57.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "ェ",
+          "start": 57.92,
+          "end": 58.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 58.02,
+          "end": 58.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "ク",
+          "start": 58.08,
+          "end": 58.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 58.14,
+          "end": 58.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "席",
+          "start": 58.3,
+          "end": 58.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 58.52,
+          "end": 58.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 58.74,
+          "end": 58.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 58.98,
+          "end": 58.98,
+          "confidence": 0.3
+        },
+        {
+          "text": "す",
+          "start": 59.02,
+          "end": 59.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "ぐ",
+          "start": 59.18,
+          "end": 59.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 59.42,
+          "end": 59.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "消",
+          "start": 59.7,
+          "end": 59.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 59.98,
+          "end": 60.21,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 60.21,
+          "end": 60.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 60.44,
+          "end": 60.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "ろ",
+          "start": 60.74,
+          "end": 60.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 60.9,
+          "end": 61.06,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-1",
+      "text": "残されたのは、運と責任だけ",
+      "start": 61.42,
+      "end": 64.92,
+      "tokens": [
+        {
+          "text": "残",
+          "start": 61.42,
+          "end": 61.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 61.68,
+          "end": 61.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 61.96,
+          "end": 62.21,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 62.21,
+          "end": 62.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 62.46,
+          "end": 62.69,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 62.69,
+          "end": 62.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 62.92,
+          "end": 62.92,
+          "confidence": 0.3
+        },
+        {
+          "text": "運",
+          "start": 63.46,
+          "end": 63.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 63.76,
+          "end": 64.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "責",
+          "start": 64.06,
+          "end": 64.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "任",
+          "start": 64.4,
+          "end": 64.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 64.64,
+          "end": 64.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 64.78,
+          "end": 64.92,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-3",
+      "text": "アメリカからの冷徹な警告",
+      "start": 65.72,
+      "end": 67.975,
+      "tokens": [
+        {
+          "text": "ア",
+          "start": 65.72,
+          "end": 66.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "メ",
+          "start": 66.16,
+          "end": 66.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "リ",
+          "start": 66.28,
+          "end": 66.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "カ",
+          "start": 66.38,
+          "end": 66.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "か",
+          "start": 66.5,
+          "end": 66.61,
+          "confidence": 0.96
+        },
+        {
+          "text": "ら",
+          "start": 66.61,
+          "end": 66.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 66.72,
+          "end": 66.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "冷",
+          "start": 66.9,
+          "end": 67.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "徹",
+          "start": 67.12,
+          "end": 67.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 67.42,
+          "end": 67.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "警",
+          "start": 67.56,
+          "end": 67.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "告",
+          "start": 67.7,
+          "end": 67.975,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-3",
+      "text": "5年で新卒の仕事の半分が消えるという",
+      "start": 68.0,
+      "end": 72.18,
+      "tokens": [
+        {
+          "text": "5",
+          "start": 68.0,
+          "end": 68.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "年",
+          "start": 68.24,
+          "end": 68.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 68.4,
+          "end": 68.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "新",
+          "start": 68.56,
+          "end": 68.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "卒",
+          "start": 68.76,
+          "end": 69.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 69.04,
+          "end": 69.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "仕",
+          "start": 69.22,
+          "end": 69.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "事",
+          "start": 69.36,
+          "end": 69.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 69.54,
+          "end": 69.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "半",
+          "start": 69.72,
+          "end": 69.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "分",
+          "start": 69.94,
+          "end": 70.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 70.24,
+          "end": 70.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "消",
+          "start": 70.56,
+          "end": 71.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 71.06,
+          "end": 71.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 71.26,
+          "end": 71.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 71.46,
+          "end": 71.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 71.7,
+          "end": 71.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 71.94,
+          "end": 72.18,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-3",
+      "text": "「安定」とされてきた士業（専門職）さえも",
+      "start": 73.74,
+      "end": 77.66,
+      "tokens": [
+        {
+          "text": "「",
+          "start": 73.74,
+          "end": 73.74,
+          "confidence": 0.3
+        },
+        {
+          "text": "安",
+          "start": 73.74,
+          "end": 74.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "定",
+          "start": 74.18,
+          "end": 74.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "」",
+          "start": 74.4,
+          "end": 74.4,
+          "confidence": 0.3
+        },
+        {
+          "text": "と",
+          "start": 74.4,
+          "end": 74.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 74.62,
+          "end": 74.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 74.86,
+          "end": 74.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 74.94,
+          "end": 75.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 75.02,
+          "end": 75.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 75.18,
+          "end": 75.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "士",
+          "start": 75.34,
+          "end": 75.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "業",
+          "start": 75.62,
+          "end": 76.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "（",
+          "start": 76.08,
+          "end": 76.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "専",
+          "start": 76.28,
+          "end": 76.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "門",
+          "start": 76.54,
+          "end": 76.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "職",
+          "start": 76.7,
+          "end": 77.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "）",
+          "start": 77.0,
+          "end": 77.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 77.24,
+          "end": 77.252,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 77.24,
+          "end": 77.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 77.34,
+          "end": 77.66,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-3",
+      "text": "AIに揺るがされ、もはや幻想か",
+      "start": 77.78,
+      "end": 81.44,
+      "tokens": [
+        {
+          "text": "A",
+          "start": 77.78,
+          "end": 78.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "I",
+          "start": 78.0,
+          "end": 78.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 78.22,
+          "end": 78.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "揺",
+          "start": 78.78,
+          "end": 79.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 79.06,
+          "end": 79.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 79.2,
+          "end": 79.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 79.64,
+          "end": 79.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 79.96,
+          "end": 80.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 80.16,
+          "end": 80.16,
+          "confidence": 0.3
+        },
+        {
+          "text": "も",
+          "start": 80.28,
+          "end": 80.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 80.36,
+          "end": 80.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "や",
+          "start": 80.54,
+          "end": 80.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "幻",
+          "start": 80.66,
+          "end": 80.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "想",
+          "start": 80.82,
+          "end": 81.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "か",
+          "start": 81.14,
+          "end": 81.44,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-4",
+      "text": "企業が求めるのは「高学歴スタンプ」",
+      "start": 81.5,
+      "end": 85.975,
+      "tokens": [
+        {
+          "text": "企",
+          "start": 81.5,
+          "end": 82.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "業",
+          "start": 82.06,
+          "end": 82.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 82.32,
+          "end": 82.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "求",
+          "start": 82.64,
+          "end": 83.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "め",
+          "start": 83.08,
+          "end": 83.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 83.52,
+          "end": 83.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 83.84,
+          "end": 84.05,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 84.05,
+          "end": 84.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "「",
+          "start": 84.26,
+          "end": 84.26,
+          "confidence": 0.3
+        },
+        {
+          "text": "高",
+          "start": 84.26,
+          "end": 84.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "学",
+          "start": 84.62,
+          "end": 84.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "歴",
+          "start": 84.9,
+          "end": 85.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "ス",
+          "start": 85.18,
+          "end": 85.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "タ",
+          "start": 85.42,
+          "end": 85.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "ン",
+          "start": 85.64,
+          "end": 85.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "プ",
+          "start": 85.82,
+          "end": 85.975,
+          "confidence": 0.96
+        },
+        {
+          "text": "」",
+          "start": 85.975,
+          "end": 85.975,
+          "confidence": 0.3
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-4",
+      "text": "失敗時の逃げ道となる〈免責ラベル〉",
+      "start": 86.0,
+      "end": 89.855,
+      "tokens": [
+        {
+          "text": "失",
+          "start": 86.0,
+          "end": 86.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "敗",
+          "start": 86.16,
+          "end": 86.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "時",
+          "start": 86.48,
+          "end": 86.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 86.7,
+          "end": 86.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "逃",
+          "start": 86.94,
+          "end": 87.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "げ",
+          "start": 87.06,
+          "end": 87.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "道",
+          "start": 87.2,
+          "end": 87.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 87.5,
+          "end": 87.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 87.94,
+          "end": 88.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 88.12,
+          "end": 88.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "〈",
+          "start": 88.3,
+          "end": 88.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "免",
+          "start": 88.54,
+          "end": 88.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "責",
+          "start": 88.94,
+          "end": 89.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "ラ",
+          "start": 89.26,
+          "end": 89.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "ベ",
+          "start": 89.5,
+          "end": 89.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "ル",
+          "start": 89.68,
+          "end": 89.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "〉",
+          "start": 89.78,
+          "end": 89.855,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-4",
+      "text": "AIが論理を掃除（ロジック）し尽くした後で",
+      "start": 89.88,
+      "end": 94.18,
+      "tokens": [
+        {
+          "text": "A",
+          "start": 89.88,
+          "end": 90.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "I",
+          "start": 90.1,
+          "end": 90.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 90.32,
+          "end": 90.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "論",
+          "start": 90.54,
+          "end": 90.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "理",
+          "start": 90.84,
+          "end": 91.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 91.08,
+          "end": 91.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "掃",
+          "start": 91.24,
+          "end": 91.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "除",
+          "start": 91.6,
+          "end": 91.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "（",
+          "start": 91.86,
+          "end": 91.87,
+          "confidence": 0.25
+        },
+        {
+          "text": "ロ",
+          "start": 91.86,
+          "end": 91.87,
+          "confidence": 0.25
+        },
+        {
+          "text": "ジ",
+          "start": 91.86,
+          "end": 91.87,
+          "confidence": 0.25
+        },
+        {
+          "text": "ッ",
+          "start": 91.86,
+          "end": 91.87,
+          "confidence": 0.25
+        },
+        {
+          "text": "ク",
+          "start": 91.86,
+          "end": 91.87,
+          "confidence": 0.25
+        },
+        {
+          "text": "）",
+          "start": 91.86,
+          "end": 92.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "し",
+          "start": 92.14,
+          "end": 92.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "尽",
+          "start": 92.3,
+          "end": 92.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "く",
+          "start": 92.56,
+          "end": 92.8,
+          "confidence": 0.96
+        },
+        {
+          "text": "し",
+          "start": 92.8,
+          "end": 93.05,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 93.05,
+          "end": 93.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "後",
+          "start": 93.3,
+          "end": 93.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 93.74,
+          "end": 94.18,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-4",
+      "text": "人間には「最後の決裁」が要求される",
+      "start": 94.28,
+      "end": 98.42,
+      "tokens": [
+        {
+          "text": "人",
+          "start": 94.28,
+          "end": 94.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "間",
+          "start": 94.4,
+          "end": 94.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 94.66,
+          "end": 94.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 94.82,
+          "end": 94.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "「",
+          "start": 94.98,
+          "end": 94.98,
+          "confidence": 0.3
+        },
+        {
+          "text": "最",
+          "start": 94.98,
+          "end": 95.23,
+          "confidence": 0.96
+        },
+        {
+          "text": "後",
+          "start": 95.23,
+          "end": 95.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 95.48,
+          "end": 95.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "決",
+          "start": 95.76,
+          "end": 95.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "裁",
+          "start": 95.92,
+          "end": 96.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "」",
+          "start": 96.26,
+          "end": 96.26,
+          "confidence": 0.3
+        },
+        {
+          "text": "が",
+          "start": 96.26,
+          "end": 96.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "要",
+          "start": 96.48,
+          "end": 97.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "求",
+          "start": 97.04,
+          "end": 97.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 97.48,
+          "end": 98.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 98.02,
+          "end": 98.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 98.22,
+          "end": 98.42,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-2",
+      "text": "もっと焦ったほうがいい、時間はもう無い",
+      "start": 99.98,
+      "end": 104.1,
+      "tokens": [
+        {
+          "text": "も",
+          "start": 99.98,
+          "end": 100.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 100.52,
+          "end": 100.63,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 100.63,
+          "end": 100.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "焦",
+          "start": 100.74,
+          "end": 100.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 100.98,
+          "end": 101.13,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 101.13,
+          "end": 101.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "ほ",
+          "start": 101.28,
+          "end": 101.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 101.5,
+          "end": 101.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 101.68,
+          "end": 101.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 101.82,
+          "end": 101.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 101.96,
+          "end": 102.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 102.1,
+          "end": 102.1,
+          "confidence": 0.3
+        },
+        {
+          "text": "時",
+          "start": 102.32,
+          "end": 102.49,
+          "confidence": 0.96
+        },
+        {
+          "text": "間",
+          "start": 102.49,
+          "end": 102.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 102.66,
+          "end": 103.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 103.1,
+          "end": 103.27,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 103.27,
+          "end": 103.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "無",
+          "start": 103.44,
+          "end": 103.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 103.88,
+          "end": 104.1,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-2",
+      "text": "20代のロードマップは、音を立てて崩壊",
+      "start": 104.22,
+      "end": 108.3,
+      "tokens": [
+        {
+          "text": "2",
+          "start": 104.22,
+          "end": 104.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "0",
+          "start": 104.36,
+          "end": 104.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "代",
+          "start": 104.5,
+          "end": 104.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 104.92,
+          "end": 105.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "ロ",
+          "start": 105.14,
+          "end": 105.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "ー",
+          "start": 105.42,
+          "end": 105.51,
+          "confidence": 0.96
+        },
+        {
+          "text": "ド",
+          "start": 105.51,
+          "end": 105.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "マ",
+          "start": 105.6,
+          "end": 105.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 105.82,
+          "end": 105.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "プ",
+          "start": 105.92,
+          "end": 106.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 106.02,
+          "end": 106.03,
+          "confidence": 0.25
+        },
+        {
+          "text": "、",
+          "start": 106.03,
+          "end": 106.03,
+          "confidence": 0.3
+        },
+        {
+          "text": "音",
+          "start": 106.02,
+          "end": 106.03,
+          "confidence": 0.25
+        },
+        {
+          "text": "を",
+          "start": 106.02,
+          "end": 106.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "立",
+          "start": 106.44,
+          "end": 106.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 106.88,
+          "end": 107.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 107.16,
+          "end": 107.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "崩",
+          "start": 107.44,
+          "end": 107.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "壊",
+          "start": 107.72,
+          "end": 108.3,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-2",
+      "text": "最終チェックの席さえ、すぐに消えるだろう",
+      "start": 108.56,
+      "end": 112.38,
+      "tokens": [
+        {
+          "text": "最",
+          "start": 108.56,
+          "end": 108.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "終",
+          "start": 108.72,
+          "end": 108.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "チ",
+          "start": 108.98,
+          "end": 109.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "ェ",
+          "start": 109.2,
+          "end": 109.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 109.26,
+          "end": 109.33,
+          "confidence": 0.96
+        },
+        {
+          "text": "ク",
+          "start": 109.33,
+          "end": 109.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 109.4,
+          "end": 109.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "席",
+          "start": 109.58,
+          "end": 109.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 109.78,
+          "end": 110.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 110.04,
+          "end": 110.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 110.26,
+          "end": 110.26,
+          "confidence": 0.3
+        },
+        {
+          "text": "す",
+          "start": 110.28,
+          "end": 110.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "ぐ",
+          "start": 110.5,
+          "end": 110.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 110.7,
+          "end": 110.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "消",
+          "start": 110.98,
+          "end": 111.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 111.3,
+          "end": 111.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 111.5,
+          "end": 111.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 111.7,
+          "end": 112.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "ろ",
+          "start": 112.02,
+          "end": 112.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 112.2,
+          "end": 112.38,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-2",
+      "text": "残されたのは、運と責任だけ",
+      "start": 112.72,
+      "end": 116.2,
+      "tokens": [
+        {
+          "text": "残",
+          "start": 112.72,
+          "end": 112.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 112.98,
+          "end": 113.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 113.28,
+          "end": 113.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 113.52,
+          "end": 113.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 113.76,
+          "end": 113.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 113.98,
+          "end": 114.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 114.2,
+          "end": 114.2,
+          "confidence": 0.3
+        },
+        {
+          "text": "運",
+          "start": 114.8,
+          "end": 115.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 115.04,
+          "end": 115.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "責",
+          "start": 115.34,
+          "end": 115.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "任",
+          "start": 115.68,
+          "end": 115.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 115.92,
+          "end": 116.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 116.06,
+          "end": 116.2,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "bridge",
+      "text": "それでも問いは残る、僕はどう生きるか",
+      "start": 116.5,
+      "end": 120.54,
+      "tokens": [
+        {
+          "text": "そ",
+          "start": 116.5,
+          "end": 116.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 116.74,
+          "end": 116.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 116.98,
+          "end": 117.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 117.12,
+          "end": 117.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "問",
+          "start": 117.26,
+          "end": 117.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 117.46,
+          "end": 117.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 117.58,
+          "end": 117.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "残",
+          "start": 117.72,
+          "end": 117.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 117.96,
+          "end": 118.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 118.14,
+          "end": 118.14,
+          "confidence": 0.3
+        },
+        {
+          "text": "僕",
+          "start": 118.26,
+          "end": 118.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 118.48,
+          "end": 118.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "ど",
+          "start": 118.78,
+          "end": 118.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 118.9,
+          "end": 119.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "生",
+          "start": 119.02,
+          "end": 119.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 119.4,
+          "end": 119.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 119.52,
+          "end": 120.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "か",
+          "start": 120.22,
+          "end": 120.54,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "bridge",
+      "text": "知能の先にある、数学感と教養",
+      "start": 120.78,
+      "end": 124.76,
+      "tokens": [
+        {
+          "text": "知",
+          "start": 120.78,
+          "end": 121.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "能",
+          "start": 121.04,
+          "end": 121.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 121.26,
+          "end": 121.8,
+          "confidence": 0.96
+        },
+        {
+          "text": "先",
+          "start": 121.8,
+          "end": 122.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 122.12,
+          "end": 122.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "あ",
+          "start": 122.56,
+          "end": 122.75,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 122.75,
+          "end": 122.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 122.94,
+          "end": 122.94,
+          "confidence": 0.3
+        },
+        {
+          "text": "数",
+          "start": 123.18,
+          "end": 123.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "学",
+          "start": 123.3,
+          "end": 123.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "感",
+          "start": 123.62,
+          "end": 123.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 123.9,
+          "end": 124.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "教",
+          "start": 124.12,
+          "end": 124.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "養",
+          "start": 124.32,
+          "end": 124.76,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "bridge",
+      "text": "計算能力ではなく、世界を捉えるレンズ",
+      "start": 124.98,
+      "end": 128.6,
+      "tokens": [
+        {
+          "text": "計",
+          "start": 124.98,
+          "end": 125.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "算",
+          "start": 125.14,
+          "end": 125.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "能",
+          "start": 125.44,
+          "end": 125.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "力",
+          "start": 125.72,
+          "end": 125.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 125.96,
+          "end": 126.07,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 126.07,
+          "end": 126.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 126.18,
+          "end": 126.33,
+          "confidence": 0.96
+        },
+        {
+          "text": "く",
+          "start": 126.33,
+          "end": 126.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 126.48,
+          "end": 126.48,
+          "confidence": 0.3
+        },
+        {
+          "text": "世",
+          "start": 126.68,
+          "end": 126.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "界",
+          "start": 126.84,
+          "end": 127.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 127.0,
+          "end": 127.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "捉",
+          "start": 127.42,
+          "end": 127.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 127.58,
+          "end": 127.73,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 127.73,
+          "end": 127.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "レ",
+          "start": 127.88,
+          "end": 128.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "ン",
+          "start": 128.22,
+          "end": 128.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "ズ",
+          "start": 128.4,
+          "end": 128.6,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "bridge",
+      "text": "AIが到達しない、非定型の創造と、意志（決裁）",
+      "start": 128.92,
+      "end": 138.0,
+      "tokens": [
+        {
+          "text": "A",
+          "start": 128.92,
+          "end": 129.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "I",
+          "start": 129.12,
+          "end": 129.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 129.32,
+          "end": 129.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "到",
+          "start": 129.58,
+          "end": 129.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "達",
+          "start": 129.78,
+          "end": 130.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "し",
+          "start": 130.04,
+          "end": 130.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 130.28,
+          "end": 130.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 130.38,
+          "end": 130.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 130.48,
+          "end": 130.48,
+          "confidence": 0.3
+        },
+        {
+          "text": "非",
+          "start": 130.54,
+          "end": 130.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "定",
+          "start": 130.64,
+          "end": 130.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "型",
+          "start": 130.84,
+          "end": 131.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 131.04,
+          "end": 131.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "創",
+          "start": 131.44,
+          "end": 131.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "造",
+          "start": 131.78,
+          "end": 132.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 132.1,
+          "end": 132.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 132.3,
+          "end": 132.3,
+          "confidence": 0.3
+        },
+        {
+          "text": "意",
+          "start": 132.4,
+          "end": 132.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "志",
+          "start": 132.44,
+          "end": 132.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "（",
+          "start": 132.54,
+          "end": 132.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "決",
+          "start": 132.86,
+          "end": 133.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "裁",
+          "start": 133.98,
+          "end": 137.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "）",
+          "start": 137.62,
+          "end": 138.0,
+          "confidence": 0.55
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-5",
+      "text": "だから、僕は短期で稼ぎ切るとベットする",
+      "start": 141.08,
+      "end": 145.02,
+      "tokens": [
+        {
+          "text": "だ",
+          "start": 141.08,
+          "end": 141.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "か",
+          "start": 141.52,
+          "end": 141.65,
+          "confidence": 0.96
+        },
+        {
+          "text": "ら",
+          "start": 141.65,
+          "end": 141.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 141.78,
+          "end": 141.78,
+          "confidence": 0.3
+        },
+        {
+          "text": "僕",
+          "start": 141.92,
+          "end": 142.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 142.08,
+          "end": 142.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "短",
+          "start": 142.34,
+          "end": 142.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "期",
+          "start": 142.56,
+          "end": 142.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 142.76,
+          "end": 143.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "稼",
+          "start": 143.08,
+          "end": 143.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "ぎ",
+          "start": 143.4,
+          "end": 143.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "切",
+          "start": 143.72,
+          "end": 144.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 144.0,
+          "end": 144.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 144.24,
+          "end": 144.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "ベ",
+          "start": 144.36,
+          "end": 144.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 144.54,
+          "end": 144.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "ト",
+          "start": 144.62,
+          "end": 144.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "す",
+          "start": 144.7,
+          "end": 144.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 144.86,
+          "end": 145.02,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-5",
+      "text": "AI Agentと組み、300倍のアウトプットで",
+      "start": 145.36,
+      "end": 149.02,
+      "tokens": [
+        {
+          "text": "A",
+          "start": 145.36,
+          "end": 145.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "I",
+          "start": 145.58,
+          "end": 145.8,
+          "confidence": 0.96
+        },
+        {
+          "text": " ",
+          "start": 145.8,
+          "end": 145.8,
+          "confidence": 0.3
+        },
+        {
+          "text": "A",
+          "start": 145.8,
+          "end": 145.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "g",
+          "start": 145.94,
+          "end": 146.01,
+          "confidence": 0.96
+        },
+        {
+          "text": "e",
+          "start": 146.01,
+          "end": 146.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "n",
+          "start": 146.08,
+          "end": 146.15,
+          "confidence": 0.96
+        },
+        {
+          "text": "t",
+          "start": 146.15,
+          "end": 146.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 146.22,
+          "end": 146.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "組",
+          "start": 146.46,
+          "end": 146.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "み",
+          "start": 146.56,
+          "end": 146.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 146.84,
+          "end": 146.84,
+          "confidence": 0.3
+        },
+        {
+          "text": "3",
+          "start": 147.0,
+          "end": 147.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "0",
+          "start": 147.06,
+          "end": 147.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "0",
+          "start": 147.12,
+          "end": 147.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "倍",
+          "start": 147.18,
+          "end": 147.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 147.78,
+          "end": 148.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "ア",
+          "start": 148.0,
+          "end": 148.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "ウ",
+          "start": 148.28,
+          "end": 148.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "ト",
+          "start": 148.34,
+          "end": 148.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "プ",
+          "start": 148.46,
+          "end": 148.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 148.64,
+          "end": 148.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "ト",
+          "start": 148.74,
+          "end": 148.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 148.84,
+          "end": 149.02,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-5",
+      "text": "混乱の移行期を駆け抜け、豊かに生きるために",
+      "start": 149.3,
+      "end": 153.44,
+      "tokens": [
+        {
+          "text": "混",
+          "start": 149.3,
+          "end": 149.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "乱",
+          "start": 149.56,
+          "end": 149.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 149.86,
+          "end": 150.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "移",
+          "start": 150.04,
+          "end": 150.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "行",
+          "start": 150.24,
+          "end": 150.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "期",
+          "start": 150.56,
+          "end": 150.572,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 150.56,
+          "end": 150.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "駆",
+          "start": 150.66,
+          "end": 150.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 150.78,
+          "end": 150.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "抜",
+          "start": 150.92,
+          "end": 151.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 151.02,
+          "end": 151.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 151.24,
+          "end": 151.24,
+          "confidence": 0.3
+        },
+        {
+          "text": "豊",
+          "start": 151.42,
+          "end": 151.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "か",
+          "start": 151.62,
+          "end": 151.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 151.82,
+          "end": 151.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "生",
+          "start": 151.98,
+          "end": 152.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 152.2,
+          "end": 152.212,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 152.2,
+          "end": 152.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 152.6,
+          "end": 152.77,
+          "confidence": 0.96
+        },
+        {
+          "text": "め",
+          "start": 152.77,
+          "end": 152.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 152.94,
+          "end": 153.44,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "verse-5",
+      "text": "自分の感性を、最後まで磨き続けよう",
+      "start": 153.64,
+      "end": 157.56,
+      "tokens": [
+        {
+          "text": "自",
+          "start": 153.64,
+          "end": 153.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "分",
+          "start": 153.84,
+          "end": 154.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 154.1,
+          "end": 154.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "感",
+          "start": 154.22,
+          "end": 154.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "性",
+          "start": 154.42,
+          "end": 154.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 154.68,
+          "end": 154.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 154.92,
+          "end": 154.92,
+          "confidence": 0.3
+        },
+        {
+          "text": "最",
+          "start": 155.06,
+          "end": 155.15,
+          "confidence": 0.96
+        },
+        {
+          "text": "後",
+          "start": 155.15,
+          "end": 155.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "ま",
+          "start": 155.24,
+          "end": 155.49,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 155.49,
+          "end": 155.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "磨",
+          "start": 155.74,
+          "end": 156.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 156.2,
+          "end": 156.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "続",
+          "start": 156.66,
+          "end": 157.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 157.0,
+          "end": 157.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "よ",
+          "start": 157.24,
+          "end": 157.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 157.4,
+          "end": 157.56,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-3",
+      "text": "もっと焦ったほうがいい、時間はもう無い",
+      "start": 159.54,
+      "end": 163.62,
+      "tokens": [
+        {
+          "text": "も",
+          "start": 159.54,
+          "end": 160.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 160.06,
+          "end": 160.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 160.16,
+          "end": 160.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "焦",
+          "start": 160.26,
+          "end": 160.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 160.52,
+          "end": 160.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 160.66,
+          "end": 160.8,
+          "confidence": 0.96
+        },
+        {
+          "text": "ほ",
+          "start": 160.8,
+          "end": 161.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 161.02,
+          "end": 161.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 161.2,
+          "end": 161.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 161.34,
+          "end": 161.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 161.48,
+          "end": 161.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 161.62,
+          "end": 161.62,
+          "confidence": 0.3
+        },
+        {
+          "text": "時",
+          "start": 161.82,
+          "end": 162.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "間",
+          "start": 162.0,
+          "end": 162.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 162.18,
+          "end": 162.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 162.6,
+          "end": 162.79,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 162.79,
+          "end": 162.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "無",
+          "start": 162.98,
+          "end": 163.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 163.38,
+          "end": 163.62,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-3",
+      "text": "20代のロードマップは、音を立てて崩壊",
+      "start": 163.72,
+      "end": 167.84,
+      "tokens": [
+        {
+          "text": "2",
+          "start": 163.72,
+          "end": 163.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "0",
+          "start": 163.92,
+          "end": 164.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "代",
+          "start": 164.12,
+          "end": 164.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 164.44,
+          "end": 164.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "ロ",
+          "start": 164.66,
+          "end": 164.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "ー",
+          "start": 164.96,
+          "end": 165.05,
+          "confidence": 0.96
+        },
+        {
+          "text": "ド",
+          "start": 165.05,
+          "end": 165.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "マ",
+          "start": 165.14,
+          "end": 165.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 165.32,
+          "end": 165.43,
+          "confidence": 0.96
+        },
+        {
+          "text": "プ",
+          "start": 165.43,
+          "end": 165.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 165.54,
+          "end": 166.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 166.0,
+          "end": 166.0,
+          "confidence": 0.3
+        },
+        {
+          "text": "音",
+          "start": 166.12,
+          "end": 166.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 166.3,
+          "end": 166.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "立",
+          "start": 166.56,
+          "end": 166.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 166.64,
+          "end": 166.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 166.92,
+          "end": 167.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "崩",
+          "start": 167.1,
+          "end": 167.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "壊",
+          "start": 167.36,
+          "end": 167.84,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-3",
+      "text": "最終チェックの席さえ、すぐに消えるだろう",
+      "start": 168.08,
+      "end": 171.86,
+      "tokens": [
+        {
+          "text": "最",
+          "start": 168.08,
+          "end": 168.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "終",
+          "start": 168.24,
+          "end": 168.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "チ",
+          "start": 168.5,
+          "end": 168.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "ェ",
+          "start": 168.74,
+          "end": 168.8,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 168.8,
+          "end": 168.87,
+          "confidence": 0.96
+        },
+        {
+          "text": "ク",
+          "start": 168.87,
+          "end": 168.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 168.94,
+          "end": 169.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "席",
+          "start": 169.14,
+          "end": 169.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 169.28,
+          "end": 169.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 169.52,
+          "end": 169.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 169.74,
+          "end": 169.74,
+          "confidence": 0.3
+        },
+        {
+          "text": "す",
+          "start": 169.78,
+          "end": 170.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "ぐ",
+          "start": 170.02,
+          "end": 170.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 170.22,
+          "end": 170.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "消",
+          "start": 170.48,
+          "end": 170.8,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 170.8,
+          "end": 171.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 171.0,
+          "end": 171.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 171.2,
+          "end": 171.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "ろ",
+          "start": 171.52,
+          "end": 171.69,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 171.69,
+          "end": 171.86,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chorus-3",
+      "text": "残されたのは、運と責任だけ",
+      "start": 172.24,
+      "end": 175.72,
+      "tokens": [
+        {
+          "text": "残",
+          "start": 172.24,
+          "end": 172.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 172.46,
+          "end": 172.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 172.78,
+          "end": 173.03,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 173.03,
+          "end": 173.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 173.28,
+          "end": 173.51,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 173.51,
+          "end": 173.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 173.74,
+          "end": 173.74,
+          "confidence": 0.3
+        },
+        {
+          "text": "運",
+          "start": 174.24,
+          "end": 174.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 174.56,
+          "end": 174.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "責",
+          "start": 174.88,
+          "end": 175.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "任",
+          "start": 175.22,
+          "end": 175.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 175.46,
+          "end": 175.59,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 175.59,
+          "end": 175.72,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "outro",
+      "text": "これは最後のタイピング業務",
+      "start": 176.2,
+      "end": 178.415,
+      "tokens": [
+        {
+          "text": "こ",
+          "start": 176.2,
+          "end": 176.347,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 176.347,
+          "end": 176.493,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 176.493,
+          "end": 176.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "最",
+          "start": 176.64,
+          "end": 176.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "後",
+          "start": 176.86,
+          "end": 177.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 177.08,
+          "end": 177.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "タ",
+          "start": 177.32,
+          "end": 177.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "イ",
+          "start": 177.46,
+          "end": 177.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "ピ",
+          "start": 177.56,
+          "end": 177.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "ン",
+          "start": 177.7,
+          "end": 177.77,
+          "confidence": 0.96
+        },
+        {
+          "text": "グ",
+          "start": 177.77,
+          "end": 177.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "業",
+          "start": 177.84,
+          "end": 178.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "務",
+          "start": 178.18,
+          "end": 178.415,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "outro",
+      "text": "AIがすべてのアウトプットを生み出す時代で",
+      "start": 178.44,
+      "end": 182.0,
+      "tokens": [
+        {
+          "text": "A",
+          "start": 178.44,
+          "end": 178.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "I",
+          "start": 178.56,
+          "end": 178.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 178.68,
+          "end": 178.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "す",
+          "start": 178.82,
+          "end": 178.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "べ",
+          "start": 178.96,
+          "end": 179.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 179.08,
+          "end": 179.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 179.24,
+          "end": 179.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "ア",
+          "start": 179.38,
+          "end": 179.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "ウ",
+          "start": 179.54,
+          "end": 179.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "ト",
+          "start": 179.6,
+          "end": 179.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "プ",
+          "start": 179.7,
+          "end": 179.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 179.88,
+          "end": 180.01,
+          "confidence": 0.96
+        },
+        {
+          "text": "ト",
+          "start": 180.01,
+          "end": 180.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 180.14,
+          "end": 180.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "生",
+          "start": 180.4,
+          "end": 180.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "み",
+          "start": 180.64,
+          "end": 180.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "出",
+          "start": 180.72,
+          "end": 181.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "す",
+          "start": 181.04,
+          "end": 181.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "時",
+          "start": 181.24,
+          "end": 181.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "代",
+          "start": 181.42,
+          "end": 181.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 181.66,
+          "end": 182.0,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "outro",
+      "text": "それでも心が沸き立つ瞬間を",
+      "start": 182.18,
+      "end": 184.36,
+      "tokens": [
+        {
+          "text": "そ",
+          "start": 182.18,
+          "end": 182.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 182.28,
+          "end": 182.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 182.38,
+          "end": 182.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 182.52,
+          "end": 182.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "心",
+          "start": 182.66,
+          "end": 182.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 182.84,
+          "end": 183.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "沸",
+          "start": 183.2,
+          "end": 183.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 183.38,
+          "end": 183.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "立",
+          "start": 183.5,
+          "end": 183.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "つ",
+          "start": 183.62,
+          "end": 183.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "瞬",
+          "start": 183.72,
+          "end": 183.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "間",
+          "start": 183.88,
+          "end": 184.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 184.06,
+          "end": 184.36,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "outro",
+      "text": "「人間が生きるとは、そういうことだ」",
+      "start": 184.54,
+      "end": 187.735,
+      "tokens": [
+        {
+          "text": "「",
+          "start": 184.54,
+          "end": 184.54,
+          "confidence": 0.3
+        },
+        {
+          "text": "人",
+          "start": 184.54,
+          "end": 184.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "間",
+          "start": 184.66,
+          "end": 184.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 184.96,
+          "end": 185.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "生",
+          "start": 185.24,
+          "end": 185.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 185.48,
+          "end": 185.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 185.64,
+          "end": 185.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 185.78,
+          "end": 185.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 185.9,
+          "end": 186.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 186.18,
+          "end": 186.18,
+          "confidence": 0.3
+        },
+        {
+          "text": "そ",
+          "start": 186.32,
+          "end": 186.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 186.44,
+          "end": 186.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 186.56,
+          "end": 186.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 186.7,
+          "end": 186.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "こ",
+          "start": 186.84,
+          "end": 186.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 186.98,
+          "end": 187.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 187.12,
+          "end": 187.735,
+          "confidence": 0.96
+        },
+        {
+          "text": "」",
+          "start": 187.735,
+          "end": 187.735,
+          "confidence": 0.3
+        }
+      ]
+    },
+    {
+      "sectionId": "outro",
+      "text": "ああ、焦燥感よ、僕らを駆り立てろ",
+      "start": 187.76,
+      "end": 192.18,
+      "tokens": [
+        {
+          "text": "あ",
+          "start": 187.76,
+          "end": 188.13,
+          "confidence": 0.25
+        },
+        {
+          "text": "あ",
+          "start": 188.13,
+          "end": 188.5,
+          "confidence": 0.25
+        },
+        {
+          "text": "、",
+          "start": 188.5,
+          "end": 188.5,
+          "confidence": 0.3
+        },
+        {
+          "text": "焦",
+          "start": 188.5,
+          "end": 188.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "燥",
+          "start": 188.82,
+          "end": 189.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "感",
+          "start": 189.06,
+          "end": 189.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "よ",
+          "start": 189.52,
+          "end": 189.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 189.84,
+          "end": 189.84,
+          "confidence": 0.3
+        },
+        {
+          "text": "僕",
+          "start": 190.14,
+          "end": 190.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "ら",
+          "start": 190.38,
+          "end": 190.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 190.74,
+          "end": 191.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "駆",
+          "start": 191.04,
+          "end": 191.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "り",
+          "start": 191.32,
+          "end": 191.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "立",
+          "start": 191.54,
+          "end": 191.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 191.76,
+          "end": 191.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "ろ",
+          "start": 191.94,
+          "end": 192.18,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chant-1",
+      "text": "20代はおしまい",
+      "start": 195.04,
+      "end": 196.9,
+      "tokens": [
+        {
+          "text": "2",
+          "start": 195.04,
+          "end": 195.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "0",
+          "start": 195.28,
+          "end": 195.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "代",
+          "start": 195.52,
+          "end": 195.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 195.98,
+          "end": 196.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "お",
+          "start": 196.22,
+          "end": 196.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "し",
+          "start": 196.4,
+          "end": 196.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "ま",
+          "start": 196.52,
+          "end": 196.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 196.64,
+          "end": 196.9,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chant-2",
+      "text": "40代ははじまり",
+      "start": 198.82,
+      "end": 200.96,
+      "tokens": [
+        {
+          "text": "4",
+          "start": 198.82,
+          "end": 199.31,
+          "confidence": 0.55
+        },
+        {
+          "text": "0",
+          "start": 199.31,
+          "end": 199.8,
+          "confidence": 0.55
+        },
+        {
+          "text": "代",
+          "start": 199.8,
+          "end": 200.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 200.08,
+          "end": 200.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 200.32,
+          "end": 200.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "じ",
+          "start": 200.5,
+          "end": 200.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "ま",
+          "start": 200.6,
+          "end": 200.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "り",
+          "start": 200.78,
+          "end": 200.96,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chant-3",
+      "text": "20代はおしまい",
+      "start": 203.24,
+      "end": 205.12,
+      "tokens": [
+        {
+          "text": "2",
+          "start": 203.24,
+          "end": 203.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "0",
+          "start": 203.48,
+          "end": 203.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "代",
+          "start": 203.72,
+          "end": 204.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 204.18,
+          "end": 204.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "お",
+          "start": 204.42,
+          "end": 204.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "し",
+          "start": 204.62,
+          "end": 204.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "ま",
+          "start": 204.72,
+          "end": 204.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 204.82,
+          "end": 205.12,
+          "confidence": 0.96
+        }
+      ]
+    },
+    {
+      "sectionId": "chant-4",
+      "text": "40代ははじまり",
+      "start": 206.94,
+      "end": 209.18,
+      "tokens": [
+        {
+          "text": "4",
+          "start": 206.94,
+          "end": 207.46,
+          "confidence": 0.55
+        },
+        {
+          "text": "0",
+          "start": 207.46,
+          "end": 207.98,
+          "confidence": 0.55
+        },
+        {
+          "text": "代",
+          "start": 207.98,
+          "end": 208.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 208.28,
+          "end": 208.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 208.5,
+          "end": 208.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "じ",
+          "start": 208.68,
+          "end": 208.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "ま",
+          "start": 208.82,
+          "end": 209.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "り",
+          "start": 209.0,
+          "end": 209.18,
+          "confidence": 0.96
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "sectionId": "verse-1",
+      "target_chars": 67,
+      "recognized_chars": 73,
+      "ratio": 0.886,
+      "segments": 1,
+      "words": 60
+    },
+    {
+      "sectionId": "verse-2",
+      "target_chars": 68,
+      "recognized_chars": 68,
+      "ratio": 1.0,
+      "segments": 3,
+      "words": 61
+    },
+    {
+      "sectionId": "chorus-1",
+      "target_chars": 67,
+      "recognized_chars": 67,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 53
+    },
+    {
+      "sectionId": "verse-3",
+      "target_chars": 64,
+      "recognized_chars": 64,
+      "ratio": 1.0,
+      "segments": 2,
+      "words": 55
+    },
+    {
+      "sectionId": "verse-4",
+      "target_chars": 70,
+      "recognized_chars": 65,
+      "ratio": 0.963,
+      "segments": 1,
+      "words": 55
+    },
+    {
+      "sectionId": "chorus-2",
+      "target_chars": 67,
+      "recognized_chars": 65,
+      "ratio": 0.985,
+      "segments": 1,
+      "words": 51
+    },
+    {
+      "sectionId": "bridge",
+      "target_chars": 70,
+      "recognized_chars": 70,
+      "ratio": 0.986,
+      "segments": 1,
+      "words": 58
+    },
+    {
+      "sectionId": "verse-5",
+      "target_chars": 79,
+      "recognized_chars": 79,
+      "ratio": 1.0,
+      "segments": 2,
+      "words": 61
+    },
+    {
+      "sectionId": "chorus-3",
+      "target_chars": 67,
+      "recognized_chars": 67,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 53
+    },
+    {
+      "sectionId": "outro",
+      "target_chars": 78,
+      "recognized_chars": 76,
+      "ratio": 0.987,
+      "segments": 4,
+      "words": 62
+    },
+    {
+      "sectionId": "chant-1",
+      "target_chars": 8,
+      "recognized_chars": 8,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 6
+    },
+    {
+      "sectionId": "chant-2",
+      "target_chars": 8,
+      "recognized_chars": 9,
+      "ratio": 0.706,
+      "segments": 1,
+      "words": 8
+    },
+    {
+      "sectionId": "chant-3",
+      "target_chars": 8,
+      "recognized_chars": 8,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 6
+    },
+    {
+      "sectionId": "chant-4",
+      "target_chars": 8,
+      "recognized_chars": 8,
+      "ratio": 0.75,
+      "segments": 1,
+      "words": 7
+    }
+  ]
+}

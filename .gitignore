@@ -1,1 +1,5 @@
 wasm/target/
+
+work/
+pipeline/.venv/
+__pycache__/

@@ -1,43 +1,31 @@
-const CACHE_NAME = "ai-karaoke-v20.2";
-const ASSETS = [
-  "./",
-  "./index.html",
-  "./styles.css?v=20.2",
-  "./app.js?v=20.2",
-  "./song-data.js",
-  "./scoring.js",
-  "./scoring-ui.js",
-  "./melody.json",
-  "./audio/accompaniment.mp3",
-  "./alignment.json",
-  "./manifest.webmanifest",
-  "./cover.png",
-  "./dsp.wasm",
-  "./audio/track.mp3"
-];
-
-self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then(async (cache) => {
-    await Promise.all(ASSETS.map((asset) => cache.add(new Request(asset, { cache: "reload" }))));
-    await self.skipWaiting();
-  }));
+const CACHE_NAME = 'ai-karaoke-v21';
+const SHELL = ['./', './index.html', './styles.css?v=21', './app.js?v=21', './song-data.js', './catalog.json', './manifest.webmanifest', './icon.svg', './dsp.wasm', './scoring.js', './scoring-ui.js'];
+self.addEventListener('install', event => {
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const response = await fetch('./catalog.json', {cache: 'reload'});
+    if (!response.ok) throw new Error('Catalog unavailable');
+    const catalog = await response.json();
+    const assets = [...new Set([...SHELL, ...catalog.songs.flatMap(song => [song.data, ...song.assets])])];
+    await Promise.all(assets.map(asset => cache.add(new Request(asset, {cache: 'reload'}))));
+    // The app offers an update button; do not interrupt a song on installation.
+  })());
 });
-
-self.addEventListener("message", (event) => {
-  if (event.data?.type === "SKIP_WAITING") self.skipWaiting();
+self.addEventListener('message', event => { if (event.data?.type === 'SKIP_WAITING') self.skipWaiting(); });
+self.addEventListener('activate', event => {
+  event.waitUntil((async () => {
+    await Promise.all((await caches.keys()).filter(key => key.startsWith('ai-karaoke-') && key !== CACHE_NAME).map(key => caches.delete(key)));
+    await self.clients.claim();
+  })());
 });
-
-self.addEventListener("activate", (event) => {
-  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)))).then(() => self.clients.claim()));
-});
-
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
-  const url = new URL(event.request.url);
-  if (url.origin !== self.location.origin) return;
-  event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => {
-    const copy = response.clone();
-    caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-    return response;
-  })));
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const request = event.request;
+    // Song selection is a query on the same shell. Works offline as well.
+    const cached = request.mode === 'navigate'
+      ? await cache.match('./index.html') : await cache.match(request);
+    return cached || fetch(request);
+  })());
 });

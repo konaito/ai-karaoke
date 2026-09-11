@@ -1,0 +1,5 @@
+[project]
+name = "karaoke-pipeline"
+version = "1.0.0"
+requires-python = ">=3.11,<3.15"
+dependencies = ["faster-whisper==1.2.1", "ctranslate2==4.8.2", "huggingface-hub==1.31.0", "yt-dlp==2026.8.19"]
