@@ -1,6 +1,6 @@
-import { SONG as INITIAL_SONG, CATALOG, SONG_ID as INITIAL_SONG_ID } from "./song-data.js?v=24";
-import { createScoringController } from "./scoring-ui.js?v=24";
-import { mixScoringGuide } from "./scoring.js?v=24";
+import { SONG as INITIAL_SONG, CATALOG, SONG_ID as INITIAL_SONG_ID } from "./song-data.js?v=25";
+import { createScoringController } from "./scoring-ui.js?v=25";
+import { mixScoringGuide } from "./scoring.js?v=25";
 let SONG = INITIAL_SONG;
 let SONG_ID = INITIAL_SONG_ID;
 let scoring = null;
@@ -121,7 +121,7 @@ function showToast(message) {
 
 async function loadAlignment() {
   const song = SONG;
-  const response = await fetch(`${SONG.alignmentSource}?v=24`);
+  const response = await fetch(`${SONG.alignmentSource}?v=25`);
   if (!response.ok) throw new Error(`ALIGNMENT ${response.status}`);
   const data = await response.json();
   if (song !== SONG) return;
@@ -754,7 +754,7 @@ async function changeSong(id, autoplay = false) {
   els.play.disabled = true;
   document.getElementById("song-select").disabled = true;
   try {
-    const response = await fetch(`${entry.data}?v=24`);
+    const response = await fetch(`${entry.data}?v=25`);
     if (!response.ok) throw new Error(`Song data: ${response.status}`);
     const song = await response.json();
     SONG = song;
@@ -1235,7 +1235,7 @@ setupSong();
 
 scoring = createScoringController({
   songId: SONG_ID,
-  lineCount: SONG.lines.length,
+  get lineCount() { return SONG.lines.length; },
   referenceUrl: SONG.melodySource,
   position: currentPosition,
   playing: () => isPlaying,
