@@ -336,7 +336,7 @@ function makeLyricRows() {
     row.className = "lyric-line future";
     row.dataset.index = String(index);
     row.setAttribute("aria-label", `${index + 1}行目 ${line.text}`);
-    row.addEventListener("click", () => jumpTo(line.start));
+    row.addEventListener("click", () => { void jumpTo(line.start); });
 
     const number = document.createElement("span");
     number.className = "line-number";
@@ -362,7 +362,7 @@ function renderSectionNav() {
     button.className = "section-button";
     button.dataset.sectionId = section.id;
     button.innerHTML = `<small>${section.type}</small>${section.label}`;
-    button.addEventListener("click", () => jumpTo(section.start));
+    button.addEventListener("click", () => { void jumpTo(section.start); });
     els.sectionNav.append(button);
   }
 }
@@ -434,11 +434,24 @@ function renderLoop() {
   if (isPlaying) raf = requestAnimationFrame(renderLoop);
 }
 
-function jumpTo(time) {
-  if (isPlaying) stopSource();
+async function jumpTo(time) {
+  const wasPlaying = isPlaying;
+  if (wasPlaying) stopSource();
   audioOffset = clamp(time, 0, SONG.duration);
   if (playbackMode === "player") els.audio.currentTime = audioOffset;
   renderPosition(audioOffset);
+  if (!wasPlaying) return;
+  els.play.disabled = true;
+  setPlayButtonState(false, true);
+  try {
+    await startPlayback();
+  } catch (error) {
+    console.error("Playback resume after lyric seek failed", error);
+    showToast("移動後の再生に失敗しました。もう一度お試しください。");
+    setPlayButtonState(false);
+  } finally {
+    els.play.disabled = false;
+  }
 }
 
 function seekFromControl(time) {
@@ -449,7 +462,7 @@ function seekFromControl(time) {
     renderPosition(next);
     return;
   }
-  jumpTo(next);
+  void jumpTo(next);
 }
 
 function updateVolume() {
