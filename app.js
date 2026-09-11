@@ -70,10 +70,10 @@ let toastTimer = 0;
 let activeLineIndex = -1;
 let lastLyricCaption = "";
 let lyricRows = [];
-const storedPlaybackMode = readSetting("ai-karaoke-playback-mode", "karaoke");
+const storedPlaybackMode = readSetting("ai-karaoke-playback-mode", "player");
 let playbackMode = ["karaoke", "player"].includes(storedPlaybackMode)
   ? storedPlaybackMode
-  : "karaoke";
+  : "player";
 const repeatModes = ["repeat", "continuous", "single"];
 const savedRepeatMode = readSetting("ai-karaoke-repeat-mode",
   readSetting("ai-karaoke-repeat", "false") === "true" ? "repeat" : "single");
