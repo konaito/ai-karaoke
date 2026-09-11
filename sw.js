@@ -1,9 +1,9 @@
-const CACHE_NAME = "ai-karaoke-v14";
+const CACHE_NAME = "ai-karaoke-v15";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=14",
-  "./app.js?v=14",
+  "./styles.css?v=15",
+  "./app.js?v=15",
   "./song-data.js",
   "./alignment.json",
   "./manifest.webmanifest",
