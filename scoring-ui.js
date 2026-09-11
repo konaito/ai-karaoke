@@ -4,7 +4,7 @@ import {
   validateReference,
   frequencyToMidi,
   pitchError,
-} from "./scoring.js";
+} from "./scoring.js?v=22";
 
 export function createScoringController(api) {
   const $ = (id) => document.getElementById(id);
