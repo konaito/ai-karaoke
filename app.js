@@ -226,7 +226,8 @@ function stopSource(resetPosition = false) {
 
 function setPlayButtonState(playing, loading = false) {
   els.play.classList.toggle("playing", playing);
-  els.playLabel.textContent = loading ? "LOAD" : playing ? "PAUSE" : "PLAY";
+  els.playLabel.textContent = loading ? "読み込み中" : playing ? "一時停止" : "再生";
+  document.body.classList.toggle("is-playing", playing);
   els.play.setAttribute("aria-label", playing ? "一時停止" : "再生");
 }
 
@@ -363,7 +364,7 @@ function renderSectionNav() {
     button.className = "section-button";
     button.dataset.sectionId = section.id;
     button.innerHTML = `<small>${section.type}</small>${section.label}`;
-    button.addEventListener("click", () => { void jumpTo(section.start); });
+    button.addEventListener("click", () => { setDrawerOpen(false); void jumpTo(section.start); });
     els.sectionNav.append(button);
   }
 }
@@ -386,11 +387,16 @@ function updateLyricRows(time, lineIndex) {
   if (lineIndex !== activeLineIndex) {
     activeLineIndex = lineIndex;
   }
+  const visibleKey = `${lineIndex}:${nextIndex}:${followingIndex}`;
+  if (visibleKey !== fittedLyricKey) { fittedLyricKey = visibleKey; fitLyrics(); }
 }
 
 function renderPosition(position) {
   const time = Math.min(SONG.duration, Math.max(0, position));
   els.seek.value = String(time);
+  els.seek.style.setProperty("--progress", `${time / SONG.duration * 100}%`);
+  document.body.classList.toggle("is-playing", isPlaying);
+  els.screenState.textContent = isPlaying ? (playbackMode === "player" ? "再生中" : "歌唱中") : time > 0 ? "一時停止" : "スタンバイ";
   els.currentTime.textContent = formatTime(time);
   const lineIndex = SONG.lines.findIndex((line) => time >= line.start && time < line.end);
   const line = lineIndex >= 0 ? SONG.lines[lineIndex] : null;
@@ -399,7 +405,12 @@ function renderPosition(position) {
   const captionLine = line ?? next;
   els.section.textContent = `${section.type} · ${section.label}`;
   if (captionLine) lastLyricCaption = `${captionLine.section} · ${captionLine.sectionLabel}`;
-  els.kicker.textContent = lastLyricCaption;
+  const sectionNames = { VERSE: "Aメロ", "PRE-CHORUS": "Bメロ", CHORUS: "サビ", "FINAL CHORUS": "ラストサビ", BRIDGE: "Cメロ" };
+  els.kicker.textContent = captionLine ? `${sectionNames[captionLine.section] || captionLine.section} · ${captionLine.sectionLabel}` : "アウトロ";
+  const wait = next ? next.start - time : 0;
+  $("countdown").hidden = !(isPlaying && !line && wait > 0 && wait <= 4);
+  $("countdown").textContent = String(Math.ceil(wait));
+  $("lyric-guide").textContent = !isPlaying ? (time > 0 ? "続きから再生 · 歌詞をタップして移動" : "再生を押して、歌いはじめよう") : !line && next ? `歌い出しまで ${Math.ceil(wait)} 秒` : !line ? "余韻を、最後まで。" : "次の歌詞をタップして先へ";
   els.count.textContent = line ? `${String(lineIndex + 1).padStart(2, "0")} / ${SONG.lines.length}` : next ? `${String(SONG.lines.indexOf(next) + 1).padStart(2, "0")} / ${SONG.lines.length}` : "— / 56";
   document.querySelectorAll(".section-button").forEach((button) => button.classList.toggle("active", button.dataset.sectionId === section.id));
   updateLyricRows(time, lineIndex);
@@ -612,6 +623,7 @@ async function changeVocalMode() {
     showToast("ボーカル設定はカラオケモードで使用できます。");
     return;
   }
+  updateVocalToggle();
   if (!isPlaying) { els.hint.textContent = "次の再生からボーカル設定を適用します。"; return; }
   const position = currentPosition();
   stopSource();
@@ -736,22 +748,57 @@ function setAnalysisVisible(visible) {
   document.body.classList.toggle("show-analysis", visible);
   els.analysisOverlay.setAttribute("aria-hidden", String(!visible));
   els.analysisToggle.setAttribute("aria-expanded", String(visible));
-  els.analysisToggle.textContent = visible ? "音程表示を閉じる" : "音程表示";
+  els.analysisToggle.textContent = visible ? "歌唱画面に戻る" : "音程モニター";
+  els.analysisOverlay.inert = !visible;
+  requestAnimationFrame(fitLyrics);
   if (visible) drawPitchHistory();
 }
 
+let sheetReturnFocus = null;
 function setDrawerOpen(open) {
+  if (open) sheetReturnFocus = document.activeElement;
   document.body.classList.toggle("drawer-open", open);
   els.drawerScrim.hidden = !open;
   els.drawer.setAttribute("aria-hidden", String(!open));
+  els.drawer.inert = !open;
+  document.querySelector(".karaoke-app").inert = open;
   els.menuButton.setAttribute("aria-expanded", String(open));
   els.drawerTrigger.setAttribute("aria-expanded", String(open));
+  if (open) els.closeDrawer.focus();
+  else if (sheetReturnFocus) { sheetReturnFocus.focus(); sheetReturnFocus = null; }
+}
+function selectSheetTab(name) {
+  document.querySelectorAll("[data-sheet-tab]").forEach(button => {
+    const active = button.dataset.sheetTab === name;
+    button.setAttribute("aria-selected", String(active));
+    $(button.dataset.sheetTab + "-panel").hidden = !active;
+  });
+}
+let fittedLyricKey = "";
+function fitLyrics() {
+  const rows = lyricRows.filter(row => row.matches(".current,.next-line,.following-line"));
+  const available = els.lines.clientWidth - 4;
+  if (available <= 0) return;
+  const base = Math.min(36, Math.max(23, available / 13));
+  els.lines.style.setProperty("--lyric-size", `${base}px`);
+  const widest = Math.max(...rows.map(row => row.querySelector(".line-text").getBoundingClientRect().width), 1);
+  if (widest > available) els.lines.style.setProperty("--lyric-size", `${base * available / widest}px`);
+}
+function updateVocalToggle() {
+  const reduced = els.vocal.value !== "original";
+  $("vocal-toggle").setAttribute("aria-pressed", String(reduced));
+  $("vocal-toggle").textContent = reduced ? "伴奏優先" : "原曲ボーカル";
+}
+function syncViewport() {
+  // visualViewport excludes mobile browser chrome and the software keyboard.
+  document.documentElement.style.setProperty("--app-height", `${window.visualViewport?.height || window.innerHeight}px`);
+  requestAnimationFrame(() => { fitLyrics(); drawPitchHistory(); });
 }
 
 function showUpdateAvailable() {
   if (!els.update.hidden) return;
   els.update.hidden = false;
-  showToast("新しいバージョンがあります。「更新があります」を押して適用できます。");
+  showToast("新しいバージョンがあります。設定 → アプリから更新できます。");
 }
 
 function applyWaitingWorker(registration) {
@@ -825,8 +872,8 @@ els.vocal.addEventListener("change", changeVocalMode);
 els.key.addEventListener("change", changeKey);
 els.micButton.addEventListener("click", toggleMic);
 els.analysisToggle.addEventListener("click", () => setAnalysisVisible(!document.body.classList.contains("show-analysis")));
-els.menuButton.addEventListener("click", () => setDrawerOpen(true));
-els.drawerTrigger.addEventListener("click", () => setDrawerOpen(true));
+els.menuButton.addEventListener("click", () => { selectSheetTab("sound"); setDrawerOpen(true); });
+els.drawerTrigger.addEventListener("click", () => { selectSheetTab("lyrics"); setDrawerOpen(true); });
 els.closeDrawer.addEventListener("click", () => setDrawerOpen(false));
 els.drawerScrim.addEventListener("click", () => setDrawerOpen(false));
 els.update.addEventListener("click", () => {
@@ -844,6 +891,40 @@ setupNativeAudio();
 updateRepeatUI();
 updateModeUI();
 setupMediaSession();
+document.querySelectorAll("[data-sheet-tab]").forEach(button => button.addEventListener("click", () => selectSheetTab(button.dataset.sheetTab)));
+$("vocal-toggle").addEventListener("click", () => {
+  els.vocal.value = els.vocal.value === "original" ? "light" : "original";
+  void changeVocalMode().catch(() => showToast("音源を切り替えられませんでした。"));
+});
+$("previous-phrase").addEventListener("click", () => {
+  const time = currentPosition();
+  const line = [...SONG.lines].reverse().find(line => line.start < time - 1);
+  void jumpTo(line?.start ?? 0);
+});
+$("next-phrase").addEventListener("click", () => {
+  const line = SONG.lines.find(line => line.start > currentPosition() + .2);
+  if (line) void jumpTo(line.start);
+});
+$("fullscreen-button").addEventListener("click", async () => {
+  try {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
+    else showToast("ホーム画面に追加すると全画面で楽しめます。");
+  } catch { showToast("この環境では全画面に切り替えられません。"); }
+});
+document.addEventListener("fullscreenchange", () => { $("fullscreen-button").setAttribute("aria-label", document.fullscreenElement ? "全画面を解除" : "全画面にする"); syncViewport(); });
+document.addEventListener("keydown", event => {
+  if (event.key !== "Tab" || !document.body.classList.contains("drawer-open")) return;
+  const controls = [...els.drawer.querySelectorAll("button,select,input")].filter(el => el.getClientRects().length && !el.disabled);
+  const first = controls[0], last = controls.at(-1);
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+});
+window.visualViewport?.addEventListener("resize", syncViewport);
+window.addEventListener("resize", syncViewport);
+new ResizeObserver(fitLyrics).observe(els.viewport);
+updateVocalToggle();
+syncViewport();
 makeLyricRows();
 renderSectionNav();
 registerServiceWorker();
