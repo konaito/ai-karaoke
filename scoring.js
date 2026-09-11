@@ -207,3 +207,13 @@ export class ScoreSession {
     };
   }
 }
+
+// Crossfade the original mix into the separated backing. Common accompaniment
+// stays at unity; the vocal guide is retained at half its original amplitude.
+export function mixScoringGuide(backing, original, guideLevel = 0.5) {
+  if (backing.length !== original.length) throw new Error("Guide audio length mismatch");
+  for (let i = 0; i < backing.length; i++) {
+    backing[i] = backing[i] * (1 - guideLevel) + original[i] * guideLevel;
+  }
+  return backing;
+}
