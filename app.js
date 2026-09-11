@@ -1,6 +1,6 @@
-import { SONG, CATALOG, SONG_ID } from "./song-data.js?v=24";
-import { createScoringController } from "./scoring-ui.js?v=24";
-import { mixScoringGuide } from "./scoring.js?v=24";
+import { SONG, CATALOG, SONG_ID } from "./song-data.js?v=25";
+import { createScoringController } from "./scoring-ui.js?v=25";
+import { mixScoringGuide } from "./scoring.js?v=25";
 let scoring = null;
 let accompanimentBuffer = null;
 
@@ -114,7 +114,7 @@ function showToast(message) {
 }
 
 async function loadAlignment() {
-  const response = await fetch(`${SONG.alignmentSource}?v=24`);
+  const response = await fetch(`${SONG.alignmentSource}?v=25`);
   if (!response.ok) throw new Error(`ALIGNMENT ${response.status}`);
   const data = await response.json();
   if (!Array.isArray(data.lines) || data.lines.length !== SONG.lines.length) {
