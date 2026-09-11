@@ -16,7 +16,7 @@
     <link rel="icon" href="./cover.png" type="image/png" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" href="./styles.css?v=19.3" />
+    <link rel="stylesheet" href="./styles.css?v=20.1" />
     <title>愛を伝えるだとか / KARAOKE</title>
   </head>
   <body>
@@ -93,14 +93,17 @@
           inert
         >
           <div class="analysis-title">
-            <span>音程モニター</span><small>あなたの声の高さ</small>
+            <span>音程採点 <small class="beta-badge">β</small></span
+            ><strong class="live-score"
+              ><span id="score-live">—</span><small> / 100</small></strong
+            >
           </div>
           <div class="pitch-card">
             <canvas
               id="pitch-canvas"
               width="960"
               height="160"
-              aria-label="マイク音程の履歴"
+              aria-label="ガイドメロディーと歌唱音程。黄緑がガイド、水色が一致、ピンクが外れ"
             ></canvas>
           </div>
           <div class="analysis-readout">
@@ -111,9 +114,12 @@
             ><span class="analysis-meter"><i id="mic-meter-fill"></i></span>
           </div>
           <button class="mic-button" id="mic-button" type="button">
-            マイクを有効化
+            採点をはじめる
           </button>
-          <p id="mic-status">音程と声量を端末内で表示。採点は行いません。</p>
+          <div class="score-feedback" id="pitch-feedback" role="status">
+            イヤホンをつけて、最初から採点
+          </div>
+          <p id="mic-status">自動解析メロディーによる練習採点</p>
         </div>
         <div class="lyric-stage">
           <div class="lyric-caption">
@@ -210,7 +216,7 @@
             type="button"
             aria-expanded="false"
           >
-            音程モニター
+            採点・音程
           </button>
         </div>
         <p class="player-hint" id="player-hint" hidden></p>
@@ -319,6 +325,17 @@
             value="0.84"
             aria-label="音量"
         /></label>
+        <label class="latency-field karaoke-only"
+          ><span>採点の入力遅延 <output id="latency-value">150 ms</output></span
+          ><input
+            id="latency"
+            type="range"
+            min="0"
+            max="500"
+            step="25"
+            value="150"
+            aria-label="採点の入力遅延"
+        /></label>
         <p class="mode-note player-only">
           プレイヤーモードは端末の標準音声再生を使うため、画面を閉じても再生を継続できます。
         </p>
@@ -353,7 +370,7 @@
         >
           アプリを追加
         </button>
-        <p class="app-version">STAGE / v19.3</p>
+        <p class="app-version">STAGE / v20.1</p>
         <p class="drawer-status" id="wasm-status">
           <span class="status-dot"></span> WASM 音声処理 準備完了
         </p>
@@ -361,12 +378,81 @@
           文字タイムライン / 端末内解析
         </p>
         <p class="drawer-note">
-          音源・歌詞・マイク音声を外部へ送信しません。採点は行わず、歌唱位置と入力音程を表示します。
+          音源・歌詞・マイク音声を外部へ送信しません。採点は自動解析メロディーを使った練習用です。声は録音・送信しません。
         </p>
       </div>
     </aside>
 
+    <section
+      id="score-result"
+      class="score-result"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="score-result-title"
+      hidden
+    >
+      <header class="result-header">
+        <div>
+          <small>愛を伝えるだとか / konaito</small>
+          <h2 id="score-result-title">歌唱結果</h2>
+        </div>
+        <button id="close-score" class="close-button" aria-label="結果を閉じる">
+          ×
+        </button>
+      </header>
+      <div class="sheet-tabs" role="tablist" aria-label="採点結果ページ">
+        <button
+          data-result-tab="summary"
+          role="tab"
+          aria-selected="true"
+          aria-controls="score-summary"
+        >
+          スコア</button
+        ><button
+          data-result-tab="phrases"
+          role="tab"
+          aria-selected="false"
+          aria-controls="score-phrases"
+        >
+          フレーズ別
+        </button>
+      </div>
+      <div
+        id="score-summary"
+        role="tabpanel"
+        aria-label="スコア"
+        class="score-summary"
+      >
+        <div class="result-total">
+          <p>音程スコア</p>
+          <strong id="score-value">—</strong><span> / 100</span>
+          <p id="score-best"></p>
+        </div>
+        <div class="result-metrics">
+          <div><span>音程一致</span><strong id="score-accuracy">—</strong></div>
+          <div>
+            <span>歌えた割合</span><strong id="score-coverage">—</strong>
+          </div>
+        </div>
+        <div>
+          <p id="score-comment"></p>
+          <p id="score-scope"></p>
+        </div>
+      </div>
+      <div id="score-phrases" role="tabpanel" aria-label="フレーズ別" hidden>
+        <ul id="score-phrase-list"></ul>
+        <nav class="result-pagination" aria-label="フレーズのページ">
+          <button id="score-prev" aria-label="前のページ">‹</button
+          ><span id="score-page"></span
+          ><button id="score-next" aria-label="次のページ">›</button>
+        </nav>
+      </div>
+      <footer class="result-footer">
+        <button id="score-retry">もう一度うたう</button>
+        <p>自動解析メロディーによる練習採点 β</p>
+      </footer>
+    </section>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script type="module" src="./app.js?v=19.3"></script>
+    <script type="module" src="./app.js?v=20.1"></script>
   </body>
 </html>

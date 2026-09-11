@@ -1,15 +1,50 @@
 import { SONG } from "./song-data.js";
+import { createScoringController } from "./scoring-ui.js";
+let scoring = null;
+let accompanimentBuffer = null;
 
 const $ = (id) => document.getElementById(id);
 const els = {
-  play: $("play-button"), playLabel: $("play-label"), seek: $("seek"), currentTime: $("current-time"),
-  section: $("section-name"), kicker: $("lyric-kicker"), count: $("lyric-count"),
-  viewport: $("lyric-viewport"), lines: $("lyric-lines"),
-  waveform: $("waveform"), pitchCanvas: $("pitch-canvas"), vocal: $("vocal-mode"), key: $("key-select"), keyBadge: document.querySelector(".key-badge"), volume: $("volume"), hint: $("player-hint"),
-  wasmStatus: $("wasm-status"), alignment: $("alignment-chip"), sectionNav: $("section-nav"), micButton: $("mic-button"), micStatus: $("mic-status"),
-  micNote: $("mic-note"), micHz: $("mic-hz"), micMeter: $("mic-meter-fill"), micLevel: $("mic-level"), install: $("install-button"), update: $("update-button"), toast: $("toast"),
-  audio: $("native-audio"), repeat: $("repeat-button"), repeatLabel: $("repeat-label"), screenState: $("screen-state"), modeButtons: [...document.querySelectorAll("[data-playback-mode]")],
-  analysisToggle: $("analysis-toggle"), analysisOverlay: $("analysis-overlay"), menuButton: $("menu-button"), drawerTrigger: $("drawer-trigger"), drawerScrim: $("drawer-scrim"), drawer: $("control-drawer"), closeDrawer: $("close-drawer"),
+  play: $("play-button"),
+  playLabel: $("play-label"),
+  seek: $("seek"),
+  currentTime: $("current-time"),
+  section: $("section-name"),
+  kicker: $("lyric-kicker"),
+  count: $("lyric-count"),
+  viewport: $("lyric-viewport"),
+  lines: $("lyric-lines"),
+  waveform: $("waveform"),
+  pitchCanvas: $("pitch-canvas"),
+  vocal: $("vocal-mode"),
+  key: $("key-select"),
+  keyBadge: document.querySelector(".key-badge"),
+  volume: $("volume"),
+  hint: $("player-hint"),
+  wasmStatus: $("wasm-status"),
+  alignment: $("alignment-chip"),
+  sectionNav: $("section-nav"),
+  micButton: $("mic-button"),
+  micStatus: $("mic-status"),
+  micNote: $("mic-note"),
+  micHz: $("mic-hz"),
+  micMeter: $("mic-meter-fill"),
+  micLevel: $("mic-level"),
+  install: $("install-button"),
+  update: $("update-button"),
+  toast: $("toast"),
+  audio: $("native-audio"),
+  repeat: $("repeat-button"),
+  repeatLabel: $("repeat-label"),
+  screenState: $("screen-state"),
+  modeButtons: [...document.querySelectorAll("[data-playback-mode]")],
+  analysisToggle: $("analysis-toggle"),
+  analysisOverlay: $("analysis-overlay"),
+  menuButton: $("menu-button"),
+  drawerTrigger: $("drawer-trigger"),
+  drawerScrim: $("drawer-scrim"),
+  drawer: $("control-drawer"),
+  closeDrawer: $("close-drawer"),
 };
 
 let dsp = null;
@@ -27,17 +62,14 @@ let installPrompt = null;
 let serviceWorkerRegistration = null;
 let updateRequested = false;
 let isRefreshing = false;
-let micContext = null;
-let micAnalyser = null;
-let micStream = null;
-let micFrame = 0;
 let toastTimer = 0;
 let activeLineIndex = -1;
 let lastLyricCaption = "";
 let lyricRows = [];
-let pitchHistory = [];
 const storedPlaybackMode = readSetting("ai-karaoke-playback-mode", "karaoke");
-let playbackMode = ["karaoke", "player"].includes(storedPlaybackMode) ? storedPlaybackMode : "karaoke";
+let playbackMode = ["karaoke", "player"].includes(storedPlaybackMode)
+  ? storedPlaybackMode
+  : "karaoke";
 let repeatEnabled = readSetting("ai-karaoke-repeat", "false") === "true";
 let lastMediaSessionPositionUpdate = 0;
 
@@ -49,11 +81,19 @@ const WASM_OUTPUT_R = 393216;
 const WASM_MIC = 524288;
 
 function readSetting(key, fallback) {
-  try { return localStorage.getItem(key) ?? fallback; } catch (_) { return fallback; }
+  try {
+    return localStorage.getItem(key) ?? fallback;
+  } catch (_) {
+    return fallback;
+  }
 }
 
 function saveSetting(key, value) {
-  try { localStorage.setItem(key, value); } catch (_) { /* storage is optional */ }
+  try {
+    localStorage.setItem(key, value);
+  } catch (_) {
+    /* storage is optional */
+  }
 }
 
 function formatTime(value) {
@@ -61,7 +101,9 @@ function formatTime(value) {
   return `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
 }
 
-function clamp(value, min = 0, max = 1) { return Math.min(max, Math.max(min, value)); }
+function clamp(value, min = 0, max = 1) {
+  return Math.min(max, Math.max(min, value));
+}
 
 function showToast(message) {
   els.toast.textContent = message;
@@ -80,15 +122,20 @@ async function loadAlignment() {
 
   data.lines.forEach((aligned, index) => {
     const line = SONG.lines[index];
-    if (line.text !== aligned.text) throw new Error(`Alignment text mismatch at line ${index + 1}`);
+    if (line.text !== aligned.text)
+      throw new Error(`Alignment text mismatch at line ${index + 1}`);
     line.start = aligned.start;
     line.end = aligned.end;
     line.tokens = aligned.tokens;
   });
 
-  const visibleSections = SONG.sections.filter((section) => section.lines.length > 0);
+  const visibleSections = SONG.sections.filter(
+    (section) => section.lines.length > 0,
+  );
   visibleSections.forEach((section) => {
-    const sectionLines = SONG.lines.filter((line) => line.sectionId === section.id);
+    const sectionLines = SONG.lines.filter(
+      (line) => line.sectionId === section.id,
+    );
     if (sectionLines.length) {
       section.start = sectionLines[0].start;
       section.end = sectionLines[sectionLines.length - 1].end;
@@ -96,16 +143,19 @@ async function loadAlignment() {
   });
   SONG.sections.forEach((section, index) => {
     if (section.lines.length) return;
-    const previous = [...visibleSections].reverse().find((item) => item.index < index);
+    const previous = [...visibleSections]
+      .reverse()
+      .find((item) => item.index < index);
     const next = visibleSections.find((item) => item.index > index);
     section.start = previous?.end ?? 0;
     section.end = next?.start ?? SONG.duration;
   });
 
   els.alignment.textContent = "文字タイムライン / 端末内解析";
-  els.hint.textContent = playbackMode === "player"
-    ? "プレイヤーモード · 歌詞を表示したままバックグラウンド再生"
-    : "音源・歌詞・声はこの端末の中だけで処理されます。";
+  els.hint.textContent =
+    playbackMode === "player"
+      ? "プレイヤーモード · 歌詞を表示したままバックグラウンド再生"
+      : "音源・歌詞・声はこの端末の中だけで処理されます。";
   renderPosition(audioOffset);
 }
 
@@ -113,23 +163,34 @@ async function loadDsp() {
   try {
     const response = await fetch("./dsp.wasm");
     if (!response.ok) throw new Error(`WASM ${response.status}`);
-    const result = await WebAssembly.instantiate(await response.arrayBuffer(), {});
+    const result = await WebAssembly.instantiate(
+      await response.arrayBuffer(),
+      {},
+    );
     dsp = result.instance.exports;
-    els.wasmStatus.innerHTML = '<span class="status-dot"></span> WASM DSP READY';
+    els.wasmStatus.innerHTML =
+      '<span class="status-dot"></span> WASM DSP READY';
   } catch (error) {
-    els.wasmStatus.innerHTML = '<span class="status-dot" style="background:var(--orange)"></span> FALLBACK AUDIO';
-    els.hint.textContent = "WASMの初期化に失敗しました。原音再生は引き続き利用できます。";
+    els.wasmStatus.innerHTML =
+      '<span class="status-dot" style="background:var(--orange)"></span> FALLBACK AUDIO';
+    els.hint.textContent =
+      "WASMの初期化に失敗しました。原音再生は引き続き利用できます。";
     console.error(error);
   }
 }
 
 function buildWaveformData(buffer) {
   const bins = 240;
-  const channels = Array.from({ length: buffer.numberOfChannels }, (_, index) => buffer.getChannelData(index));
+  const channels = Array.from({ length: buffer.numberOfChannels }, (_, index) =>
+    buffer.getChannelData(index),
+  );
   const data = [];
   for (let bin = 0; bin < bins; bin += 1) {
     const start = Math.floor((bin / bins) * buffer.length);
-    const end = Math.max(start + 1, Math.floor(((bin + 1) / bins) * buffer.length));
+    const end = Math.max(
+      start + 1,
+      Math.floor(((bin + 1) / bins) * buffer.length),
+    );
     const stride = Math.max(1, Math.floor((end - start) / 180));
     let sum = 0;
     let count = 0;
@@ -148,7 +209,8 @@ function buildWaveformData(buffer) {
 
 async function loadSourceBuffer() {
   if (sourceBuffer) return sourceBuffer;
-  if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  if (!audioContext)
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
   const response = await fetch(SONG.source);
   const bytes = await response.arrayBuffer();
   sourceBuffer = await audioContext.decodeAudioData(bytes);
@@ -161,33 +223,65 @@ function processBuffer(amount) {
   const cacheKey = amount.toFixed(2);
   if (processedBuffers.has(cacheKey)) return processedBuffers.get(cacheKey);
   if (!dsp || !sourceBuffer) return sourceBuffer;
-  const output = audioContext.createBuffer(sourceBuffer.numberOfChannels, sourceBuffer.length, sourceBuffer.sampleRate);
+  const output = audioContext.createBuffer(
+    sourceBuffer.numberOfChannels,
+    sourceBuffer.length,
+    sourceBuffer.sampleRate,
+  );
   const memory = new Float32Array(dsp.memory.buffer);
   const left = sourceBuffer.getChannelData(0);
-  const right = sourceBuffer.numberOfChannels > 1 ? sourceBuffer.getChannelData(1) : left;
+  const right =
+    sourceBuffer.numberOfChannels > 1 ? sourceBuffer.getChannelData(1) : left;
   const outLeft = output.getChannelData(0);
-  const outRight = output.numberOfChannels > 1 ? output.getChannelData(1) : outLeft;
+  const outRight =
+    output.numberOfChannels > 1 ? output.getChannelData(1) : outLeft;
   const blockSize = 32768;
   dsp.reset_filter();
   for (let offset = 0; offset < sourceBuffer.length; offset += blockSize) {
     const length = Math.min(blockSize, sourceBuffer.length - offset);
     memory.set(left.subarray(offset, offset + length), WASM_INPUT_L / 4);
     memory.set(right.subarray(offset, offset + length), WASM_INPUT_R / 4);
-    dsp.vocal_reduce(WASM_INPUT_L, WASM_INPUT_R, WASM_OUTPUT_L, WASM_OUTPUT_R, length, amount, sourceBuffer.sampleRate);
-    outLeft.set(memory.subarray(WASM_OUTPUT_L / 4, WASM_OUTPUT_L / 4 + length), offset);
-    if (output.numberOfChannels > 1) outRight.set(memory.subarray(WASM_OUTPUT_R / 4, WASM_OUTPUT_R / 4 + length), offset);
+    dsp.vocal_reduce(
+      WASM_INPUT_L,
+      WASM_INPUT_R,
+      WASM_OUTPUT_L,
+      WASM_OUTPUT_R,
+      length,
+      amount,
+      sourceBuffer.sampleRate,
+    );
+    outLeft.set(
+      memory.subarray(WASM_OUTPUT_L / 4, WASM_OUTPUT_L / 4 + length),
+      offset,
+    );
+    if (output.numberOfChannels > 1)
+      outRight.set(
+        memory.subarray(WASM_OUTPUT_R / 4, WASM_OUTPUT_R / 4 + length),
+        offset,
+      );
   }
   processedBuffers.set(cacheKey, output);
   return output;
 }
 
 async function getActiveBuffer() {
+  if (scoring?.locked) {
+    if (!accompanimentBuffer) {
+      const response = await fetch("./audio/accompaniment.mp3");
+      if (!response.ok) throw new Error("Accompaniment unavailable");
+      accompanimentBuffer = await audioContext.decodeAudioData(
+        await response.arrayBuffer(),
+      );
+    }
+    return accompanimentBuffer;
+  }
   await loadSourceBuffer();
   const amount = VOCAL_AMOUNTS[els.vocal.value];
   if (amount === 0 || !dsp) return sourceBuffer;
   const cacheKey = amount.toFixed(2);
   if (!processedBuffers.has(cacheKey)) {
-    els.hint.textContent = "WASMで中央定位のボーカルを処理中…少し待ってください。";
+    els.hint.textContent =
+      "WASMで中央定位のボーカルを処理中…少し待ってください。";
     await new Promise((resolve) => setTimeout(resolve, 20));
     const processed = processBuffer(amount);
     els.hint.textContent = "音源は端末内で処理されています。通信は不要です。";
@@ -199,17 +293,27 @@ async function getActiveBuffer() {
 function currentPosition() {
   if (playbackMode === "player") {
     const position = Number(els.audio.currentTime);
-    return Number.isFinite(position) ? clamp(position, 0, SONG.duration) : audioOffset;
+    return Number.isFinite(position)
+      ? clamp(position, 0, SONG.duration)
+      : audioOffset;
   }
   if (!audioContext || !isPlaying) return audioOffset;
-  const rate = activeSource?.playbackRate.value ?? 2 ** (Number(els.key.value) / 12);
-  return Math.min(SONG.duration, audioOffset + (audioContext.currentTime - startedAt) * rate);
+  const rate =
+    activeSource?.playbackRate.value ?? 2 ** (Number(els.key.value) / 12);
+  return Math.min(
+    SONG.duration,
+    audioOffset + (audioContext.currentTime - startedAt) * rate,
+  );
 }
 
 function stopSource(resetPosition = false) {
   const position = resetPosition ? 0 : currentPosition();
   if (activeSource) {
-    try { activeSource.stop(); } catch (_) { /* already stopped */ }
+    try {
+      activeSource.stop();
+    } catch (_) {
+      /* already stopped */
+    }
     activeSource.disconnect();
     activeSource = null;
   }
@@ -219,21 +323,26 @@ function stopSource(resetPosition = false) {
   isPlaying = false;
   cancelAnimationFrame(raf);
   els.play.classList.remove("playing");
-  els.playLabel.textContent = "PLAY";
+  setPlayButtonState(false);
   updateMediaSessionState();
   renderPosition(audioOffset);
 }
 
 function setPlayButtonState(playing, loading = false) {
   els.play.classList.toggle("playing", playing);
-  els.playLabel.textContent = loading ? "読み込み中" : playing ? "一時停止" : "再生";
+  els.playLabel.textContent = loading
+    ? "読み込み中"
+    : playing
+      ? "一時停止"
+      : "再生";
   document.body.classList.toggle("is-playing", playing);
   els.play.setAttribute("aria-label", playing ? "一時停止" : "再生");
 }
 
 async function startPlayback() {
   if (playbackMode === "player") return startPlayerPlayback();
-  if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  if (!audioContext)
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
   if (audioContext.state === "suspended") await audioContext.resume();
   const buffer = await getActiveBuffer();
   if (!masterGain) {
@@ -242,7 +351,7 @@ async function startPlayback() {
     masterGain.connect(audioContext.destination);
   }
   const playbackRate = 2 ** (Number(els.key.value) / 12);
-  if (audioOffset >= buffer.duration / playbackRate - 0.05) audioOffset = 0;
+  if (audioOffset >= buffer.duration - 0.05) audioOffset = 0;
   activeSource = audioContext.createBufferSource();
   activeSource.buffer = buffer;
   activeSource.playbackRate.value = playbackRate;
@@ -253,8 +362,13 @@ async function startPlayback() {
   setPlayButtonState(true);
   updateMediaSessionState();
   renderLoop();
+  const endedSource = activeSource;
   activeSource.onended = () => {
-    if (!isPlaying) return;
+    if (!isPlaying || activeSource !== endedSource) return;
+    if (scoring?.active) {
+      finishPlayback();
+      return;
+    }
     if (repeatEnabled) {
       activeSource = null;
       audioOffset = 0;
@@ -266,7 +380,8 @@ async function startPlayback() {
 }
 
 async function startPlayerPlayback() {
-  if (els.audio.ended || els.audio.currentTime >= SONG.duration - 0.05) els.audio.currentTime = 0;
+  if (els.audio.ended || els.audio.currentTime >= SONG.duration - 0.05)
+    els.audio.currentTime = 0;
   els.audio.loop = repeatEnabled;
   els.audio.volume = Number(els.volume.value);
   els.audio.playbackRate = 2 ** (Number(els.key.value) / 12);
@@ -279,6 +394,7 @@ async function startPlayerPlayback() {
 }
 
 function finishPlayback() {
+  scoring?.finish(SONG.duration, true);
   if (els.audio) els.audio.pause();
   if (playbackMode === "player" && els.audio) els.audio.currentTime = 0;
   audioOffset = 0;
@@ -291,16 +407,25 @@ function finishPlayback() {
 }
 
 async function togglePlayback() {
-  if (isPlaying) { stopSource(); return; }
+  if (isPlaying) {
+    stopSource();
+    return;
+  }
   els.play.disabled = true;
   setPlayButtonState(false, true);
-  try { await startPlayback(); } catch (error) { console.error(error); showToast("音源の読み込みに失敗しました。ページを再読み込みしてください。"); setPlayButtonState(false); }
+  try {
+    await startPlayback();
+  } catch (error) {
+    console.error(error);
+    showToast("音源の読み込みに失敗しました。ページを再読み込みしてください。");
+    setPlayButtonState(false);
+  }
   els.play.disabled = false;
 }
 
 function charWeight(char) {
-  if (/\s/.test(char)) return .35;
-  if (/[、。！？「」『』]/.test(char)) return .45;
+  if (/\s/.test(char)) return 0.35;
+  if (/[、。！？「」『』]/.test(char)) return 0.45;
   return 1;
 }
 
@@ -309,7 +434,9 @@ function setCharProgress(row, time, line) {
   if (line.tokens?.length === chars.length) {
     chars.forEach((char, index) => {
       const token = line.tokens[index];
-      const fill = clamp((time - token.start) / Math.max(.01, token.end - token.start)) * 100;
+      const fill =
+        clamp((time - token.start) / Math.max(0.01, token.end - token.start)) *
+        100;
       char.style.setProperty("--fill", `${fill}%`);
       char.classList.toggle("filled", time >= token.end);
       char.classList.toggle("active", time >= token.start && time < token.end);
@@ -318,12 +445,14 @@ function setCharProgress(row, time, line) {
   }
   const weights = [...chars].map((char) => charWeight(char.textContent));
   const total = weights.reduce((sum, weight) => sum + weight, 0);
-  const progress = clamp((time - line.start) / Math.max(.1, line.end - line.start));
+  const progress = clamp(
+    (time - line.start) / Math.max(0.1, line.end - line.start),
+  );
   let cursor = 0;
   chars.forEach((char, index) => {
     const start = cursor / total;
     const end = (cursor + weights[index]) / total;
-    const fill = clamp((progress - start) / Math.max(.001, end - start)) * 100;
+    const fill = clamp((progress - start) / Math.max(0.001, end - start)) * 100;
     char.style.setProperty("--fill", `${fill}%`);
     char.classList.toggle("filled", progress >= end);
     char.classList.toggle("active", progress >= start && progress < end);
@@ -338,7 +467,9 @@ function makeLyricRows() {
     row.className = "lyric-line future";
     row.dataset.index = String(index);
     row.setAttribute("aria-label", `${index + 1}行目 ${line.text}`);
-    row.addEventListener("click", () => { void jumpTo(line.start); });
+    row.addEventListener("click", () => {
+      void jumpTo(line.start);
+    });
 
     const number = document.createElement("span");
     number.className = "line-number";
@@ -364,23 +495,37 @@ function renderSectionNav() {
     button.className = "section-button";
     button.dataset.sectionId = section.id;
     button.innerHTML = `<small>${section.type}</small>${section.label}`;
-    button.addEventListener("click", () => { setDrawerOpen(false); void jumpTo(section.start); });
+    button.addEventListener("click", () => {
+      setDrawerOpen(false);
+      void jumpTo(section.start);
+    });
     els.sectionNav.append(button);
   }
 }
 
 function updateLyricRows(time, lineIndex) {
-  const nextIndex = lineIndex >= 0 ? lineIndex + 1 : SONG.lines.findIndex((line) => line.start > time);
+  const nextIndex =
+    lineIndex >= 0
+      ? lineIndex + 1
+      : SONG.lines.findIndex((line) => line.start > time);
   const followingIndex = lineIndex < 0 && nextIndex >= 0 ? nextIndex + 1 : -1;
   els.lines.classList.toggle("has-current", lineIndex >= 0);
   lyricRows.forEach((row, index) => {
     const line = SONG.lines[index];
-    const progress = clamp((time - line.start) / Math.max(.1, line.end - line.start));
+    const progress = clamp(
+      (time - line.start) / Math.max(0.1, line.end - line.start),
+    );
     row.classList.toggle("current", index === lineIndex);
     row.classList.toggle("next-line", index === nextIndex);
     row.classList.toggle("following-line", index === followingIndex);
-    row.classList.toggle("past", index < lineIndex || (lineIndex < 0 && time >= line.end));
-    row.classList.toggle("future", index > lineIndex && !(lineIndex < 0 && time >= line.end));
+    row.classList.toggle(
+      "past",
+      index < lineIndex || (lineIndex < 0 && time >= line.end),
+    );
+    row.classList.toggle(
+      "future",
+      index > lineIndex && !(lineIndex < 0 && time >= line.end),
+    );
     setCharProgress(row, time, line);
   });
 
@@ -388,36 +533,82 @@ function updateLyricRows(time, lineIndex) {
     activeLineIndex = lineIndex;
   }
   const visibleKey = `${lineIndex}:${nextIndex}:${followingIndex}`;
-  if (visibleKey !== fittedLyricKey) { fittedLyricKey = visibleKey; fitLyrics(); }
+  if (visibleKey !== fittedLyricKey) {
+    fittedLyricKey = visibleKey;
+    fitLyrics();
+  }
 }
 
 function renderPosition(position) {
   const time = Math.min(SONG.duration, Math.max(0, position));
   els.seek.value = String(time);
-  els.seek.style.setProperty("--progress", `${time / SONG.duration * 100}%`);
+  els.seek.style.setProperty("--progress", `${(time / SONG.duration) * 100}%`);
   document.body.classList.toggle("is-playing", isPlaying);
-  els.screenState.textContent = isPlaying ? (playbackMode === "player" ? "再生中" : "歌唱中") : time > 0 ? "一時停止" : "スタンバイ";
+  els.screenState.textContent = scoring?.active
+    ? isPlaying
+      ? "採点中"
+      : "採点一時停止"
+    : isPlaying
+      ? playbackMode === "player"
+        ? "再生中"
+        : "歌唱中"
+      : time > 0
+        ? "一時停止"
+        : "スタンバイ";
   els.currentTime.textContent = formatTime(time);
-  const lineIndex = SONG.lines.findIndex((line) => time >= line.start && time < line.end);
+  const lineIndex = SONG.lines.findIndex(
+    (line) => time >= line.start && time < line.end,
+  );
   const line = lineIndex >= 0 ? SONG.lines[lineIndex] : null;
   const next = SONG.lines.find((item) => item.start > time);
-  const section = [...SONG.sections].reverse().find((item) => time >= item.start) ?? SONG.sections[0];
+  const section =
+    [...SONG.sections].reverse().find((item) => time >= item.start) ??
+    SONG.sections[0];
   const captionLine = line ?? next;
   els.section.textContent = `${section.type} · ${section.label}`;
-  if (captionLine) lastLyricCaption = `${captionLine.section} · ${captionLine.sectionLabel}`;
-  const sectionNames = { VERSE: "Aメロ", "PRE-CHORUS": "Bメロ", CHORUS: "サビ", "FINAL CHORUS": "ラストサビ", BRIDGE: "Cメロ" };
-  els.kicker.textContent = captionLine ? `${sectionNames[captionLine.section] || captionLine.section} · ${captionLine.sectionLabel}` : "アウトロ";
+  if (captionLine)
+    lastLyricCaption = `${captionLine.section} · ${captionLine.sectionLabel}`;
+  const sectionNames = {
+    VERSE: "Aメロ",
+    "PRE-CHORUS": "Bメロ",
+    CHORUS: "サビ",
+    "FINAL CHORUS": "ラストサビ",
+    BRIDGE: "Cメロ",
+  };
+  els.kicker.textContent = captionLine
+    ? `${sectionNames[captionLine.section] || captionLine.section} · ${captionLine.sectionLabel}`
+    : "アウトロ";
   const wait = next ? next.start - time : 0;
   // Judge the whole lyric gap so a long countdown keeps its final 2 → 1.
   const previousEnd = next ? Math.max(0, ...SONG.lines.filter((item) => item.start < next.start).map((item) => item.end)) : 0;
   const hasCountdownGap = next && next.start - previousEnd >= 3;
   $("countdown").hidden = !(isPlaying && !line && hasCountdownGap && wait > 0 && wait <= 4);
   $("countdown").textContent = String(Math.ceil(wait));
-  $("lyric-guide").textContent = !isPlaying ? (time > 0 ? "続きから再生 · 歌詞をタップして移動" : "再生を押して、歌いはじめよう") : !line && next ? `歌い出しまで ${Math.ceil(wait)} 秒` : !line ? "余韻を、最後まで。" : "次の歌詞をタップして先へ";
-  els.count.textContent = line ? `${String(lineIndex + 1).padStart(2, "0")} / ${SONG.lines.length}` : next ? `${String(SONG.lines.indexOf(next) + 1).padStart(2, "0")} / ${SONG.lines.length}` : "— / 56";
-  document.querySelectorAll(".section-button").forEach((button) => button.classList.toggle("active", button.dataset.sectionId === section.id));
+  $("lyric-guide").textContent = !isPlaying
+    ? time > 0
+      ? "続きから再生 · 歌詞をタップして移動"
+      : "再生を押して、歌いはじめよう"
+    : !line && next
+      ? `歌い出しまで ${Math.ceil(wait)} 秒`
+      : !line
+        ? "余韻を、最後まで。"
+        : "次の歌詞をタップして先へ";
+  els.count.textContent = line
+    ? `${String(lineIndex + 1).padStart(2, "0")} / ${SONG.lines.length}`
+    : next
+      ? `${String(SONG.lines.indexOf(next) + 1).padStart(2, "0")} / ${SONG.lines.length}`
+      : "— / 56";
+  document
+    .querySelectorAll(".section-button")
+    .forEach((button) =>
+      button.classList.toggle(
+        "active",
+        button.dataset.sectionId === section.id,
+      ),
+    );
   updateLyricRows(time, lineIndex);
   drawWaveform(time);
+  scoring?.draw();
   updateMediaSessionPosition(time);
 }
 
@@ -427,17 +618,34 @@ function drawWaveform(time = 0) {
   const ratio = window.devicePixelRatio || 1;
   const width = canvas.clientWidth || 900;
   const height = 50;
-  if (canvas.width !== width * ratio) { canvas.width = width * ratio; canvas.height = height * ratio; }
+  if (canvas.width !== width * ratio) {
+    canvas.width = width * ratio;
+    canvas.height = height * ratio;
+  }
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
   ctx.clearRect(0, 0, width, height);
-  const data = waveformData.length ? waveformData : Array.from({ length: 240 }, (_, index) => .28 + .2 * Math.abs(Math.sin(index * 1.43)) + .13 * Math.abs(Math.sin(index * .31 + 1)));
+  const data = waveformData.length
+    ? waveformData
+    : Array.from(
+        { length: 240 },
+        (_, index) =>
+          0.28 +
+          0.2 * Math.abs(Math.sin(index * 1.43)) +
+          0.13 * Math.abs(Math.sin(index * 0.31 + 1)),
+      );
   const progress = time / SONG.duration;
   const barWidth = width / data.length;
   data.forEach((value, index) => {
     const x = index * barWidth;
-    const barHeight = Math.max(3, value * height * .82);
-    ctx.fillStyle = index / data.length <= progress ? "#ff5b9e" : "rgba(255,245,238,.2)";
-    ctx.fillRect(x, height / 2 - barHeight / 2, Math.max(1, barWidth - 1), barHeight);
+    const barHeight = Math.max(3, value * height * 0.82);
+    ctx.fillStyle =
+      index / data.length <= progress ? "#ff5b9e" : "rgba(255,245,238,.2)";
+    ctx.fillRect(
+      x,
+      height / 2 - barHeight / 2,
+      Math.max(1, barWidth - 1),
+      barHeight,
+    );
   });
   ctx.fillStyle = "#ffb16d";
   ctx.fillRect(progress * width - 1, 0, 2, height);
@@ -454,6 +662,7 @@ function renderLoop() {
 }
 
 async function jumpTo(time) {
+  if (scoring?.locked) return;
   const wasPlaying = isPlaying;
   if (wasPlaying) stopSource();
   audioOffset = clamp(time, 0, SONG.duration);
@@ -502,7 +711,11 @@ function toggleRepeat() {
   repeatEnabled = !repeatEnabled;
   saveSetting("ai-karaoke-repeat", String(repeatEnabled));
   updateRepeatUI();
-  showToast(repeatEnabled ? "リピート再生をONにしました。" : "リピート再生をOFFにしました。");
+  showToast(
+    repeatEnabled
+      ? "リピート再生をONにしました。"
+      : "リピート再生をOFFにしました。",
+  );
 }
 
 function updateModeUI() {
@@ -514,7 +727,8 @@ function updateModeUI() {
     button.setAttribute("aria-pressed", String(active));
   });
   els.screenState.textContent = isPlayer ? "再生中" : "歌唱中";
-  if (isPlayer && document.body.classList.contains("show-analysis")) setAnalysisVisible(false);
+  if (isPlayer && document.body.classList.contains("show-analysis"))
+    setAnalysisVisible(false);
   els.hint.textContent = isPlayer
     ? "プレイヤーモード · 歌詞を表示したままバックグラウンド再生"
     : "音源・歌詞・声はこの端末の中だけで処理されます。";
@@ -522,7 +736,8 @@ function updateModeUI() {
 }
 
 async function setPlaybackMode(mode) {
-  if (!['karaoke', 'player'].includes(mode) || mode === playbackMode) return;
+  if (scoring?.locked) return;
+  if (!["karaoke", "player"].includes(mode) || mode === playbackMode) return;
   const position = currentPosition();
   const wasPlaying = isPlaying;
   stopSource();
@@ -538,7 +753,13 @@ async function setPlaybackMode(mode) {
   if (wasPlaying) {
     els.play.disabled = true;
     setPlayButtonState(false, true);
-    try { await startPlayback(); } catch (error) { console.error(error); showToast("モード切替後の再生に失敗しました。"); setPlayButtonState(false); }
+    try {
+      await startPlayback();
+    } catch (error) {
+      console.error(error);
+      showToast("モード切替後の再生に失敗しました。");
+      setPlayButtonState(false);
+    }
     els.play.disabled = false;
   }
 }
@@ -555,21 +776,34 @@ function seekRelative(offset) {
 }
 
 function updateMediaSessionState() {
-  if ("mediaSession" in navigator) navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
+  if ("mediaSession" in navigator)
+    navigator.mediaSession.playbackState = isPlaying ? "playing" : "paused";
 }
 
 function updateMediaSessionPosition(time) {
-  if (!("mediaSession" in navigator) || typeof navigator.mediaSession.setPositionState !== "function" || !isPlaying) return;
+  if (
+    !("mediaSession" in navigator) ||
+    typeof navigator.mediaSession.setPositionState !== "function" ||
+    !isPlaying
+  )
+    return;
   const now = performance.now();
   if (now - lastMediaSessionPositionUpdate < 250) return;
   try {
     navigator.mediaSession.setPositionState({
       duration: SONG.duration,
-      playbackRate: Math.max(0.1, playbackMode === "player" ? els.audio.playbackRate : activeSource?.playbackRate.value ?? 1),
+      playbackRate: Math.max(
+        0.1,
+        playbackMode === "player"
+          ? els.audio.playbackRate
+          : (activeSource?.playbackRate.value ?? 1),
+      ),
       position: clamp(time, 0, SONG.duration),
     });
     lastMediaSessionPositionUpdate = now;
-  } catch (_) { /* Media Session is optional */ }
+  } catch (_) {
+    /* Media Session is optional */
+  }
 }
 
 function setupMediaSession() {
@@ -581,15 +815,23 @@ function setupMediaSession() {
     artwork: [{ src: "./cover.png", sizes: "1254x1254", type: "image/png" }],
   });
   const handlers = {
-    play: () => { if (!isPlaying) void togglePlayback(); },
-    pause: () => { if (isPlaying) stopSource(); },
+    play: () => {
+      if (!isPlaying) void togglePlayback();
+    },
+    pause: () => {
+      if (isPlaying) stopSource();
+    },
     seekbackward: (details) => seekRelative(-(details.seekOffset || 10)),
     seekforward: (details) => seekRelative(details.seekOffset || 10),
     previoustrack: () => seekRelative(-15),
     nexttrack: () => seekRelative(15),
   };
   for (const [action, handler] of Object.entries(handlers)) {
-    try { navigator.mediaSession.setActionHandler(action, handler); } catch (_) { /* unsupported action */ }
+    try {
+      navigator.mediaSession.setActionHandler(action, handler);
+    } catch (_) {
+      /* unsupported action */
+    }
   }
 }
 
@@ -605,7 +847,9 @@ function setupNativeAudio() {
   });
   els.audio.addEventListener("pause", () => {
     if (playbackMode !== "player") return;
-    audioOffset = Number.isFinite(els.audio.currentTime) ? els.audio.currentTime : audioOffset;
+    audioOffset = Number.isFinite(els.audio.currentTime)
+      ? els.audio.currentTime
+      : audioOffset;
     if (!els.audio.ended) isPlaying = false;
     cancelAnimationFrame(raf);
     setPlayButtonState(false);
@@ -618,7 +862,9 @@ function setupNativeAudio() {
   els.audio.addEventListener("ended", () => {
     if (playbackMode === "player" && !repeatEnabled) finishPlayback();
   });
-  els.audio.addEventListener("error", () => showToast("音源を読み込めませんでした。ページを再読み込みしてください。"));
+  els.audio.addEventListener("error", () =>
+    showToast("音源を読み込めませんでした。ページを再読み込みしてください。"),
+  );
 }
 
 async function changeVocalMode() {
@@ -627,7 +873,10 @@ async function changeVocalMode() {
     return;
   }
   updateVocalToggle();
-  if (!isPlaying) { els.hint.textContent = "次の再生からボーカル設定を適用します。"; return; }
+  if (!isPlaying) {
+    els.hint.textContent = "次の再生からボーカル設定を適用します。";
+    return;
+  }
   const position = currentPosition();
   stopSource();
   audioOffset = position;
@@ -651,107 +900,36 @@ async function changeKey() {
 
 function noteName(frequency) {
   if (!frequency) return "--";
-  const names = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+  const names = [
+    "C",
+    "C#",
+    "D",
+    "D#",
+    "E",
+    "F",
+    "F#",
+    "G",
+    "G#",
+    "A",
+    "A#",
+    "B",
+  ];
   const midi = Math.round(69 + 12 * Math.log2(frequency / 440));
   return `${names[(midi + 120) % 12]}${Math.floor(midi / 12) - 1}`;
 }
 
 function drawPitchHistory() {
-  const canvas = els.pitchCanvas;
-  const ctx = canvas.getContext("2d");
-  const ratio = window.devicePixelRatio || 1;
-  const width = canvas.clientWidth || 450;
-  const height = canvas.clientHeight || 115;
-  if (canvas.width !== width * ratio) { canvas.width = width * ratio; canvas.height = height * ratio; }
-  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-  ctx.clearRect(0, 0, width, height);
-  const now = performance.now();
-  const minMidi = 42;
-  const maxMidi = 84;
-  ctx.strokeStyle = "rgba(139,231,218,.22)";
-  ctx.lineWidth = 1;
-  for (let midi = 48; midi <= 84; midi += 12) {
-    const y = height - ((midi - minMidi) / (maxMidi - minMidi)) * height;
-    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
-  }
-  const points = pitchHistory.filter((item) => now - item.time < 6000 && item.pitch > 0);
-  if (points.length < 2) return;
-  ctx.beginPath();
-  points.forEach((item, index) => {
-    const x = width - ((now - item.time) / 6000) * width;
-    const midi = 69 + 12 * Math.log2(item.pitch / 440);
-    const y = height - clamp((midi - minMidi) / (maxMidi - minMidi)) * height;
-    if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-  });
-  ctx.strokeStyle = "#8be7da";
-  ctx.lineWidth = 2;
-  ctx.stroke();
+  scoring?.draw();
 }
-
 async function toggleMic() {
-  if (micStream) {
-    micStream.getTracks().forEach((track) => track.stop());
-    micStream = null;
-    cancelAnimationFrame(micFrame);
-    pitchHistory = [];
-    els.micButton.classList.remove("active");
-    els.micButton.innerHTML = '<span class="mic-symbol">◉</span> マイクを有効化';
-    els.micStatus.textContent = "音程と声量を端末内で表示。採点は行いません。";
-    els.micNote.textContent = "--";
-    els.micHz.textContent = "マイク待機中";
-    els.micMeter.style.width = "0";
-    els.micLevel.textContent = "0%";
-    drawPitchHistory();
-    return;
-  }
-  try {
-    micStream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: false } });
-    micContext = new (window.AudioContext || window.webkitAudioContext)();
-    const input = micContext.createMediaStreamSource(micStream);
-    micAnalyser = micContext.createAnalyser();
-    micAnalyser.fftSize = 2048;
-    input.connect(micAnalyser);
-    els.micButton.classList.add("active");
-    els.micButton.innerHTML = '<span class="mic-symbol">●</span> マイクを停止';
-    els.micStatus.textContent = "端末内で解析中 · 曲との比較は未実施";
-    monitorMic();
-  } catch (error) {
-    els.micStatus.textContent = "マイクへのアクセスが許可されていません";
-    showToast("マイクを使うにはブラウザのアクセス許可が必要です。");
-    console.error(error);
-  }
-}
-
-function monitorMic() {
-  if (!micAnalyser || !micStream) return;
-  const data = new Float32Array(micAnalyser.fftSize);
-  micAnalyser.getFloatTimeDomainData(data);
-  let pitch = 0;
-  let level = 0;
-  if (dsp) {
-    const memory = new Float32Array(dsp.memory.buffer);
-    memory.set(data, WASM_MIC / 4);
-    pitch = dsp.detect_pitch(WASM_MIC, data.length, micContext.sampleRate);
-    level = dsp.rms(WASM_MIC, data.length);
-  } else {
-    level = Math.sqrt(data.reduce((sum, sample) => sum + sample * sample, 0) / data.length);
-  }
-  els.micNote.textContent = pitch > 0 ? noteName(pitch) : "--";
-  els.micHz.textContent = pitch > 0 ? `${Math.round(pitch)} Hz` : "声を入れてください";
-  const levelPercent = Math.round(clamp(level * 520) * 100);
-  els.micMeter.style.width = `${levelPercent}%`;
-  els.micLevel.textContent = `${levelPercent}%`;
-  if (pitch > 0 && level > .015) pitchHistory.push({ time: performance.now(), pitch });
-  pitchHistory = pitchHistory.filter((item) => performance.now() - item.time < 6000);
-  drawPitchHistory();
-  micFrame = requestAnimationFrame(monitorMic);
+  await scoring.toggle();
 }
 
 function setAnalysisVisible(visible) {
   document.body.classList.toggle("show-analysis", visible);
   els.analysisOverlay.setAttribute("aria-hidden", String(!visible));
   els.analysisToggle.setAttribute("aria-expanded", String(visible));
-  els.analysisToggle.textContent = visible ? "歌唱画面に戻る" : "音程モニター";
+  els.analysisToggle.textContent = visible ? "ジャケット表示" : "採点・音程";
   els.analysisOverlay.inert = !visible;
   requestAnimationFrame(fitLyrics);
   if (visible) drawPitchHistory();
@@ -768,10 +946,13 @@ function setDrawerOpen(open) {
   els.menuButton.setAttribute("aria-expanded", String(open));
   els.drawerTrigger.setAttribute("aria-expanded", String(open));
   if (open) els.closeDrawer.focus();
-  else if (sheetReturnFocus) { sheetReturnFocus.focus(); sheetReturnFocus = null; }
+  else if (sheetReturnFocus) {
+    sheetReturnFocus.focus();
+    sheetReturnFocus = null;
+  }
 }
 function selectSheetTab(name) {
-  document.querySelectorAll("[data-sheet-tab]").forEach(button => {
+  document.querySelectorAll("[data-sheet-tab]").forEach((button) => {
     const active = button.dataset.sheetTab === name;
     button.setAttribute("aria-selected", String(active));
     $(button.dataset.sheetTab + "-panel").hidden = !active;
@@ -779,13 +960,24 @@ function selectSheetTab(name) {
 }
 let fittedLyricKey = "";
 function fitLyrics() {
-  const rows = lyricRows.filter(row => row.matches(".current,.next-line,.following-line"));
+  const rows = lyricRows.filter((row) =>
+    row.matches(".current,.next-line,.following-line"),
+  );
   const available = els.lines.clientWidth - 4;
   if (available <= 0) return;
   const base = Math.min(36, Math.max(23, available / 13));
   els.lines.style.setProperty("--lyric-size", `${base}px`);
-  const widest = Math.max(...rows.map(row => row.querySelector(".line-text").getBoundingClientRect().width), 1);
-  if (widest > available) els.lines.style.setProperty("--lyric-size", `${base * available / widest}px`);
+  const widest = Math.max(
+    ...rows.map(
+      (row) => row.querySelector(".line-text").getBoundingClientRect().width,
+    ),
+    1,
+  );
+  if (widest > available)
+    els.lines.style.setProperty(
+      "--lyric-size",
+      `${(base * available) / widest}px`,
+    );
 }
 function updateVocalToggle() {
   const reduced = els.vocal.value !== "original";
@@ -794,8 +986,14 @@ function updateVocalToggle() {
 }
 function syncViewport() {
   // visualViewport excludes mobile browser chrome and the software keyboard.
-  document.documentElement.style.setProperty("--app-height", `${window.visualViewport?.height || window.innerHeight}px`);
-  requestAnimationFrame(() => { fitLyrics(); drawPitchHistory(); });
+  document.documentElement.style.setProperty(
+    "--app-height",
+    `${window.visualViewport?.height || window.innerHeight}px`,
+  );
+  requestAnimationFrame(() => {
+    fitLyrics();
+    drawPitchHistory();
+  });
 }
 
 function showUpdateAvailable() {
@@ -805,6 +1003,10 @@ function showUpdateAvailable() {
 }
 
 function applyWaitingWorker(registration) {
+  if (scoring?.locked) {
+    showToast("採点を終了してから更新してください。");
+    return true;
+  }
   const waiting = registration?.waiting;
   if (!waiting) return false;
   updateRequested = true;
@@ -817,7 +1019,7 @@ function applyWaitingWorker(registration) {
 
 function handleInstalledWorker(registration) {
   if (!navigator.serviceWorker.controller) return;
-  if (isPlaying) showUpdateAvailable();
+  if (isPlaying || scoring?.locked) showUpdateAvailable();
   else applyWaitingWorker(registration);
 }
 
@@ -832,8 +1034,11 @@ function watchInstallingWorker(registration) {
 async function checkForServiceWorkerUpdate() {
   try {
     await serviceWorkerRegistration?.update();
-    if (serviceWorkerRegistration?.waiting) handleInstalledWorker(serviceWorkerRegistration);
-  } catch (error) { console.debug("Service Worker update check failed", error); }
+    if (serviceWorkerRegistration?.waiting)
+      handleInstalledWorker(serviceWorkerRegistration);
+  } catch (error) {
+    console.debug("Service Worker update check failed", error);
+  }
 }
 
 async function registerServiceWorker() {
@@ -841,7 +1046,7 @@ async function registerServiceWorker() {
   const hadController = Boolean(navigator.serviceWorker.controller);
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     if (isRefreshing || !hadController) return;
-    if (updateRequested || !isPlaying) {
+    if (!scoring?.locked && (updateRequested || !isPlaying)) {
       isRefreshing = true;
       window.location.reload();
       return;
@@ -849,18 +1054,31 @@ async function registerServiceWorker() {
     showUpdateAvailable();
   });
   try {
-    serviceWorkerRegistration = await navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" });
-    serviceWorkerRegistration.addEventListener("updatefound", () => watchInstallingWorker(serviceWorkerRegistration));
-    if (serviceWorkerRegistration.waiting) handleInstalledWorker(serviceWorkerRegistration);
+    serviceWorkerRegistration = await navigator.serviceWorker.register(
+      "./sw.js",
+      { updateViaCache: "none" },
+    );
+    serviceWorkerRegistration.addEventListener("updatefound", () =>
+      watchInstallingWorker(serviceWorkerRegistration),
+    );
+    if (serviceWorkerRegistration.waiting)
+      handleInstalledWorker(serviceWorkerRegistration);
     await checkForServiceWorkerUpdate();
   } catch (error) {
     console.error("Service Worker registration failed", error);
   }
 }
 
-window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault(); installPrompt = event; els.install.hidden = false; });
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  installPrompt = event;
+  els.install.hidden = false;
+});
 els.install.addEventListener("click", async () => {
-  if (!installPrompt) { showToast("ブラウザの共有メニューから「ホーム画面に追加」を選べます。"); return; }
+  if (!installPrompt) {
+    showToast("ブラウザの共有メニューから「ホーム画面に追加」を選べます。");
+    return;
+  }
   installPrompt.prompt();
   await installPrompt.userChoice;
   installPrompt = null;
@@ -868,15 +1086,29 @@ els.install.addEventListener("click", async () => {
 });
 els.play.addEventListener("click", togglePlayback);
 els.repeat.addEventListener("click", toggleRepeat);
-els.modeButtons.forEach((button) => button.addEventListener("click", () => { void setPlaybackMode(button.dataset.playbackMode); }));
-els.seek.addEventListener("input", () => seekFromControl(Number(els.seek.value)));
+els.modeButtons.forEach((button) =>
+  button.addEventListener("click", () => {
+    void setPlaybackMode(button.dataset.playbackMode);
+  }),
+);
+els.seek.addEventListener("input", () =>
+  seekFromControl(Number(els.seek.value)),
+);
 els.volume.addEventListener("input", updateVolume);
 els.vocal.addEventListener("change", changeVocalMode);
 els.key.addEventListener("change", changeKey);
 els.micButton.addEventListener("click", toggleMic);
-els.analysisToggle.addEventListener("click", () => setAnalysisVisible(!document.body.classList.contains("show-analysis")));
-els.menuButton.addEventListener("click", () => { selectSheetTab("sound"); setDrawerOpen(true); });
-els.drawerTrigger.addEventListener("click", () => { selectSheetTab("lyrics"); setDrawerOpen(true); });
+els.analysisToggle.addEventListener("click", () =>
+  setAnalysisVisible(!document.body.classList.contains("show-analysis")),
+);
+els.menuButton.addEventListener("click", () => {
+  selectSheetTab("sound");
+  setDrawerOpen(true);
+});
+els.drawerTrigger.addEventListener("click", () => {
+  selectSheetTab("lyrics");
+  setDrawerOpen(true);
+});
 els.closeDrawer.addEventListener("click", () => setDrawerOpen(false));
 els.drawerScrim.addEventListener("click", () => setDrawerOpen(false));
 els.update.addEventListener("click", () => {
@@ -885,43 +1117,96 @@ els.update.addEventListener("click", () => {
     window.location.reload();
   }
 });
-document.addEventListener("keydown", (event) => { if (event.key === "Escape") { setDrawerOpen(false); setAnalysisVisible(false); } });
-document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForServiceWorkerUpdate(); });
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    setDrawerOpen(false);
+    setAnalysisVisible(false);
+  }
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") checkForServiceWorkerUpdate();
+});
 window.addEventListener("focus", checkForServiceWorkerUpdate);
-window.addEventListener("resize", () => { drawWaveform(audioOffset); drawPitchHistory(); });
+window.addEventListener("resize", () => {
+  drawWaveform(audioOffset);
+  drawPitchHistory();
+});
 
+scoring = createScoringController({
+  position: currentPosition,
+  playing: () => isPlaying,
+  key: () => Number(els.key.value),
+  pause: stopSource,
+  beforeResults: () => setDrawerOpen(false),
+  toast: showToast,
+  show: () => setAnalysisVisible(true),
+  lineText: (index) => SONG.lines[index]?.text ?? `${index + 1}行目`,
+  inLyrics: (time) =>
+    SONG.lines.some((line) => time >= line.start && time < line.end),
+  restart: async () => {
+    stopSource(true);
+    audioOffset = 0;
+    await startPlayback();
+  },
+});
 setupNativeAudio();
 updateRepeatUI();
 updateModeUI();
 setupMediaSession();
-document.querySelectorAll("[data-sheet-tab]").forEach(button => button.addEventListener("click", () => selectSheetTab(button.dataset.sheetTab)));
+document
+  .querySelectorAll("[data-sheet-tab]")
+  .forEach((button) =>
+    button.addEventListener("click", () =>
+      selectSheetTab(button.dataset.sheetTab),
+    ),
+  );
 $("vocal-toggle").addEventListener("click", () => {
   els.vocal.value = els.vocal.value === "original" ? "light" : "original";
-  void changeVocalMode().catch(() => showToast("音源を切り替えられませんでした。"));
+  void changeVocalMode().catch(() =>
+    showToast("音源を切り替えられませんでした。"),
+  );
 });
 $("previous-phrase").addEventListener("click", () => {
   const time = currentPosition();
-  const line = [...SONG.lines].reverse().find(line => line.start < time - 1);
+  const line = [...SONG.lines].reverse().find((line) => line.start < time - 1);
   void jumpTo(line?.start ?? 0);
 });
 $("next-phrase").addEventListener("click", () => {
-  const line = SONG.lines.find(line => line.start > currentPosition() + .2);
+  const line = SONG.lines.find((line) => line.start > currentPosition() + 0.2);
   if (line) void jumpTo(line.start);
 });
 $("fullscreen-button").addEventListener("click", async () => {
   try {
     if (document.fullscreenElement) await document.exitFullscreen();
-    else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
+    else if (document.documentElement.requestFullscreen)
+      await document.documentElement.requestFullscreen();
     else showToast("ホーム画面に追加すると全画面で楽しめます。");
-  } catch { showToast("この環境では全画面に切り替えられません。"); }
+  } catch {
+    showToast("この環境では全画面に切り替えられません。");
+  }
 });
-document.addEventListener("fullscreenchange", () => { $("fullscreen-button").setAttribute("aria-label", document.fullscreenElement ? "全画面を解除" : "全画面にする"); syncViewport(); });
-document.addEventListener("keydown", event => {
-  if (event.key !== "Tab" || !document.body.classList.contains("drawer-open")) return;
-  const controls = [...els.drawer.querySelectorAll("button,select,input")].filter(el => el.getClientRects().length && !el.disabled);
-  const first = controls[0], last = controls.at(-1);
-  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+document.addEventListener("fullscreenchange", () => {
+  $("fullscreen-button").setAttribute(
+    "aria-label",
+    document.fullscreenElement ? "全画面を解除" : "全画面にする",
+  );
+  syncViewport();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Tab" || !document.body.classList.contains("drawer-open"))
+    return;
+  const controls = [
+    ...els.drawer.querySelectorAll("button,select,input"),
+  ].filter((el) => el.getClientRects().length && !el.disabled);
+  const first = controls[0],
+    last = controls.at(-1);
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
 });
 window.visualViewport?.addEventListener("resize", syncViewport);
 window.addEventListener("resize", syncViewport);
@@ -935,7 +1220,8 @@ window.setInterval(checkForServiceWorkerUpdate, 15 * 60 * 1000);
 loadDsp();
 loadAlignment().catch((error) => {
   els.alignment.textContent = "GRID FALLBACK / ALIGNMENT ERROR";
-  els.hint.textContent = "文字タイムラインの読み込みに失敗しました。行単位の予備データで再生します。";
+  els.hint.textContent =
+    "文字タイムラインの読み込みに失敗しました。行単位の予備データで再生します。";
   console.error(error);
 });
 renderPosition(0);

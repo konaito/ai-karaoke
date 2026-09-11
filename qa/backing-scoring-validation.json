@@ -1,0 +1,11 @@
+{
+  "version": "pitch-v1",
+  "referenceVersion": "9da4309ae5ecca8cc3191ae82de007169fdda80c2759e92bac1f92848dd811d0",
+  "key": 0,
+  "enough": true,
+  "score": 4,
+  "accuracy": 12,
+  "coverage": 25,
+  "expectedSeconds": 41.75,
+  "voicedSeconds": 10.4
+}
