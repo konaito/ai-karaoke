@@ -73,7 +73,7 @@ let playbackMode = ["karaoke", "player"].includes(storedPlaybackMode)
 let repeatEnabled = readSetting("ai-karaoke-repeat", "false") === "true";
 let lastMediaSessionPositionUpdate = 0;
 
-const VOCAL_AMOUNTS = { original: 0, light: 0.72, strong: 0.94 };
+const VOCAL_AMOUNTS = { original: 0, light: 0.45, strong: 0.94 };
 const WASM_INPUT_L = 0;
 const WASM_INPUT_R = 131072;
 const WASM_OUTPUT_L = 262144;
