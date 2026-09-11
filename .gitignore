@@ -3,3 +3,4 @@ wasm/target/
 work/
 pipeline/.venv/
 __pycache__/
+pipeline/scoring/.venv/

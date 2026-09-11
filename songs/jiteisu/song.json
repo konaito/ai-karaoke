@@ -5294,5 +5294,8 @@
   ],
   "cover": "./songs/jiteisu/cover.webp",
   "coverType": "image/webp",
-  "alignmentSource": "./songs/jiteisu/alignment.json"
+  "alignmentSource": "./songs/jiteisu/alignment.json",
+  "melodySource": "./songs/jiteisu/melody.json",
+  "accompanimentSource": "./songs/jiteisu/accompaniment.mp3",
+  "scoringProvenanceSource": "./songs/jiteisu/scoring-provenance.json"
 }

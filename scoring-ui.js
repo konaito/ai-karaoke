@@ -4,7 +4,7 @@ import {
   validateReference,
   frequencyToMidi,
   pitchError,
-} from "./scoring.js?v=23";
+} from "./scoring.js?v=24";
 
 export function createScoringController(api) {
   const $ = (id) => document.getElementById(id);
@@ -41,13 +41,17 @@ export function createScoringController(api) {
 
   function loadReference() {
     if (!referencePromise)
-      referencePromise = fetch(api.referenceUrl)
+      referencePromise = fetch(`${api.referenceUrl}?v=24`)
         .then((response) => {
           if (!response.ok) throw new Error("Reference unavailable");
           return response.json();
         })
         .then((data) => {
           reference = validateReference(data);
+          const seconds = reference.frames.length * reference.step;
+          const covered = (reference.lineCoverageSeconds ?? []).filter(t => t >= .3).length;
+          $("mic-status").textContent = `自動推定 · 採点対象 ${seconds.toFixed(1)}秒 · ${covered}/${api.lineCount}フレーズ`;
+
           draw();
           return reference;
         })
@@ -365,7 +369,8 @@ export function createScoringController(api) {
       );
   }
   function renderPhrases() {
-    const rows = lastResult?.lines ?? [],
+    const measured = new Map((lastResult?.lines ?? []).map(row => [row.line, row]));
+    const rows = lastResult?.completed ? Array.from({length: api.lineCount}, (_, line) => measured.get(line) ?? {line, sufficient:false, score:null}) : (lastResult?.lines ?? []),
       pages = Math.max(1, Math.ceil(rows.length / 4));
     page = Math.max(0, Math.min(page, pages - 1));
     $("score-page").textContent = `${page + 1} / ${pages}`;

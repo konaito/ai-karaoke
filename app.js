@@ -1,6 +1,6 @@
-import { SONG, CATALOG, SONG_ID } from "./song-data.js?v=23";
-import { createScoringController } from "./scoring-ui.js?v=23";
-import { mixScoringGuide } from "./scoring.js?v=23";
+import { SONG, CATALOG, SONG_ID } from "./song-data.js?v=24";
+import { createScoringController } from "./scoring-ui.js?v=24";
+import { mixScoringGuide } from "./scoring.js?v=24";
 let scoring = null;
 let accompanimentBuffer = null;
 
@@ -114,7 +114,7 @@ function showToast(message) {
 }
 
 async function loadAlignment() {
-  const response = await fetch(`${SONG.alignmentSource}?v=23`);
+  const response = await fetch(`${SONG.alignmentSource}?v=24`);
   if (!response.ok) throw new Error(`ALIGNMENT ${response.status}`);
   const data = await response.json();
   if (!Array.isArray(data.lines) || data.lines.length !== SONG.lines.length) {
@@ -1161,6 +1161,7 @@ function setupSong() {
   });
   document.querySelector('.brand-copy small').textContent = SONG.artist;
   document.querySelector('.art-title').textContent = SONG.title;
+  document.querySelector('.result-header small').textContent = `${SONG.title} / ${SONG.artist}`;
   document.querySelector('.art-eyebrow').textContent = SONG.artist;
   const art = document.querySelector('.cover-art');
   art.src = SONG.cover;
@@ -1175,6 +1176,7 @@ setupSong();
 
 scoring = createScoringController({
   songId: SONG_ID,
+  lineCount: SONG.lines.length,
   referenceUrl: SONG.melodySource,
   position: currentPosition,
   playing: () => isPlaying,
