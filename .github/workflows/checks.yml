@@ -1,5 +1,6 @@
 name: Validate song library and scoring
 on:
+  workflow_call:
   pull_request:
   push:
     branches: [main]
@@ -14,9 +15,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: python3 scripts/check-library.py
+      - run: command -v ffprobe || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+      - run: python3 scripts/song_harness.py check --media
+      - run: python3 -m unittest discover -s tests -p 'test_*.py' -v
       - run: python3 -m unittest discover -s pipeline -v
       - run: node --check app.js && node --check song-data.js && node --check sw.js
-      - run: node --test tests/scoring.test.mjs
+      - run: node --test tests/*.test.mjs
       - run: node --check scoring.js && node --check scoring-ui.js
       - run: git diff --check

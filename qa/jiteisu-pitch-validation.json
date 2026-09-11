@@ -1,0 +1,25 @@
+{
+  "method": "offline YIN on isolated source stems; not independent accuracy",
+  "vocals": {
+    "version": "pitch-v1",
+    "referenceVersion": "92e7c73a32bb978362d83c10930997995647f3c8d460dbbc8d133aeca77157df",
+    "key": 0,
+    "enough": true,
+    "score": 100,
+    "accuracy": 100,
+    "coverage": 100,
+    "expectedSeconds": 24.1,
+    "voicedSeconds": 24.1
+  },
+  "backing": {
+    "version": "pitch-v1",
+    "referenceVersion": "92e7c73a32bb978362d83c10930997995647f3c8d460dbbc8d133aeca77157df",
+    "key": 0,
+    "enough": true,
+    "score": 2.8,
+    "accuracy": 9,
+    "coverage": 23,
+    "expectedSeconds": 24.1,
+    "voicedSeconds": 5.5
+  }
+}

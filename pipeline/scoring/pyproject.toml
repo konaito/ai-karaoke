@@ -1,0 +1,5 @@
+[project]
+name = "karaoke-scoring-build"
+version = "1.0.0"
+requires-python = ">=3.11,<3.12"
+dependencies = ["demucs==4.0.1", "torch==2.5.1", "torchaudio==2.5.1", "librosa==0.11.0", "soundfile==0.14.0", "numpy==2.4.6"]

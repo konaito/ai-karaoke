@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "kind": "legacy-verified",
+  "note": "Existing original-song artifacts; generation environment not reconstructed.",
+  "sourceSha256": "9da4309ae5ecca8cc3191ae82de007169fdda80c2759e92bac1f92848dd811d0",
+  "alignmentSha256": "a8d403c96050f58e9fd2d1bd8e96e118b55840b1ad5ab8a70b32e8f9dd99b56e",
+  "melodySha256": "d8dae1754571c0b858cc73c3a3ffe60df80dea06954c36b58d6850b2da9e3caf",
+  "accompanimentSha256": "ae2441af137d00e08b1f097099ea622647e298c22dd6ef020e6da20bfc369681",
+  "expectedSeconds": 41.75,
+  "insufficientLines": [
+    8,
+    12,
+    13,
+    16
+  ]
+}

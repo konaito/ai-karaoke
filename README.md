@@ -7,7 +7,7 @@
 プレイヤーのソースを書き換えず、[生成パイプライン](pipeline/README.md)で作ったビルドを登録します。
 
 ```bash
-python3 scripts/register-song.py --id new-song --build /path/to/generated-player
+python3 scripts/register-song.py --id new-song --build /path/to/generated-player --scoring /path/to/scoring-packet
 python3 scripts/check-library.py
 ```
 
@@ -81,4 +81,6 @@ DAMの精密採点Ai/DX-GとJOYSOUNDの分析採点AIを調査し、歌唱画面
 
 このWAVは完成済みのステレオミックスで、分離済みボーカル/伴奏ステムではありません。採点用にはDemucsで分離した伴奏を追加しました。通常カラオケの「ボーカル低減」は機械学習による完全なステム分離ではなく、中央定位成分をWASMで抑える方式です。声の残響や中央のスネア/ベースが少し残る場合があります。
 
-採点データは曲ごとの `melodySource` と `accompanimentSource` で指定します。両方が揃う元曲では採点を利用でき、新曲は「採点準備中」と表示します。他の曲の基準は流用しません。自己ベストも曲IDごとに保存します。
+採点データは曲ごとの `melodySource` と `accompanimentSource` で指定します。両方の曲で採点を利用できます。他の曲の基準は流用しません。自己ベストも曲IDごとに保存します。
+
+楽曲追加の完了条件と全手順は [HARNESS.md](HARNESS.md)、エージェント向け入口は [AGENTS.md](AGENTS.md)。採点・実ジャケット・来歴が欠けると登録やCI／デプロイゲートを通りません。

@@ -12,7 +12,8 @@
         "./songs/ai-wo-tsutaeru/cover.png",
         "./songs/ai-wo-tsutaeru/alignment.json",
         "./melody.json",
-        "./audio/accompaniment.mp3"
+        "./audio/accompaniment.mp3",
+        "./songs/ai-wo-tsutaeru/scoring-provenance.json"
       ]
     },
     {
@@ -23,7 +24,10 @@
       "assets": [
         "./songs/jiteisu/track.mp3",
         "./songs/jiteisu/cover.webp",
-        "./songs/jiteisu/alignment.json"
+        "./songs/jiteisu/alignment.json",
+        "./songs/jiteisu/melody.json",
+        "./songs/jiteisu/accompaniment.mp3",
+        "./songs/jiteisu/scoring-provenance.json"
       ]
     }
   ]
