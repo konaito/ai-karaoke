@@ -128,3 +128,14 @@ test("tiny reference fragments are not presented as meaningful phrase scores", (
   s.add(0, midiToFrequency(60));
   assert.equal(s.result().lines[0].score, null);
 });
+
+test('scoring guide retains vocals without doubling the shared accompaniment', async () => {
+  const {mixScoringGuide} = await import('../scoring.js');
+  const original = new Float32Array([0.6, -0.6, 0.4, -0.4]);
+  const backing = new Float32Array([0.2, -0.2, 0.4, -0.4]);
+  const mixed = mixScoringGuide(backing, original);
+  assert.ok(Math.abs(mixed[0] - 0.4) < 1e-6);
+  assert.ok(Math.abs(mixed[1] + 0.4) < 1e-6);
+  assert.ok(Math.abs(mixed[2] - 0.4) < 1e-6);
+  assert.ok(Math.abs(original[0] - 0.6) < 1e-6);
+});

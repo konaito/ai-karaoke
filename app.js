@@ -1,5 +1,6 @@
-import { SONG, CATALOG, SONG_ID } from "./song-data.js?v=22";
-import { createScoringController } from "./scoring-ui.js?v=22";
+import { SONG, CATALOG, SONG_ID } from "./song-data.js?v=23";
+import { createScoringController } from "./scoring-ui.js?v=23";
+import { mixScoringGuide } from "./scoring.js?v=23";
 let scoring = null;
 let accompanimentBuffer = null;
 
@@ -113,7 +114,7 @@ function showToast(message) {
 }
 
 async function loadAlignment() {
-  const response = await fetch(`${SONG.alignmentSource}?v=22`);
+  const response = await fetch(`${SONG.alignmentSource}?v=23`);
   if (!response.ok) throw new Error(`ALIGNMENT ${response.status}`);
   const data = await response.json();
   if (!Array.isArray(data.lines) || data.lines.length !== SONG.lines.length) {
@@ -269,9 +270,17 @@ async function getActiveBuffer() {
     if (!accompanimentBuffer) {
       const response = await fetch(SONG.accompanimentSource);
       if (!response.ok) throw new Error("Accompaniment unavailable");
-      accompanimentBuffer = await audioContext.decodeAudioData(
-        await response.arrayBuffer(),
-      );
+      const backing = await audioContext.decodeAudioData(await response.arrayBuffer());
+      const original = await loadSourceBuffer();
+      // Both decoders use this AudioContext's sample rate. Keep each channel and
+      // the timeline intact; tolerate codec padding differences at the tail.
+      for (let channel = 0; channel < backing.numberOfChannels; channel++) {
+        const target = backing.getChannelData(channel);
+        const guide = original.getChannelData(Math.min(channel, original.numberOfChannels - 1));
+        const length = Math.min(target.length, guide.length);
+        mixScoringGuide(target.subarray(0, length), guide.subarray(0, length));
+      }
+      accompanimentBuffer = backing;
     }
     return accompanimentBuffer;
   }
