@@ -32,6 +32,9 @@ class OnboardingTests(unittest.TestCase):
         path=self.root/'songs/jiteisu/scoring-provenance.json'
         self.mutate(path,lambda d:d.update(insufficientLines=[]))
         with self.assertRaisesRegex(ValueError,'explicitly reported'):h.validate(self.root)
+    def test_stale_display_version_fails(self):
+        p=self.root/'index.html';p.write_text(p.read_text().replace('STAGE / v'+str(h.load(self.root/'release.json')['version']),'STAGE / v0'))
+        with self.assertRaisesRegex(ValueError,'Displayed version'):h.check_release(self.root)
     def test_stale_module_version_fails(self):
         p=self.root/'app.js';p.write_text(p.read_text().replace('?v='+str(h.load(self.root/'release.json')['version']),'?v=0',1))
         with self.assertRaisesRegex(ValueError,'Mixed cache'):h.check_release(self.root)

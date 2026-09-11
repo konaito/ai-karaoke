@@ -1,5 +1,5 @@
-const CACHE_NAME = 'ai-karaoke-v24';
-const SHELL = ['./', './index.html', './styles.css?v=24', './app.js?v=24', './song-data.js?v=24', './catalog.json', './manifest.webmanifest', './icon.svg', './dsp.wasm', './scoring.js?v=24', './scoring-ui.js?v=24'];
+const CACHE_NAME = 'ai-karaoke-v25';
+const SHELL = ['./', './index.html', './styles.css?v=25', './app.js?v=25', './song-data.js?v=25', './catalog.json', './manifest.webmanifest', './icon.svg', './dsp.wasm', './scoring.js?v=25', './scoring-ui.js?v=25'];
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
@@ -7,7 +7,7 @@ self.addEventListener('install', event => {
     if (!response.ok) throw new Error('Catalog unavailable');
     const catalog = await response.json();
     const assets = [...new Set([...SHELL, ...catalog.songs.flatMap(song => [song.data, ...song.assets])])];
-    await Promise.all(assets.flatMap(asset => asset.endsWith('.json') ? [asset, `${asset}?v=24`] : [asset]).map(asset => cache.add(new Request(asset, {cache: 'reload'}))));
+    await Promise.all(assets.flatMap(asset => asset.endsWith('.json') ? [asset, `${asset}?v=25`] : [asset]).map(asset => cache.add(new Request(asset, {cache: 'reload'}))));
     // The app offers an update button; do not interrupt a song on installation.
   })());
 });

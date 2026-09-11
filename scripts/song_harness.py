@@ -80,7 +80,7 @@ def attach(root,song_id,directory):
 def bump(root,version):
     require(re.fullmatch(r'\d+(?:\.\d+)*',version),'Version must be numeric')
     for name in ['app.js','index.html','song-data.js','scoring-ui.js','sw.js']:
-        p=root/name;s=p.read_text();s=re.sub(r'\?v=\d+(?:\.\d+)*','?v='+version,s);s=re.sub(r'ai-karaoke-v\d+(?:\.\d+)*','ai-karaoke-v'+version,s);p.write_text(s)
+        p=root/name;s=p.read_text();s=re.sub(r'\?v=\d+(?:\.\d+)*','?v='+version,s);s=re.sub(r'ai-karaoke-v\d+(?:\.\d+)*','ai-karaoke-v'+version,s);s=re.sub(r'STAGE / v\d+(?:\.\d+)*','STAGE / v'+version,s);p.write_text(s)
     write(root/'release.json',{'version':version})
 
 def check_release(root):
@@ -92,11 +92,12 @@ def check_release(root):
     for name in ['app.js','scoring-ui.js']:
         for path in re.findall(r'from\s+[\"\'](\./[^\"\']+)',(root/name).read_text()):
             require(path.endswith('?v='+v),f'Unversioned module import: {path}')
+    require(f'STAGE / v{v}</p>' in (root/'index.html').read_text(),'Displayed version mismatch')
     return v
 
 def published(root,base,song_id):
     v=check_release(root);catalog=load(root/'catalog.json');entry=next(e for e in catalog['songs'] if e['id']==song_id)
-    paths=['catalog.json','app.js','song-data.js','scoring-ui.js','scoring.js','sw.js',entry['data'],*entry['assets']]
+    paths=['index.html','catalog.json','app.js','song-data.js','scoring-ui.js','scoring.js','sw.js',entry['data'],*entry['assets']]
     for path in paths:
         request=urllib.request.Request(base.rstrip('/')+'/'+path.removeprefix('./')+'?v='+v,headers={'Cache-Control':'no-cache'})
         with urllib.request.urlopen(request,timeout=60) as r:data=r.read()
