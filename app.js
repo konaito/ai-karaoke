@@ -1,7 +1,10 @@
-import { SONG, CATALOG, SONG_ID } from "./song-data.js?v=25";
-import { createScoringController } from "./scoring-ui.js?v=25";
-import { mixScoringGuide } from "./scoring.js?v=25";
+import { SONG as INITIAL_SONG, CATALOG, SONG_ID as INITIAL_SONG_ID } from "./song-data.js?v=26";
+import { createScoringController } from "./scoring-ui.js?v=26";
+import { mixScoringGuide } from "./scoring.js?v=26";
+let SONG = INITIAL_SONG;
+let SONG_ID = INITIAL_SONG_ID;
 let scoring = null;
+let changingSong = false;
 let accompanimentBuffer = null;
 
 const $ = (id) => document.getElementById(id);
@@ -71,7 +74,10 @@ const storedPlaybackMode = readSetting("ai-karaoke-playback-mode", "karaoke");
 let playbackMode = ["karaoke", "player"].includes(storedPlaybackMode)
   ? storedPlaybackMode
   : "karaoke";
-let repeatEnabled = readSetting("ai-karaoke-repeat", "false") === "true";
+const repeatModes = ["repeat", "continuous", "single"];
+const savedRepeatMode = readSetting("ai-karaoke-repeat-mode",
+  readSetting("ai-karaoke-repeat", "false") === "true" ? "repeat" : "single");
+let repeatMode = repeatModes.includes(savedRepeatMode) ? savedRepeatMode : "single";
 let lastMediaSessionPositionUpdate = 0;
 
 const VOCAL_AMOUNTS = { original: 0, light: 0.45, strong: 0.94 };
@@ -114,9 +120,11 @@ function showToast(message) {
 }
 
 async function loadAlignment() {
-  const response = await fetch(`${SONG.alignmentSource}?v=25`);
+  const song = SONG;
+  const response = await fetch(`${SONG.alignmentSource}?v=26`);
   if (!response.ok) throw new Error(`ALIGNMENT ${response.status}`);
   const data = await response.json();
+  if (song !== SONG) return;
   if (!Array.isArray(data.lines) || data.lines.length !== SONG.lines.length) {
     throw new Error("Alignment line count does not match the song data");
   }
@@ -378,20 +386,20 @@ async function startPlayback() {
       finishPlayback();
       return;
     }
-    if (repeatEnabled) {
+    if (repeatMode === "repeat") {
       activeSource = null;
       audioOffset = 0;
       void startPlayback();
       return;
     }
-    finishPlayback();
+    void handleTrackEnd();
   };
 }
 
 async function startPlayerPlayback() {
   if (els.audio.ended || els.audio.currentTime >= SONG.duration - 0.05)
     els.audio.currentTime = 0;
-  els.audio.loop = repeatEnabled;
+  els.audio.loop = repeatMode === "repeat";
   els.audio.volume = Number(els.volume.value);
   els.audio.playbackRate = 2 ** (Number(els.key.value) / 12);
   await els.audio.play();
@@ -470,6 +478,7 @@ function setCharProgress(row, time, line) {
 }
 
 function makeLyricRows() {
+  els.lines.replaceChildren();
   lyricRows = SONG.lines.map((line, index) => {
     const row = document.createElement("button");
     row.type = "button";
@@ -498,6 +507,7 @@ function makeLyricRows() {
 }
 
 function renderSectionNav() {
+  els.sectionNav.replaceChildren();
   for (const section of SONG.sections.filter((item) => item.lines.length > 0)) {
     const button = document.createElement("button");
     button.type = "button";
@@ -709,22 +719,74 @@ function updateVolume() {
 }
 
 function updateRepeatUI() {
-  els.audio.loop = repeatEnabled;
-  els.repeat.classList.toggle("active", repeatEnabled);
-  els.repeat.setAttribute("aria-pressed", String(repeatEnabled));
-  els.repeatLabel.textContent = repeatEnabled ? "リピート中" : "リピート";
-  els.repeat.title = repeatEnabled ? "リピート再生を解除" : "リピート再生";
+  const labels = { repeat: "1曲リピート", continuous: "連続再生", single: "1曲で停止" };
+  els.audio.loop = repeatMode === "repeat";
+  els.repeat.classList.toggle("active", repeatMode !== "single");
+  els.repeat.removeAttribute("aria-pressed");
+  els.repeatLabel.textContent = labels[repeatMode];
+  const next = repeatModes[(repeatModes.indexOf(repeatMode) + 1) % repeatModes.length];
+  els.repeat.title = `${labels[repeatMode]}（クリックで${labels[next]}）`;
+  els.repeat.setAttribute("aria-label", els.repeat.title);
 }
 
 function toggleRepeat() {
-  repeatEnabled = !repeatEnabled;
-  saveSetting("ai-karaoke-repeat", String(repeatEnabled));
+  repeatMode = repeatModes[(repeatModes.indexOf(repeatMode) + 1) % repeatModes.length];
+  saveSetting("ai-karaoke-repeat-mode", repeatMode);
   updateRepeatUI();
-  showToast(
-    repeatEnabled
-      ? "リピート再生をONにしました。"
-      : "リピート再生をOFFにしました。",
-  );
+  showToast(`${els.repeatLabel.textContent}に切り替えました。`);
+}
+
+async function handleTrackEnd() {
+  if (scoring?.active || repeatMode !== "continuous") {
+    finishPlayback();
+    return;
+  }
+  const index = CATALOG.songs.findIndex(song => song.id === SONG_ID);
+  await changeSong(CATALOG.songs[(index + 1) % CATALOG.songs.length].id, true);
+}
+
+async function changeSong(id, autoplay = false) {
+  if (changingSong || scoring?.locked) return;
+  const entry = CATALOG.songs.find(song => song.id === id);
+  if (!entry) return;
+  changingSong = true;
+  stopSource(true);
+  els.play.disabled = true;
+  document.getElementById("song-select").disabled = true;
+  try {
+    const response = await fetch(`${entry.data}?v=26`);
+    if (!response.ok) throw new Error(`Song data: ${response.status}`);
+    const song = await response.json();
+    SONG = song;
+    SONG_ID = id;
+    sourceBuffer = null;
+    accompanimentBuffer = null;
+    processedBuffers.clear();
+    waveformData = [];
+    activeLineIndex = -1;
+    lastLyricCaption = "";
+    setupSong();
+    scoring.setSong(id, SONG.melodySource);
+    makeLyricRows();
+    renderSectionNav();
+    setupMediaSession();
+    renderPosition(0);
+    drawWaveform(0);
+    const url = new URL(location.href);
+    url.searchParams.set("song", id);
+    history.replaceState(null, "", url.href);
+    await loadAlignment().catch(console.error);
+    if (autoplay) await startPlayback();
+  } catch (error) {
+    stopSource(true);
+    showToast("再生を続けられませんでした。再生ボタンで再試行してください。");
+    console.error(error);
+  } finally {
+    changingSong = false;
+    els.play.disabled = false;
+    document.getElementById("song-select").disabled = false;
+    document.getElementById("song-select").value = SONG_ID;
+  }
 }
 
 function updateModeUI() {
@@ -755,7 +817,7 @@ async function setPlaybackMode(mode) {
   audioOffset = position;
   if (playbackMode === "player") {
     els.audio.currentTime = position;
-    els.audio.loop = repeatEnabled;
+    els.audio.loop = repeatMode === "repeat";
     els.audio.playbackRate = 2 ** (Number(els.key.value) / 12);
   }
   updateModeUI();
@@ -846,7 +908,7 @@ function setupMediaSession() {
 
 function setupNativeAudio() {
   els.audio.volume = Number(els.volume.value);
-  els.audio.loop = repeatEnabled;
+  els.audio.loop = repeatMode === "repeat";
   els.audio.addEventListener("play", () => {
     if (playbackMode !== "player") return;
     isPlaying = true;
@@ -869,7 +931,7 @@ function setupNativeAudio() {
     if (playbackMode === "player") renderPosition(els.audio.currentTime);
   });
   els.audio.addEventListener("ended", () => {
-    if (playbackMode === "player" && !repeatEnabled) finishPlayback();
+    if (playbackMode === "player" && repeatMode !== "repeat") void handleTrackEnd();
   });
   els.audio.addEventListener("error", () =>
     showToast("音源を読み込めませんでした。ページを再読み込みしてください。"),
@@ -1145,6 +1207,7 @@ function setupSong() {
   document.title = `${SONG.title} / KARAOKE`;
   document.querySelector('meta[name="description"]').content = `${SONG.title} — ${SONG.artist} / KARAOKE`;
   const select = document.getElementById('song-select');
+  select.replaceChildren();
   for (const song of CATALOG.songs) {
     const option = document.createElement('option');
     option.value = song.id;
@@ -1152,13 +1215,9 @@ function setupSong() {
     option.selected = song.id === SONG_ID;
     select.append(option);
   }
-  select.addEventListener('change', () => {
-    stopSource();
-    els.audio.pause();
-    const url = new URL(location.href);
-    url.searchParams.set('song', select.value);
-    location.assign(url.href);
-  });
+  select.onchange = () => {
+    void changeSong(select.value, isPlaying && repeatMode === "continuous");
+  };
   document.querySelector('.brand-copy small').textContent = SONG.artist;
   document.querySelector('.art-title').textContent = SONG.title;
   document.querySelector('.result-header small').textContent = `${SONG.title} / ${SONG.artist}`;
@@ -1176,7 +1235,7 @@ setupSong();
 
 scoring = createScoringController({
   songId: SONG_ID,
-  lineCount: SONG.lines.length,
+  get lineCount() { return SONG.lines.length; },
   referenceUrl: SONG.melodySource,
   position: currentPosition,
   playing: () => isPlaying,

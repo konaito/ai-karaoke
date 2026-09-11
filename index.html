@@ -16,7 +16,7 @@
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" href="./styles.css?v=25" />
+    <link rel="stylesheet" href="./styles.css?v=26" />
     <title>愛を伝えるだとか / KARAOKE</title>
   </head>
   <body>
@@ -162,11 +162,10 @@
             class="repeat-button compact-control"
             id="repeat-button"
             type="button"
-            aria-label="リピート再生"
-            aria-pressed="false"
+            aria-label="1曲で停止（クリックで1曲リピート）"
           >
             <span class="control-symbol">↻</span
-            ><span id="repeat-label">リピート</span>
+            ><span id="repeat-label">1曲で停止</span>
           </button>
           <button
             class="phrase-button"
@@ -370,7 +369,7 @@
         >
           アプリを追加
         </button>
-        <p class="app-version">STAGE / v25</p>
+        <p class="app-version">STAGE / v26</p>
         <p class="drawer-status" id="wasm-status">
           <span class="status-dot"></span> WASM 音声処理 準備完了
         </p>
@@ -453,6 +452,6 @@
       </footer>
     </section>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script type="module" src="./app.js?v=25"></script>
+    <script type="module" src="./app.js?v=26"></script>
   </body>
 </html>

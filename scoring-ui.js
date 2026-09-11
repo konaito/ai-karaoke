@@ -4,7 +4,7 @@ import {
   validateReference,
   frequencyToMidi,
   pitchError,
-} from "./scoring.js?v=25";
+} from "./scoring.js?v=26";
 
 export function createScoringController(api) {
   const $ = (id) => document.getElementById(id);
@@ -40,13 +40,15 @@ export function createScoringController(api) {
   ];
 
   function loadReference() {
+    const requestedUrl = api.referenceUrl;
     if (!referencePromise)
-      referencePromise = fetch(`${api.referenceUrl}?v=25`)
+      referencePromise = fetch(`${api.referenceUrl}?v=26`)
         .then((response) => {
           if (!response.ok) throw new Error("Reference unavailable");
           return response.json();
         })
         .then((data) => {
+          if (requestedUrl !== api.referenceUrl) return null;
           reference = validateReference(data);
           const seconds = reference.frames.length * reference.step;
           const covered = (reference.lineCoverageSeconds ?? []).filter(t => t >= .3).length;
@@ -56,6 +58,7 @@ export function createScoringController(api) {
           return reference;
         })
         .catch((error) => {
+          if (requestedUrl !== api.referenceUrl) return null;
           referencePromise = null;
           throw error;
         });
@@ -450,10 +453,27 @@ export function createScoringController(api) {
     $("mic-status").textContent = "歌詞を見ながら歌う・聴くことができます。";
     $("pitch-feedback").textContent = "この曲の採点データは未登録です。";
   } else loadReference().catch(() => {
-    $("pitch-feedback").textContent =
-      "ガイドを読み込めません。開始時に再試行します。";
+    $("pitch-feedback").textContent = "ガイドを読み込めません。開始時に再試行します。";
   });
   return {
+    setSong(songId, referenceUrl) {
+      api.songId = songId;
+      api.referenceUrl = referenceUrl;
+      reference = null;
+      referencePromise = null;
+      session = null;
+      trace = [];
+      lastResult = null;
+      $("score-result").hidden = true;
+      $("mic-button").disabled = !referenceUrl;
+      $("mic-button").textContent = referenceUrl ? "採点をはじめる" : "この曲の採点は準備中";
+      $("pitch-feedback").textContent = referenceUrl ? "イヤホンをつけて、最初から採点" : "この曲の採点データは未登録です。";
+      $("mic-status").textContent = referenceUrl ? "イヤホンをつけて採点を開始できます。" : "歌詞を見ながら歌う・聴くことができます。";
+      draw();
+      if (referenceUrl) loadReference().catch(() => {
+        $("pitch-feedback").textContent = "ガイドを読み込めません。開始時に再試行します。";
+      });
+    },
     toggle,
     draw,
     finish,

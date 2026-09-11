@@ -1,6 +1,6 @@
 // Navigation starts a fresh audio graph; song state never leaks across tracks.
 async function getJSON(path) {
-  const response = await fetch(`${path}?v=25`);
+  const response = await fetch(`${path}?v=26`);
   if (!response.ok) throw new Error(`Song data: ${response.status}`);
   return response.json();
 }
