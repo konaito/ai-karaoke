@@ -12,7 +12,7 @@ class OnboardingTests(unittest.TestCase):
     def mutate(self,path,fn):
         d=h.load(path);fn(d);h.write(path,d)
     def test_complete_library_and_versions_pass(self):
-        self.assertEqual(len(h.validate(self.root)),2);h.check_release(self.root)
+        self.assertEqual(len(h.validate(self.root)),3);h.check_release(self.root)
     def test_omitted_scoring_is_not_a_complete_song(self):
         self.mutate(self.song(),lambda d:d.pop('melodySource'))
         with self.assertRaisesRegex(ValueError,'missing melodySource'):h.validate(self.root)

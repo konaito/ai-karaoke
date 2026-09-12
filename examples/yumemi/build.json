@@ -1,0 +1,27 @@
+{
+  "template": {
+    "files": {
+      "app.js": "f2c0fee4c05d3825798c7964de6f0287b3141ab496d2c57d86472c49cc8324ae",
+      "styles.css": "8e8cbd6d27b374f8ff6b81142a3350bcf18e47bde27e92711273c603cf58036f",
+      "dsp.wasm": "19920199d053a61a3d3170469e343bc9692638da13abe838e250be8c49fd48db",
+      "index.html": "b533d310b85d944d227a23fffc9529eb059842146776b28a3832d7d9edaa0691"
+    },
+    "commit": "f9afcb2ad7d0817fb3297ed758967f39dae3150d"
+  },
+  "audioSha256": "6d4e0b745fa15b2c26f701f0a3627716df4777fe1d02fce91a1c051b7bb8f1da",
+  "configSha256": "e85c65d1c93ecdb35d8400d99a69e66f77a255459dd4a7f3b50ef0e29c845318",
+  "alignmentSha256": "839a8d9612af06ec6b8ed2f7a8bd1439afbdca190d0c357733a61fce721ec22e",
+  "assets": {
+    "index.html": "ffa79c4dade2740a3056908bc53c73354d94db520b939b345a41790c36efe0bc",
+    "app.js": "f2c0fee4c05d3825798c7964de6f0287b3141ab496d2c57d86472c49cc8324ae",
+    "styles.css": "8e8cbd6d27b374f8ff6b81142a3350bcf18e47bde27e92711273c603cf58036f",
+    "dsp.wasm": "19920199d053a61a3d3170469e343bc9692638da13abe838e250be8c49fd48db",
+    "song-data.js": "2d5eb4f4e2884547061ee6689b93a351ac1b90ab88d820779f20dd0563f3455c",
+    "alignment.json": "839a8d9612af06ec6b8ed2f7a8bd1439afbdca190d0c357733a61fce721ec22e",
+    "audio/track.mp3": "6d4e0b745fa15b2c26f701f0a3627716df4777fe1d02fce91a1c051b7bb8f1da",
+    "cover.png": "bfd4d8aae012964585bc8ea05ee6cc16f3f58328acd1d0e9a8ea1288f79f69e2",
+    "manifest.webmanifest": "7c13fb156a5042cfb0487853d6e898cd2a87d93a3c642e81c4ee20d4d83831a5",
+    "scoring.js": "a8e04861f3b9421957799ee69347aecc309738d9ebd928b484839a573082450f",
+    "scoring-ui.js": "bbf20533288af2fa6d4817fcaa5e91381f6b6a2b7edbd362910ff6286877e623"
+  }
+}

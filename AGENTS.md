@@ -1,15 +1,15 @@
-# Karaoke repository instructions
+# Karaoke HQ instructions
 
-This is `konaito/ai-karaoke`, the deployed multi-song PWA. Do not pull karaoke changes into the old `konaito/note` repository: its main removes the application. Verify remote, branch, dirty files and current `origin/main` before work. Preserve unrelated changes. Use a `codex/` branch and a PR; inspect new main commits and resolve concurrent changes before merging.
+This directory is the canonical home for the karaoke application and its song-analysis pipeline. Work here and in `konaito/ai-karaoke`; do not create or maintain a parallel `note/karaoke` copy. Verify the remote, branch, dirty files, and current `origin/main` before work. Preserve unrelated changes. Use a `codex/` branch and a PR.
 
-## Adding a song means the entire song
+## Song onboarding
 
-Follow `HARNESS.md`. A song is not complete with just audio/lyrics or a placeholder cover. Required: source audio, actual jacket, authoritative lyrics, captured ASR and character alignment, separated accompaniment, confidence-gated melody, scoring provenance, per-song catalog references, browser QA, cache version update, CI, and (when deployment is requested) a successful Pages run plus live verification.
+Follow `HARNESS.md`. A song is incomplete until its source audio, authoritative lyrics, captured ASR and replayable character timing, real jacket, separated accompaniment, confidence-gated melody, scoring provenance, per-song catalog references, browser QA, cache version update, CI, and (when deployment is requested) a successful configured non-Pages deployment plus live verification are present.
 
 - Use `pipeline/karaoke.py` for capture/alignment/build and `scripts/prepare-scoring.py` for stems/melody/backing. Preserve inputs, raw captures and corrections. Never overwrite the previous capture to disguise a failed or different run.
-- Use `scripts/register-song.py --scoring ...` to register a NEW song. Missing scoring or a placeholder image must fail. For existing unscored songs use `song_harness.py attach-scoring`.
+- Use `scripts/register-song.py --scoring ...` to register a new song. Missing scoring or a placeholder image must fail. For existing unscored songs use `song_harness.py attach-scoring`.
 - Melody must match the source audio hash and alignment hash. Do not reuse another song's melody or backing, lower confidence thresholds to make missing phrases disappear, or represent estimated frames as full transcription.
-- Review the reported short/uncovered phrases. Test source-vocal self-consistency, wrong notes and silence separately. Synthetic tests are not human singing accuracy. Tell the user the remaining coverage boundary.
+- Review the reported short or uncovered phrases. Test source-vocal self-consistency, wrong notes and silence separately. Synthetic tests are not human singing accuracy. Tell the user the remaining coverage boundary.
 - Keep raw stems in ignored `work/`; publish MP3 backing, compact melody and provenance only. Never publish credentials, signed media URLs, caches or virtual environments.
 - Preserve the current guide-vocal mix in `mixScoringGuide`; scoring need not mute the original vocal completely. Reference, backing and best score remain keyed by song.
 
@@ -33,11 +33,14 @@ git diff --check
 
 ## Cache and publication
 
-Use `python3 scripts/song_harness.py bump <new-number>` before releasing data or code. It updates the shell, imported modules, JSON requests, worker cache and `release.json` together. An unversioned module previously prevented the entire app from starting. Do not update only `app.js` or only the service worker name.
+Use `python3 scripts/song_harness.py bump <new-version>` before releasing data or code. It updates the app modules, JSON requests, worker cache and `release.json` together. Verify both songs in one app, including switching during playback, listening and karaoke modes, song-specific scoring, and the 393x740 layout. Localhost, deployed files, browser emulation and installed-device PWA are distinct evidence.
 
-Verify both songs in one app, including switching during playback, title/cover/duration, song-specific scoring start/results, and 393×740 layout. Use a synthetic-microphone fixture for automated scoring UI checks; never request a real mic just for automation. Inspect actual browser errors and rendered state. Localhost, deployed files, browser emulation and installed-device PWA are distinct evidence.
+When authorized to deploy: stage only intended files, push, open or update a PR, wait for its exact head's checks, merge, deploy through the explicitly configured non-Pages production path, run `verify-published` against that live origin, then open the public song URL and exercise playback. Do not declare completion from a push or a successful build alone.
 
-When authorized to deploy: stage only intended files, push, open/update PR, wait for its exact head's checks, merge, wait for the Pages run for the merge SHA, run `verify-published`, then open the public song URL and exercise playback. Don't declare completion from a push or a successful build alone.
+## Deployment boundary
+
+- This HQ is the source of truth. Do not use GitHub Pages, Pages Actions, Sites, or files under another project's `pages` directory for deployment.
+- Never publish credentials, signed media URLs, caches, virtual environments, raw stems, or unreviewed analysis output.
 
 ## Harness maintenance
 
