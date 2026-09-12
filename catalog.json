@@ -33,7 +33,7 @@
     {
       "id": "yumemi",
       "title": "俺らのYUMEMI",
-      "artist": "konaito",
+      "artist": "さだすこ feat.konaito",
       "data": "./songs/yumemi/song.json",
       "assets": [
         "./songs/yumemi/track.mp3",
