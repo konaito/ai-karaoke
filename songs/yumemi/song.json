@@ -1,0 +1,3516 @@
+{
+  "title": "俺らのYUMEMI",
+  "artist": "konaito",
+  "duration": 212.12,
+  "source": "./songs/yumemi/track.mp3",
+  "sections": [
+    {
+      "id": "yumemi-1",
+      "index": 0,
+      "type": "VERSE",
+      "label": "Verse 1",
+      "start": 1.02,
+      "end": 27.92,
+      "lines": [
+        "川崎　加瀬山",
+        "土の匂いがした",
+        "ゆめみがさきの道",
+        "汗だくで駆けた",
+        "ポケットの小石",
+        "秘密の地図みたいで",
+        "ガキの頃の憩いの場",
+        "ここが俺らの城"
+      ]
+    },
+    {
+      "id": "yumemi-2",
+      "index": 1,
+      "type": "PRE-CHORUS",
+      "label": "Pre-Chorus 1",
+      "start": 28.78,
+      "end": 41.82,
+      "lines": [
+        "夏の風が抜けて",
+        "セミがずっと鳴いて",
+        "誰にも見つからない",
+        "場所だって信じてた"
+      ]
+    },
+    {
+      "id": "yumemi-3",
+      "index": 2,
+      "type": "CHORUS",
+      "label": "Chorus 1",
+      "start": 42.28,
+      "end": 69.48,
+      "lines": [
+        "川崎 加瀬山",
+        "ゆめみがさきの秘密基地",
+        "夏の思い出",
+        "消えないよ、まだ",
+        "川崎 加瀬山",
+        "ガキの頃の憩いの場",
+        "あの日の声が",
+        "今も呼んでる"
+      ]
+    },
+    {
+      "id": "yumemi-4",
+      "index": 3,
+      "type": "VERSE",
+      "label": "Verse 2",
+      "start": 70.66,
+      "end": 84.56,
+      "lines": [
+        "空き缶のブリッジ",
+        "板切れのベンチ",
+        "水筒のぬるい水",
+        "分け合って笑った",
+        "夕立ちが来るたび",
+        "急いで隠れたよ",
+        "びしょ濡れのシャツでも",
+        "なぜか最高だった"
+      ]
+    },
+    {
+      "id": "yumemi-5",
+      "index": 4,
+      "type": "PRE-CHORUS",
+      "label": "Pre-Chorus 2",
+      "start": 84.8,
+      "end": 96.88,
+      "lines": [
+        "帰り道の赤信号",
+        "靴の裏の砂",
+        "もう戻れないのに",
+        "胸だけは帰るんだ"
+      ]
+    },
+    {
+      "id": "yumemi-6",
+      "index": 5,
+      "type": "CHORUS",
+      "label": "Chorus 2",
+      "start": 97.28,
+      "end": 124.36,
+      "lines": [
+        "川崎 加瀬山",
+        "ゆめみがさきの秘密基地",
+        "夏の思い出",
+        "消えないよ、まだ",
+        "川崎 加瀬山",
+        "ガキの頃の憩いの場",
+        "あの日の声が",
+        "今も呼んでる"
+      ]
+    },
+    {
+      "id": "yumemi-7",
+      "index": 6,
+      "type": "BRIDGE",
+      "label": "Bridge",
+      "start": 125.14,
+      "end": 153.48,
+      "lines": [
+        "大人になってから",
+        "気づいたんだよ",
+        "あの狭い場所こそ",
+        "広い空だった",
+        "名前を呼べば",
+        "笑い声が返る",
+        "川崎 加瀬山",
+        "心の奥で光る"
+      ]
+    },
+    {
+      "id": "yumemi-8",
+      "index": 7,
+      "type": "CHORUS",
+      "label": "Final Chorus",
+      "start": 154.1,
+      "end": 195.8,
+      "lines": [
+        "川崎 加瀬山",
+        "ゆめみがさきの秘密基地",
+        "夏の思い出",
+        "消えないよ、まだ",
+        "川崎 加瀬山",
+        "ガキの頃の憩いの場",
+        "あの日の声が",
+        "今も呼んでる",
+        "川崎 加瀬山",
+        "ゆめみがさきの秘密基地",
+        "夏の思い出",
+        "ずっとここにある"
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "sectionId": "yumemi-1",
+      "text": "川崎　加瀬山",
+      "start": 1.02,
+      "end": 4.02,
+      "tokens": [
+        {
+          "text": "川",
+          "start": 1.02,
+          "end": 1.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "崎",
+          "start": 1.78,
+          "end": 2.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "　",
+          "start": 2.32,
+          "end": 2.5,
+          "confidence": 0.3
+        },
+        {
+          "text": "加",
+          "start": 2.5,
+          "end": 2.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "瀬",
+          "start": 2.84,
+          "end": 3.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "山",
+          "start": 3.44,
+          "end": 4.02,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-1-1",
+      "section": "VERSE",
+      "sectionLabel": "Verse 1",
+      "sectionIndex": 0
+    },
+    {
+      "sectionId": "yumemi-1",
+      "text": "土の匂いがした",
+      "start": 4.9,
+      "end": 7.5,
+      "tokens": [
+        {
+          "text": "土",
+          "start": 4.9,
+          "end": 5.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 5.08,
+          "end": 5.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "匂",
+          "start": 5.56,
+          "end": 6.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 6.04,
+          "end": 6.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 6.46,
+          "end": 6.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "し",
+          "start": 6.74,
+          "end": 7.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 7.12,
+          "end": 7.5,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-1-2",
+      "section": "VERSE",
+      "sectionLabel": "Verse 1",
+      "sectionIndex": 0
+    },
+    {
+      "sectionId": "yumemi-1",
+      "text": "ゆめみがさきの道",
+      "start": 8.06,
+      "end": 10.8,
+      "tokens": [
+        {
+          "text": "ゆ",
+          "start": 8.06,
+          "end": 8.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "め",
+          "start": 8.54,
+          "end": 8.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "み",
+          "start": 8.76,
+          "end": 8.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 8.94,
+          "end": 9.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 9.14,
+          "end": 9.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 9.48,
+          "end": 9.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 9.86,
+          "end": 10.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "道",
+          "start": 10.12,
+          "end": 10.8,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-1-3",
+      "section": "VERSE",
+      "sectionLabel": "Verse 1",
+      "sectionIndex": 0
+    },
+    {
+      "sectionId": "yumemi-1",
+      "text": "汗だくで駆けた",
+      "start": 12.06,
+      "end": 14.52,
+      "tokens": [
+        {
+          "text": "汗",
+          "start": 12.06,
+          "end": 12.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 12.32,
+          "end": 12.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "く",
+          "start": 12.58,
+          "end": 12.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 12.9,
+          "end": 13.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "駆",
+          "start": 13.22,
+          "end": 13.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 13.74,
+          "end": 14.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 14.1,
+          "end": 14.52,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-1-4",
+      "section": "VERSE",
+      "sectionLabel": "Verse 1",
+      "sectionIndex": 0
+    },
+    {
+      "sectionId": "yumemi-1",
+      "text": "ポケットの小石",
+      "start": 15.12,
+      "end": 17.62,
+      "tokens": [
+        {
+          "text": "ポ",
+          "start": 15.12,
+          "end": 15.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "ケ",
+          "start": 15.4,
+          "end": 15.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 15.68,
+          "end": 15.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "ト",
+          "start": 15.88,
+          "end": 16.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 16.08,
+          "end": 16.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "小",
+          "start": 16.36,
+          "end": 17.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "石",
+          "start": 17.2,
+          "end": 17.62,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-1-5",
+      "section": "VERSE",
+      "sectionLabel": "Verse 1",
+      "sectionIndex": 0
+    },
+    {
+      "sectionId": "yumemi-1",
+      "text": "秘密の地図みたいで",
+      "start": 18.46,
+      "end": 21.18,
+      "tokens": [
+        {
+          "text": "秘",
+          "start": 18.46,
+          "end": 18.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "密",
+          "start": 18.66,
+          "end": 18.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 18.98,
+          "end": 19.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "地",
+          "start": 19.24,
+          "end": 19.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "図",
+          "start": 19.48,
+          "end": 19.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "み",
+          "start": 19.74,
+          "end": 19.953,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 19.953,
+          "end": 20.167,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 20.167,
+          "end": 20.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 20.38,
+          "end": 21.18,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-1-6",
+      "section": "VERSE",
+      "sectionLabel": "Verse 1",
+      "sectionIndex": 0
+    },
+    {
+      "sectionId": "yumemi-1",
+      "text": "ガキの頃の憩いの場",
+      "start": 21.88,
+      "end": 24.64,
+      "tokens": [
+        {
+          "text": "ガ",
+          "start": 21.88,
+          "end": 22.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "キ",
+          "start": 22.02,
+          "end": 22.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 22.28,
+          "end": 22.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "頃",
+          "start": 22.46,
+          "end": 22.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 22.86,
+          "end": 23.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "憩",
+          "start": 23.14,
+          "end": 23.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 23.52,
+          "end": 24.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 24.08,
+          "end": 24.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "場",
+          "start": 24.28,
+          "end": 24.64,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-1-7",
+      "section": "VERSE",
+      "sectionLabel": "Verse 1",
+      "sectionIndex": 0
+    },
+    {
+      "sectionId": "yumemi-1",
+      "text": "ここが俺らの城",
+      "start": 25.36,
+      "end": 27.92,
+      "tokens": [
+        {
+          "text": "こ",
+          "start": 25.36,
+          "end": 25.49,
+          "confidence": 0.96
+        },
+        {
+          "text": "こ",
+          "start": 25.49,
+          "end": 25.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 25.62,
+          "end": 26.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "俺",
+          "start": 26.08,
+          "end": 26.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "ら",
+          "start": 26.52,
+          "end": 27.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 27.0,
+          "end": 27.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "城",
+          "start": 27.34,
+          "end": 27.92,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-1-8",
+      "section": "VERSE",
+      "sectionLabel": "Verse 1",
+      "sectionIndex": 0
+    },
+    {
+      "sectionId": "yumemi-2",
+      "text": "夏の風が抜けて",
+      "start": 28.78,
+      "end": 31.6,
+      "tokens": [
+        {
+          "text": "夏",
+          "start": 28.78,
+          "end": 29.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 29.48,
+          "end": 29.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "風",
+          "start": 29.78,
+          "end": 30.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 30.16,
+          "end": 30.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "抜",
+          "start": 30.56,
+          "end": 30.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 30.88,
+          "end": 31.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 31.24,
+          "end": 31.6,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-2-1",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "Pre-Chorus 1",
+      "sectionIndex": 1
+    },
+    {
+      "sectionId": "yumemi-2",
+      "text": "セミがずっと鳴いて",
+      "start": 32.14,
+      "end": 34.98,
+      "tokens": [
+        {
+          "text": "セ",
+          "start": 32.14,
+          "end": 32.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "ミ",
+          "start": 32.78,
+          "end": 32.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 32.98,
+          "end": 33.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "ず",
+          "start": 33.28,
+          "end": 33.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 33.5,
+          "end": 33.73,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 33.73,
+          "end": 33.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "鳴",
+          "start": 33.96,
+          "end": 34.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 34.34,
+          "end": 34.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 34.66,
+          "end": 34.98,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-2-2",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "Pre-Chorus 1",
+      "sectionIndex": 1
+    },
+    {
+      "sectionId": "yumemi-2",
+      "text": "誰にも見つからない",
+      "start": 35.5,
+      "end": 38.12,
+      "tokens": [
+        {
+          "text": "誰",
+          "start": 35.5,
+          "end": 36.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 36.12,
+          "end": 36.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 36.5,
+          "end": 36.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "見",
+          "start": 36.72,
+          "end": 36.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "つ",
+          "start": 36.94,
+          "end": 37.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "か",
+          "start": 37.14,
+          "end": 37.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "ら",
+          "start": 37.3,
+          "end": 37.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 37.46,
+          "end": 37.79,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 37.79,
+          "end": 38.12,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-2-3",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "Pre-Chorus 1",
+      "sectionIndex": 1
+    },
+    {
+      "sectionId": "yumemi-2",
+      "text": "場所だって信じてた",
+      "start": 38.3,
+      "end": 41.82,
+      "tokens": [
+        {
+          "text": "場",
+          "start": 38.3,
+          "end": 38.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "所",
+          "start": 38.58,
+          "end": 38.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 38.86,
+          "end": 39.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 39.14,
+          "end": 39.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 39.36,
+          "end": 39.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "信",
+          "start": 39.58,
+          "end": 40.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "じ",
+          "start": 40.48,
+          "end": 41.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 41.22,
+          "end": 41.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 41.52,
+          "end": 41.82,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-2-4",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "Pre-Chorus 1",
+      "sectionIndex": 1
+    },
+    {
+      "sectionId": "yumemi-3",
+      "text": "川崎 加瀬山",
+      "start": 42.28,
+      "end": 45.38,
+      "tokens": [
+        {
+          "text": "川",
+          "start": 42.28,
+          "end": 43.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "崎",
+          "start": 43.06,
+          "end": 43.6,
+          "confidence": 0.96
+        },
+        {
+          "text": " ",
+          "start": 43.6,
+          "end": 43.74,
+          "confidence": 0.3
+        },
+        {
+          "text": "加",
+          "start": 43.74,
+          "end": 44.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "瀬",
+          "start": 44.04,
+          "end": 44.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "山",
+          "start": 44.74,
+          "end": 45.38,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-3-1",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 1",
+      "sectionIndex": 2
+    },
+    {
+      "sectionId": "yumemi-3",
+      "text": "ゆめみがさきの秘密基地",
+      "start": 45.84,
+      "end": 49.855,
+      "tokens": [
+        {
+          "text": "ゆ",
+          "start": 45.84,
+          "end": 46.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "め",
+          "start": 46.16,
+          "end": 46.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "み",
+          "start": 46.4,
+          "end": 46.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 46.54,
+          "end": 46.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 46.78,
+          "end": 47.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 47.0,
+          "end": 47.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 47.26,
+          "end": 47.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "秘",
+          "start": 47.44,
+          "end": 47.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "密",
+          "start": 47.74,
+          "end": 48.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "基",
+          "start": 48.06,
+          "end": 48.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "地",
+          "start": 48.56,
+          "end": 49.88,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-3-2",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 1",
+      "sectionIndex": 2
+    },
+    {
+      "sectionId": "yumemi-3",
+      "text": "夏の思い出",
+      "start": 49.88,
+      "end": 52.3,
+      "tokens": [
+        {
+          "text": "夏",
+          "start": 49.88,
+          "end": 50.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 50.42,
+          "end": 50.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "思",
+          "start": 50.96,
+          "end": 51.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 51.58,
+          "end": 51.94,
+          "confidence": 0.96
+        },
+        {
+          "text": "出",
+          "start": 51.94,
+          "end": 52.3,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-3-3",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 1",
+      "sectionIndex": 2
+    },
+    {
+      "sectionId": "yumemi-3",
+      "text": "消えないよ、まだ",
+      "start": 53.58,
+      "end": 55.56,
+      "tokens": [
+        {
+          "text": "消",
+          "start": 53.58,
+          "end": 53.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 53.7,
+          "end": 54.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 54.02,
+          "end": 54.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 54.18,
+          "end": 54.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "よ",
+          "start": 54.34,
+          "end": 54.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 54.84,
+          "end": 55.16,
+          "confidence": 0.3
+        },
+        {
+          "text": "ま",
+          "start": 55.16,
+          "end": 55.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 55.36,
+          "end": 55.56,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-3-4",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 1",
+      "sectionIndex": 2
+    },
+    {
+      "sectionId": "yumemi-3",
+      "text": "川崎 加瀬山",
+      "start": 56.48,
+      "end": 59.14,
+      "tokens": [
+        {
+          "text": "川",
+          "start": 56.48,
+          "end": 56.8,
+          "confidence": 0.96
+        },
+        {
+          "text": "崎",
+          "start": 56.8,
+          "end": 57.36,
+          "confidence": 0.96
+        },
+        {
+          "text": " ",
+          "start": 57.36,
+          "end": 57.56,
+          "confidence": 0.3
+        },
+        {
+          "text": "加",
+          "start": 57.56,
+          "end": 57.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "瀬",
+          "start": 57.96,
+          "end": 58.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "山",
+          "start": 58.52,
+          "end": 59.14,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-3-5",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 1",
+      "sectionIndex": 2
+    },
+    {
+      "sectionId": "yumemi-3",
+      "text": "ガキの頃の憩いの場",
+      "start": 59.76,
+      "end": 62.58,
+      "tokens": [
+        {
+          "text": "ガ",
+          "start": 59.76,
+          "end": 59.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "キ",
+          "start": 59.9,
+          "end": 60.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 60.18,
+          "end": 60.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "頃",
+          "start": 60.34,
+          "end": 60.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 60.72,
+          "end": 61.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "憩",
+          "start": 61.04,
+          "end": 61.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 61.38,
+          "end": 61.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 61.96,
+          "end": 62.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "場",
+          "start": 62.2,
+          "end": 62.58,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-3-6",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 1",
+      "sectionIndex": 2
+    },
+    {
+      "sectionId": "yumemi-3",
+      "text": "あの日の声が",
+      "start": 63.86,
+      "end": 66.04,
+      "tokens": [
+        {
+          "text": "あ",
+          "start": 63.86,
+          "end": 64.03,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 64.03,
+          "end": 64.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "日",
+          "start": 64.2,
+          "end": 64.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 64.6,
+          "end": 64.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "声",
+          "start": 64.86,
+          "end": 65.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 65.48,
+          "end": 66.04,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-3-7",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 1",
+      "sectionIndex": 2
+    },
+    {
+      "sectionId": "yumemi-3",
+      "text": "今も呼んでる",
+      "start": 66.94,
+      "end": 69.48,
+      "tokens": [
+        {
+          "text": "今",
+          "start": 66.94,
+          "end": 67.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 67.5,
+          "end": 68.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "呼",
+          "start": 68.0,
+          "end": 68.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "ん",
+          "start": 68.54,
+          "end": 68.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 68.84,
+          "end": 69.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 69.14,
+          "end": 69.48,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-3-8",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 1",
+      "sectionIndex": 2
+    },
+    {
+      "sectionId": "yumemi-4",
+      "text": "空き缶のブリッジ",
+      "start": 70.66,
+      "end": 72.62,
+      "tokens": [
+        {
+          "text": "空",
+          "start": 70.66,
+          "end": 71.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 71.06,
+          "end": 71.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "缶",
+          "start": 71.46,
+          "end": 71.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 71.76,
+          "end": 71.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "ブ",
+          "start": 71.9,
+          "end": 72.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "リ",
+          "start": 72.14,
+          "end": 72.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "ッ",
+          "start": 72.26,
+          "end": 72.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "ジ",
+          "start": 72.34,
+          "end": 72.62,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-4-1",
+      "section": "VERSE",
+      "sectionLabel": "Verse 2",
+      "sectionIndex": 3
+    },
+    {
+      "sectionId": "yumemi-4",
+      "text": "板切れのベンチ",
+      "start": 72.7,
+      "end": 74.22,
+      "tokens": [
+        {
+          "text": "板",
+          "start": 72.7,
+          "end": 73.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "切",
+          "start": 73.06,
+          "end": 73.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 73.36,
+          "end": 73.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 73.5,
+          "end": 73.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "ベ",
+          "start": 73.62,
+          "end": 73.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "ン",
+          "start": 73.88,
+          "end": 74.05,
+          "confidence": 0.96
+        },
+        {
+          "text": "チ",
+          "start": 74.05,
+          "end": 74.22,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-4-2",
+      "section": "VERSE",
+      "sectionLabel": "Verse 2",
+      "sectionIndex": 3
+    },
+    {
+      "sectionId": "yumemi-4",
+      "text": "水筒のぬるい水",
+      "start": 74.42,
+      "end": 75.82,
+      "tokens": [
+        {
+          "text": "水",
+          "start": 74.42,
+          "end": 74.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "筒",
+          "start": 74.48,
+          "end": 74.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 74.9,
+          "end": 74.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "ぬ",
+          "start": 74.98,
+          "end": 75.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 75.18,
+          "end": 75.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 75.34,
+          "end": 75.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "水",
+          "start": 75.58,
+          "end": 75.82,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-4-3",
+      "section": "VERSE",
+      "sectionLabel": "Verse 2",
+      "sectionIndex": 3
+    },
+    {
+      "sectionId": "yumemi-4",
+      "text": "分け合って笑った",
+      "start": 76.0,
+      "end": 77.66,
+      "tokens": [
+        {
+          "text": "分",
+          "start": 76.0,
+          "end": 76.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 76.16,
+          "end": 76.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "合",
+          "start": 76.3,
+          "end": 76.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 76.5,
+          "end": 76.63,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 76.63,
+          "end": 76.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "笑",
+          "start": 76.76,
+          "end": 77.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 77.14,
+          "end": 77.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 77.4,
+          "end": 77.66,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-4-4",
+      "section": "VERSE",
+      "sectionLabel": "Verse 2",
+      "sectionIndex": 3
+    },
+    {
+      "sectionId": "yumemi-4",
+      "text": "夕立ちが来るたび",
+      "start": 77.84,
+      "end": 79.46,
+      "tokens": [
+        {
+          "text": "夕",
+          "start": 77.84,
+          "end": 78.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "立",
+          "start": 78.0,
+          "end": 78.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "ち",
+          "start": 78.18,
+          "end": 78.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 78.36,
+          "end": 78.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "来",
+          "start": 78.54,
+          "end": 78.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 78.84,
+          "end": 79.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 79.06,
+          "end": 79.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "び",
+          "start": 79.22,
+          "end": 79.46,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-4-5",
+      "section": "VERSE",
+      "sectionLabel": "Verse 2",
+      "sectionIndex": 3
+    },
+    {
+      "sectionId": "yumemi-4",
+      "text": "急いで隠れたよ",
+      "start": 79.56,
+      "end": 81.16,
+      "tokens": [
+        {
+          "text": "急",
+          "start": 79.56,
+          "end": 79.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 79.78,
+          "end": 79.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 79.96,
+          "end": 80.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "隠",
+          "start": 80.02,
+          "end": 80.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 80.48,
+          "end": 80.69,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 80.69,
+          "end": 80.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "よ",
+          "start": 80.9,
+          "end": 81.16,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-4-6",
+      "section": "VERSE",
+      "sectionLabel": "Verse 2",
+      "sectionIndex": 3
+    },
+    {
+      "sectionId": "yumemi-4",
+      "text": "びしょ濡れのシャツでも",
+      "start": 81.26,
+      "end": 82.86,
+      "tokens": [
+        {
+          "text": "び",
+          "start": 81.26,
+          "end": 81.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "し",
+          "start": 81.34,
+          "end": 81.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "ょ",
+          "start": 81.48,
+          "end": 81.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "濡",
+          "start": 81.62,
+          "end": 81.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 81.84,
+          "end": 82.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 82.06,
+          "end": 82.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "シ",
+          "start": 82.2,
+          "end": 82.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "ャ",
+          "start": 82.36,
+          "end": 82.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "ツ",
+          "start": 82.46,
+          "end": 82.6,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 82.6,
+          "end": 82.73,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 82.73,
+          "end": 82.86,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-4-7",
+      "section": "VERSE",
+      "sectionLabel": "Verse 2",
+      "sectionIndex": 3
+    },
+    {
+      "sectionId": "yumemi-4",
+      "text": "なぜか最高だった",
+      "start": 83.02,
+      "end": 84.56,
+      "tokens": [
+        {
+          "text": "な",
+          "start": 83.02,
+          "end": 83.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "ぜ",
+          "start": 83.1,
+          "end": 83.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "か",
+          "start": 83.28,
+          "end": 83.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "最",
+          "start": 83.44,
+          "end": 83.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "高",
+          "start": 83.7,
+          "end": 83.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 83.98,
+          "end": 84.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 84.2,
+          "end": 84.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 84.38,
+          "end": 84.56,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-4-8",
+      "section": "VERSE",
+      "sectionLabel": "Verse 2",
+      "sectionIndex": 3
+    },
+    {
+      "sectionId": "yumemi-5",
+      "text": "帰り道の赤信号",
+      "start": 84.8,
+      "end": 87.52,
+      "tokens": [
+        {
+          "text": "帰",
+          "start": 84.8,
+          "end": 85.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "り",
+          "start": 85.22,
+          "end": 85.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "道",
+          "start": 85.5,
+          "end": 85.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 85.88,
+          "end": 86.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "赤",
+          "start": 86.16,
+          "end": 86.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "信",
+          "start": 86.66,
+          "end": 87.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "号",
+          "start": 87.02,
+          "end": 87.52,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-5-1",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "Pre-Chorus 2",
+      "sectionIndex": 4
+    },
+    {
+      "sectionId": "yumemi-5",
+      "text": "靴の裏の砂",
+      "start": 87.68,
+      "end": 90.3,
+      "tokens": [
+        {
+          "text": "靴",
+          "start": 87.68,
+          "end": 88.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 88.04,
+          "end": 88.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "裏",
+          "start": 88.28,
+          "end": 88.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 88.82,
+          "end": 89.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "砂",
+          "start": 89.18,
+          "end": 90.3,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-5-2",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "Pre-Chorus 2",
+      "sectionIndex": 4
+    },
+    {
+      "sectionId": "yumemi-5",
+      "text": "もう戻れないのに",
+      "start": 90.48,
+      "end": 93.52,
+      "tokens": [
+        {
+          "text": "も",
+          "start": 90.48,
+          "end": 90.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "う",
+          "start": 90.82,
+          "end": 91.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "戻",
+          "start": 91.16,
+          "end": 91.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "れ",
+          "start": 91.66,
+          "end": 91.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 91.9,
+          "end": 92.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 92.14,
+          "end": 92.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 92.38,
+          "end": 93.08,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 93.08,
+          "end": 93.52,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-5-3",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "Pre-Chorus 2",
+      "sectionIndex": 4
+    },
+    {
+      "sectionId": "yumemi-5",
+      "text": "胸だけは帰るんだ",
+      "start": 93.94,
+      "end": 96.88,
+      "tokens": [
+        {
+          "text": "胸",
+          "start": 93.94,
+          "end": 94.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 94.5,
+          "end": 94.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "け",
+          "start": 94.66,
+          "end": 94.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "は",
+          "start": 94.82,
+          "end": 95.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "帰",
+          "start": 95.1,
+          "end": 95.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 95.62,
+          "end": 96.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "ん",
+          "start": 96.14,
+          "end": 96.51,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 96.51,
+          "end": 96.88,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-5-4",
+      "section": "PRE-CHORUS",
+      "sectionLabel": "Pre-Chorus 2",
+      "sectionIndex": 4
+    },
+    {
+      "sectionId": "yumemi-6",
+      "text": "川崎 加瀬山",
+      "start": 97.28,
+      "end": 100.32,
+      "tokens": [
+        {
+          "text": "川",
+          "start": 97.28,
+          "end": 98.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "崎",
+          "start": 98.04,
+          "end": 98.62,
+          "confidence": 0.96
+        },
+        {
+          "text": " ",
+          "start": 98.62,
+          "end": 98.74,
+          "confidence": 0.3
+        },
+        {
+          "text": "加",
+          "start": 98.74,
+          "end": 99.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "瀬",
+          "start": 99.04,
+          "end": 99.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "山",
+          "start": 99.72,
+          "end": 100.32,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-6-1",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 2",
+      "sectionIndex": 5
+    },
+    {
+      "sectionId": "yumemi-6",
+      "text": "ゆめみがさきの秘密基地",
+      "start": 100.9,
+      "end": 104.52,
+      "tokens": [
+        {
+          "text": "ゆ",
+          "start": 100.9,
+          "end": 101.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "め",
+          "start": 101.14,
+          "end": 101.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "み",
+          "start": 101.38,
+          "end": 101.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 101.54,
+          "end": 101.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 101.76,
+          "end": 101.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 101.98,
+          "end": 102.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 102.24,
+          "end": 102.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "秘",
+          "start": 102.42,
+          "end": 102.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "密",
+          "start": 102.7,
+          "end": 103.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "基",
+          "start": 103.02,
+          "end": 103.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "地",
+          "start": 103.52,
+          "end": 104.52,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-6-2",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 2",
+      "sectionIndex": 5
+    },
+    {
+      "sectionId": "yumemi-6",
+      "text": "夏の思い出",
+      "start": 104.64,
+      "end": 107.28,
+      "tokens": [
+        {
+          "text": "夏",
+          "start": 104.64,
+          "end": 105.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 105.4,
+          "end": 105.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "思",
+          "start": 105.86,
+          "end": 106.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 106.52,
+          "end": 106.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "出",
+          "start": 106.88,
+          "end": 107.28,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-6-3",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 2",
+      "sectionIndex": 5
+    },
+    {
+      "sectionId": "yumemi-6",
+      "text": "消えないよ、まだ",
+      "start": 108.48,
+      "end": 110.54,
+      "tokens": [
+        {
+          "text": "消",
+          "start": 108.48,
+          "end": 108.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 108.7,
+          "end": 108.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 108.98,
+          "end": 109.16,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 109.16,
+          "end": 109.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "よ",
+          "start": 109.34,
+          "end": 109.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 109.84,
+          "end": 110.16,
+          "confidence": 0.3
+        },
+        {
+          "text": "ま",
+          "start": 110.16,
+          "end": 110.35,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 110.35,
+          "end": 110.54,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-6-4",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 2",
+      "sectionIndex": 5
+    },
+    {
+      "sectionId": "yumemi-6",
+      "text": "川崎 加瀬山",
+      "start": 111.48,
+      "end": 114.06,
+      "tokens": [
+        {
+          "text": "川",
+          "start": 111.48,
+          "end": 111.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "崎",
+          "start": 111.76,
+          "end": 112.32,
+          "confidence": 0.96
+        },
+        {
+          "text": " ",
+          "start": 112.32,
+          "end": 112.5,
+          "confidence": 0.3
+        },
+        {
+          "text": "加",
+          "start": 112.5,
+          "end": 112.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "瀬",
+          "start": 112.88,
+          "end": 113.48,
+          "confidence": 0.96
+        },
+        {
+          "text": "山",
+          "start": 113.48,
+          "end": 114.06,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-6-5",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 2",
+      "sectionIndex": 5
+    },
+    {
+      "sectionId": "yumemi-6",
+      "text": "ガキの頃の憩いの場",
+      "start": 114.74,
+      "end": 117.52,
+      "tokens": [
+        {
+          "text": "ガ",
+          "start": 114.74,
+          "end": 114.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "キ",
+          "start": 114.84,
+          "end": 115.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 115.12,
+          "end": 115.3,
+          "confidence": 0.96
+        },
+        {
+          "text": "頃",
+          "start": 115.3,
+          "end": 115.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 115.64,
+          "end": 115.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "憩",
+          "start": 115.98,
+          "end": 116.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 116.34,
+          "end": 116.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 116.9,
+          "end": 117.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "場",
+          "start": 117.12,
+          "end": 117.52,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-6-6",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 2",
+      "sectionIndex": 5
+    },
+    {
+      "sectionId": "yumemi-6",
+      "text": "あの日の声が",
+      "start": 118.78,
+      "end": 121.02,
+      "tokens": [
+        {
+          "text": "あ",
+          "start": 118.78,
+          "end": 118.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 118.96,
+          "end": 119.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "日",
+          "start": 119.14,
+          "end": 119.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 119.54,
+          "end": 119.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "声",
+          "start": 119.82,
+          "end": 120.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 120.46,
+          "end": 121.02,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-6-7",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 2",
+      "sectionIndex": 5
+    },
+    {
+      "sectionId": "yumemi-6",
+      "text": "今も呼んでる",
+      "start": 121.86,
+      "end": 124.36,
+      "tokens": [
+        {
+          "text": "今",
+          "start": 121.86,
+          "end": 122.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 122.4,
+          "end": 122.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "呼",
+          "start": 122.92,
+          "end": 123.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "ん",
+          "start": 123.46,
+          "end": 123.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 123.76,
+          "end": 124.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 124.06,
+          "end": 124.36,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-6-8",
+      "section": "CHORUS",
+      "sectionLabel": "Chorus 2",
+      "sectionIndex": 5
+    },
+    {
+      "sectionId": "yumemi-7",
+      "text": "大人になってから",
+      "start": 125.14,
+      "end": 127.8,
+      "tokens": [
+        {
+          "text": "大",
+          "start": 125.14,
+          "end": 126.06,
+          "confidence": 0.96
+        },
+        {
+          "text": "人",
+          "start": 126.06,
+          "end": 126.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 126.44,
+          "end": 126.65,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 126.65,
+          "end": 126.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 126.86,
+          "end": 127.07,
+          "confidence": 0.96
+        },
+        {
+          "text": "て",
+          "start": 127.07,
+          "end": 127.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "か",
+          "start": 127.28,
+          "end": 127.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "ら",
+          "start": 127.54,
+          "end": 127.8,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-7-1",
+      "section": "BRIDGE",
+      "sectionLabel": "Bridge",
+      "sectionIndex": 6
+    },
+    {
+      "sectionId": "yumemi-7",
+      "text": "気づいたんだよ",
+      "start": 128.48,
+      "end": 131.86,
+      "tokens": [
+        {
+          "text": "気",
+          "start": 128.48,
+          "end": 129.1,
+          "confidence": 0.96
+        },
+        {
+          "text": "づ",
+          "start": 129.1,
+          "end": 129.46,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 129.46,
+          "end": 129.95,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 129.95,
+          "end": 130.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "ん",
+          "start": 130.44,
+          "end": 130.71,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 130.71,
+          "end": 130.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "よ",
+          "start": 130.98,
+          "end": 131.86,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-7-2",
+      "section": "BRIDGE",
+      "sectionLabel": "Bridge",
+      "sectionIndex": 6
+    },
+    {
+      "sectionId": "yumemi-7",
+      "text": "あの狭い場所こそ",
+      "start": 132.12,
+      "end": 135.1,
+      "tokens": [
+        {
+          "text": "あ",
+          "start": 132.12,
+          "end": 132.37,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 132.37,
+          "end": 132.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "狭",
+          "start": 132.62,
+          "end": 132.92,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 132.92,
+          "end": 133.56,
+          "confidence": 0.96
+        },
+        {
+          "text": "場",
+          "start": 133.56,
+          "end": 133.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "所",
+          "start": 133.98,
+          "end": 134.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "こ",
+          "start": 134.32,
+          "end": 134.66,
+          "confidence": 0.96
+        },
+        {
+          "text": "そ",
+          "start": 134.66,
+          "end": 135.1,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-7-3",
+      "section": "BRIDGE",
+      "sectionLabel": "Bridge",
+      "sectionIndex": 6
+    },
+    {
+      "sectionId": "yumemi-7",
+      "text": "広い空だった",
+      "start": 135.54,
+      "end": 138.1,
+      "tokens": [
+        {
+          "text": "広",
+          "start": 135.54,
+          "end": 135.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 135.98,
+          "end": 136.26,
+          "confidence": 0.96
+        },
+        {
+          "text": "空",
+          "start": 136.26,
+          "end": 136.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 136.7,
+          "end": 137.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 137.38,
+          "end": 137.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "た",
+          "start": 137.74,
+          "end": 138.1,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-7-4",
+      "section": "BRIDGE",
+      "sectionLabel": "Bridge",
+      "sectionIndex": 6
+    },
+    {
+      "sectionId": "yumemi-7",
+      "text": "名前を呼べば",
+      "start": 139.14,
+      "end": 141.68,
+      "tokens": [
+        {
+          "text": "名",
+          "start": 139.14,
+          "end": 139.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "前",
+          "start": 139.54,
+          "end": 139.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "を",
+          "start": 139.9,
+          "end": 140.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "呼",
+          "start": 140.72,
+          "end": 141.02,
+          "confidence": 0.96
+        },
+        {
+          "text": "べ",
+          "start": 141.02,
+          "end": 141.24,
+          "confidence": 0.96
+        },
+        {
+          "text": "ば",
+          "start": 141.24,
+          "end": 141.68,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-7-5",
+      "section": "BRIDGE",
+      "sectionLabel": "Bridge",
+      "sectionIndex": 6
+    },
+    {
+      "sectionId": "yumemi-7",
+      "text": "笑い声が返る",
+      "start": 142.16,
+      "end": 145.02,
+      "tokens": [
+        {
+          "text": "笑",
+          "start": 142.16,
+          "end": 142.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 142.38,
+          "end": 142.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "声",
+          "start": 142.76,
+          "end": 143.0,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 143.0,
+          "end": 143.58,
+          "confidence": 0.96
+        },
+        {
+          "text": "返",
+          "start": 143.58,
+          "end": 144.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 144.38,
+          "end": 145.02,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-7-6",
+      "section": "BRIDGE",
+      "sectionLabel": "Bridge",
+      "sectionIndex": 6
+    },
+    {
+      "sectionId": "yumemi-7",
+      "text": "川崎 加瀬山",
+      "start": 145.74,
+      "end": 147.9,
+      "tokens": [
+        {
+          "text": "川",
+          "start": 145.74,
+          "end": 145.98,
+          "confidence": 0.96
+        },
+        {
+          "text": "崎",
+          "start": 145.98,
+          "end": 146.64,
+          "confidence": 0.96
+        },
+        {
+          "text": " ",
+          "start": 146.64,
+          "end": 146.8,
+          "confidence": 0.3
+        },
+        {
+          "text": "加",
+          "start": 146.8,
+          "end": 146.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "瀬",
+          "start": 146.96,
+          "end": 147.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "山",
+          "start": 147.36,
+          "end": 147.9,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-7-7",
+      "section": "BRIDGE",
+      "sectionLabel": "Bridge",
+      "sectionIndex": 6
+    },
+    {
+      "sectionId": "yumemi-7",
+      "text": "心の奥で光る",
+      "start": 149.12,
+      "end": 153.48,
+      "tokens": [
+        {
+          "text": "心",
+          "start": 149.12,
+          "end": 149.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 149.5,
+          "end": 150.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "奥",
+          "start": 150.28,
+          "end": 150.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 150.84,
+          "end": 151.76,
+          "confidence": 0.96
+        },
+        {
+          "text": "光",
+          "start": 151.76,
+          "end": 152.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 152.96,
+          "end": 153.48,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-7-8",
+      "section": "BRIDGE",
+      "sectionLabel": "Bridge",
+      "sectionIndex": 6
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "川崎 加瀬山",
+      "start": 154.1,
+      "end": 156.8,
+      "tokens": [
+        {
+          "text": "川",
+          "start": 154.1,
+          "end": 154.52,
+          "confidence": 0.96
+        },
+        {
+          "text": "崎",
+          "start": 154.52,
+          "end": 155.08,
+          "confidence": 0.96
+        },
+        {
+          "text": " ",
+          "start": 155.08,
+          "end": 155.22,
+          "confidence": 0.3
+        },
+        {
+          "text": "加",
+          "start": 155.22,
+          "end": 155.54,
+          "confidence": 0.96
+        },
+        {
+          "text": "瀬",
+          "start": 155.54,
+          "end": 156.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "山",
+          "start": 156.2,
+          "end": 156.8,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-1",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "ゆめみがさきの秘密基地",
+      "start": 157.32,
+      "end": 161.055,
+      "tokens": [
+        {
+          "text": "ゆ",
+          "start": 157.32,
+          "end": 157.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "め",
+          "start": 157.62,
+          "end": 157.84,
+          "confidence": 0.96
+        },
+        {
+          "text": "み",
+          "start": 157.84,
+          "end": 157.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 157.96,
+          "end": 158.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 158.22,
+          "end": 158.42,
+          "confidence": 0.96
+        },
+        {
+          "text": "き",
+          "start": 158.42,
+          "end": 158.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 158.68,
+          "end": 158.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "秘",
+          "start": 158.86,
+          "end": 159.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "密",
+          "start": 159.14,
+          "end": 159.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "基",
+          "start": 159.44,
+          "end": 159.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "地",
+          "start": 159.96,
+          "end": 161.08,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-2",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "夏の思い出",
+      "start": 161.08,
+      "end": 163.66,
+      "tokens": [
+        {
+          "text": "夏",
+          "start": 161.08,
+          "end": 161.78,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 161.78,
+          "end": 162.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "思",
+          "start": 162.32,
+          "end": 162.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 162.88,
+          "end": 163.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "出",
+          "start": 163.22,
+          "end": 163.66,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-3",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "消えないよ、まだ",
+      "start": 164.9,
+      "end": 166.9,
+      "tokens": [
+        {
+          "text": "消",
+          "start": 164.9,
+          "end": 165.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "え",
+          "start": 165.04,
+          "end": 165.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "な",
+          "start": 165.34,
+          "end": 165.53,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 165.53,
+          "end": 165.72,
+          "confidence": 0.96
+        },
+        {
+          "text": "よ",
+          "start": 165.72,
+          "end": 166.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "、",
+          "start": 166.18,
+          "end": 166.32,
+          "confidence": 0.3
+        },
+        {
+          "text": "ま",
+          "start": 166.32,
+          "end": 166.61,
+          "confidence": 0.96
+        },
+        {
+          "text": "だ",
+          "start": 166.61,
+          "end": 166.9,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-4",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "川崎 加瀬山",
+      "start": 167.78,
+      "end": 170.36,
+      "tokens": [
+        {
+          "text": "川",
+          "start": 167.78,
+          "end": 168.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "崎",
+          "start": 168.12,
+          "end": 168.64,
+          "confidence": 0.96
+        },
+        {
+          "text": " ",
+          "start": 168.64,
+          "end": 168.82,
+          "confidence": 0.3
+        },
+        {
+          "text": "加",
+          "start": 168.82,
+          "end": 169.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "瀬",
+          "start": 169.22,
+          "end": 169.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "山",
+          "start": 169.82,
+          "end": 170.36,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-5",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "ガキの頃の憩いの場",
+      "start": 171.04,
+      "end": 173.84,
+      "tokens": [
+        {
+          "text": "ガ",
+          "start": 171.04,
+          "end": 171.18,
+          "confidence": 0.96
+        },
+        {
+          "text": "キ",
+          "start": 171.18,
+          "end": 171.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 171.44,
+          "end": 171.62,
+          "confidence": 0.96
+        },
+        {
+          "text": "頃",
+          "start": 171.62,
+          "end": 171.96,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 171.96,
+          "end": 172.28,
+          "confidence": 0.96
+        },
+        {
+          "text": "憩",
+          "start": 172.28,
+          "end": 172.64,
+          "confidence": 0.96
+        },
+        {
+          "text": "い",
+          "start": 172.64,
+          "end": 173.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 173.2,
+          "end": 173.44,
+          "confidence": 0.96
+        },
+        {
+          "text": "場",
+          "start": 173.44,
+          "end": 173.84,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-6",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "あの日の声が",
+      "start": 175.04,
+      "end": 177.5,
+      "tokens": [
+        {
+          "text": "あ",
+          "start": 175.04,
+          "end": 175.22,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 175.22,
+          "end": 175.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "日",
+          "start": 175.4,
+          "end": 175.82,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 175.82,
+          "end": 176.12,
+          "confidence": 0.96
+        },
+        {
+          "text": "声",
+          "start": 176.12,
+          "end": 176.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "が",
+          "start": 176.7,
+          "end": 177.5,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-7",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "今も呼んでる",
+      "start": 178.2,
+      "end": 180.655,
+      "tokens": [
+        {
+          "text": "今",
+          "start": 178.2,
+          "end": 178.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "も",
+          "start": 178.68,
+          "end": 179.2,
+          "confidence": 0.96
+        },
+        {
+          "text": "呼",
+          "start": 179.2,
+          "end": 179.74,
+          "confidence": 0.96
+        },
+        {
+          "text": "ん",
+          "start": 179.74,
+          "end": 180.03,
+          "confidence": 0.96
+        },
+        {
+          "text": "で",
+          "start": 180.03,
+          "end": 180.32,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 180.32,
+          "end": 180.68,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-8",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "川崎 加瀬山",
+      "start": 180.68,
+      "end": 184.0,
+      "tokens": [
+        {
+          "text": "川",
+          "start": 180.68,
+          "end": 181.7,
+          "confidence": 0.96
+        },
+        {
+          "text": "崎",
+          "start": 181.7,
+          "end": 182.3,
+          "confidence": 0.96
+        },
+        {
+          "text": " ",
+          "start": 182.3,
+          "end": 182.31,
+          "confidence": 0.3
+        },
+        {
+          "text": "加",
+          "start": 182.3,
+          "end": 182.84,
+          "confidence": 0.55
+        },
+        {
+          "text": "瀬",
+          "start": 182.84,
+          "end": 183.38,
+          "confidence": 0.55
+        },
+        {
+          "text": "山",
+          "start": 183.38,
+          "end": 184.0,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-9",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "ゆめみがさきの秘密基地",
+      "start": 184.66,
+      "end": 188.155,
+      "tokens": [
+        {
+          "text": "ゆ",
+          "start": 184.66,
+          "end": 184.827,
+          "confidence": 0.55
+        },
+        {
+          "text": "め",
+          "start": 184.827,
+          "end": 184.993,
+          "confidence": 0.55
+        },
+        {
+          "text": "み",
+          "start": 184.993,
+          "end": 185.16,
+          "confidence": 0.55
+        },
+        {
+          "text": "が",
+          "start": 185.16,
+          "end": 185.4,
+          "confidence": 0.96
+        },
+        {
+          "text": "さ",
+          "start": 185.4,
+          "end": 185.53,
+          "confidence": 0.55
+        },
+        {
+          "text": "き",
+          "start": 185.53,
+          "end": 185.66,
+          "confidence": 0.55
+        },
+        {
+          "text": "の",
+          "start": 185.66,
+          "end": 186.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "秘",
+          "start": 186.04,
+          "end": 186.36,
+          "confidence": 0.96
+        },
+        {
+          "text": "密",
+          "start": 186.36,
+          "end": 186.68,
+          "confidence": 0.96
+        },
+        {
+          "text": "基",
+          "start": 186.68,
+          "end": 187.14,
+          "confidence": 0.96
+        },
+        {
+          "text": "地",
+          "start": 187.14,
+          "end": 188.18,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-10",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "夏の思い出",
+      "start": 188.18,
+      "end": 190.755,
+      "tokens": [
+        {
+          "text": "夏",
+          "start": 188.18,
+          "end": 188.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "の",
+          "start": 188.88,
+          "end": 189.34,
+          "confidence": 0.96
+        },
+        {
+          "text": "思",
+          "start": 189.34,
+          "end": 190.12,
+          "confidence": 0.55
+        },
+        {
+          "text": "い",
+          "start": 190.12,
+          "end": 190.5,
+          "confidence": 0.96
+        },
+        {
+          "text": "出",
+          "start": 190.5,
+          "end": 190.78,
+          "confidence": 0.55
+        }
+      ],
+      "id": "yumemi-8-11",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    },
+    {
+      "sectionId": "yumemi-8",
+      "text": "ずっとここにある",
+      "start": 190.78,
+      "end": 195.8,
+      "tokens": [
+        {
+          "text": "ず",
+          "start": 190.78,
+          "end": 192.04,
+          "confidence": 0.96
+        },
+        {
+          "text": "っ",
+          "start": 192.04,
+          "end": 192.47,
+          "confidence": 0.96
+        },
+        {
+          "text": "と",
+          "start": 192.47,
+          "end": 192.9,
+          "confidence": 0.96
+        },
+        {
+          "text": "こ",
+          "start": 192.9,
+          "end": 193.88,
+          "confidence": 0.96
+        },
+        {
+          "text": "こ",
+          "start": 193.88,
+          "end": 194.86,
+          "confidence": 0.96
+        },
+        {
+          "text": "に",
+          "start": 194.86,
+          "end": 195.38,
+          "confidence": 0.96
+        },
+        {
+          "text": "あ",
+          "start": 195.38,
+          "end": 195.59,
+          "confidence": 0.96
+        },
+        {
+          "text": "る",
+          "start": 195.59,
+          "end": 195.8,
+          "confidence": 0.96
+        }
+      ],
+      "id": "yumemi-8-12",
+      "section": "CHORUS",
+      "sectionLabel": "Final Chorus",
+      "sectionIndex": 7
+    }
+  ],
+  "cover": "./songs/yumemi/cover.png",
+  "coverType": "image/png",
+  "alignmentSource": "./songs/yumemi/alignment.json",
+  "melodySource": "./songs/yumemi/melody.json",
+  "accompanimentSource": "./songs/yumemi/accompaniment.mp3",
+  "scoringProvenanceSource": "./songs/yumemi/scoring-provenance.json"
+}

@@ -1,6 +1,6 @@
-import { SONG as INITIAL_SONG, CATALOG, SONG_ID as INITIAL_SONG_ID } from "./song-data.js?v=26";
-import { createScoringController } from "./scoring-ui.js?v=26";
-import { mixScoringGuide } from "./scoring.js?v=26";
+import { SONG as INITIAL_SONG, CATALOG, SONG_ID as INITIAL_SONG_ID } from "./song-data.js?v=27";
+import { createScoringController } from "./scoring-ui.js?v=27";
+import { mixScoringGuide } from "./scoring.js?v=27";
 let SONG = INITIAL_SONG;
 let SONG_ID = INITIAL_SONG_ID;
 let scoring = null;
@@ -121,7 +121,7 @@ function showToast(message) {
 
 async function loadAlignment() {
   const song = SONG;
-  const response = await fetch(`${SONG.alignmentSource}?v=26`);
+  const response = await fetch(`${SONG.alignmentSource}?v=27`);
   if (!response.ok) throw new Error(`ALIGNMENT ${response.status}`);
   const data = await response.json();
   if (song !== SONG) return;
@@ -754,7 +754,7 @@ async function changeSong(id, autoplay = false) {
   els.play.disabled = true;
   document.getElementById("song-select").disabled = true;
   try {
-    const response = await fetch(`${entry.data}?v=26`);
+    const response = await fetch(`${entry.data}?v=27`);
     if (!response.ok) throw new Error(`Song data: ${response.status}`);
     const song = await response.json();
     SONG = song;

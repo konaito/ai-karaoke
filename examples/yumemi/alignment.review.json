@@ -1,0 +1,125 @@
+{
+  "note": "confidence is a mapping heuristic, not ASR probability or timing accuracy",
+  "issues": [
+    {
+      "line": 56,
+      "token": 3,
+      "kind": "interpolated",
+      "text": "加"
+    },
+    {
+      "line": 56,
+      "token": 4,
+      "kind": "interpolated",
+      "text": "瀬"
+    },
+    {
+      "line": 57,
+      "token": 0,
+      "kind": "interpolated",
+      "text": "ゆ"
+    },
+    {
+      "line": 57,
+      "token": 1,
+      "kind": "interpolated",
+      "text": "め"
+    },
+    {
+      "line": 57,
+      "token": 2,
+      "kind": "interpolated",
+      "text": "み"
+    },
+    {
+      "line": 57,
+      "token": 4,
+      "kind": "interpolated",
+      "text": "さ"
+    },
+    {
+      "line": 57,
+      "token": 5,
+      "kind": "interpolated",
+      "text": "き"
+    },
+    {
+      "line": 58,
+      "token": 2,
+      "kind": "interpolated",
+      "text": "思"
+    },
+    {
+      "line": 58,
+      "token": 4,
+      "kind": "interpolated",
+      "text": "出"
+    }
+  ],
+  "metrics": [
+    {
+      "sectionId": "yumemi-1",
+      "target_chars": 59,
+      "recognized_chars": 59,
+      "ratio": 1.0,
+      "segments": 2,
+      "words": 55
+    },
+    {
+      "sectionId": "yumemi-2",
+      "target_chars": 34,
+      "recognized_chars": 34,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 28
+    },
+    {
+      "sectionId": "yumemi-3",
+      "target_chars": 54,
+      "recognized_chars": 54,
+      "ratio": 1.0,
+      "segments": 2,
+      "words": 50
+    },
+    {
+      "sectionId": "yumemi-4",
+      "target_chars": 64,
+      "recognized_chars": 64,
+      "ratio": 1.0,
+      "segments": 1,
+      "words": 57
+    },
+    {
+      "sectionId": "yumemi-5",
+      "target_chars": 28,
+      "recognized_chars": 28,
+      "ratio": 1.0,
+      "segments": 2,
+      "words": 23
+    },
+    {
+      "sectionId": "yumemi-6",
+      "target_chars": 54,
+      "recognized_chars": 54,
+      "ratio": 1.0,
+      "segments": 2,
+      "words": 50
+    },
+    {
+      "sectionId": "yumemi-7",
+      "target_chars": 52,
+      "recognized_chars": 52,
+      "ratio": 1.0,
+      "segments": 2,
+      "words": 45
+    },
+    {
+      "sectionId": "yumemi-8",
+      "target_chars": 83,
+      "recognized_chars": 81,
+      "ratio": 0.902,
+      "segments": 4,
+      "words": 74
+    }
+  ]
+}

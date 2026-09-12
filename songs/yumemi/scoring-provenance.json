@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "sourceSha256": "6d4e0b745fa15b2c26f701f0a3627716df4777fe1d02fce91a1c051b7bb8f1da",
+  "alignmentSha256": "839a8d9612af06ec6b8ed2f7a8bd1439afbdca190d0c357733a61fce721ec22e",
+  "melodySha256": "0472bfcf3dc28374b92a7596e72daa40dbc2850466654fa54efa47cf5f31a38e",
+  "accompanimentSha256": "6d7f053e75b99899b4068a95e092547089ed178095ff15c3049afb8bcac29539",
+  "vocalsSha256": "e52ded84e0c621751532ad26b5303a93e000e9ef3e2f475abc3b4bdf104d4689",
+  "backingWavSha256": "78eaf2f0c2d4178b3db8436459f03b575eac73b4f2982fdf93297c09d096144d",
+  "method": "demucs-4.0.1-htdemucs-shifts0 + librosa-0.11.0-pyin",
+  "packages": {
+    "demucs": "4.0.1",
+    "torch": "2.5.1",
+    "torchaudio": "2.5.1",
+    "librosa": "0.11.0",
+    "soundfile": "0.14.0",
+    "numpy": "2.4.6"
+  },
+  "python": "3.11.14 (main, Dec  9 2025, 19:11:45) [Clang 21.1.4 ]",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "model": "htdemucs",
+  "shifts": 0,
+  "device": "cpu",
+  "threads": 4,
+  "modelWeights": {
+    "955717e8-8726e21a.th": "8726e21a993978c7ba086d3872e7608d7d5bfca646ca4aca459ffda844faa8b4"
+  },
+  "ffmpeg": "ffmpeg version 8.1.1 Copyright (c) 2000-2026 the FFmpeg developers",
+  "generatorSha256": "eb04da534e072d8eff7a9880c1b2458f92590d925301e520cb677ed4e8e7423e",
+  "expectedSeconds": 31.85,
+  "insufficientLines": [
+    2,
+    3,
+    12,
+    16,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    32,
+    36,
+    48,
+    52,
+    56
+  ]
+}

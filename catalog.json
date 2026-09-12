@@ -29,6 +29,20 @@
         "./songs/jiteisu/accompaniment.mp3",
         "./songs/jiteisu/scoring-provenance.json"
       ]
+    },
+    {
+      "id": "yumemi",
+      "title": "俺らのYUMEMI",
+      "artist": "konaito",
+      "data": "./songs/yumemi/song.json",
+      "assets": [
+        "./songs/yumemi/track.mp3",
+        "./songs/yumemi/cover.png",
+        "./songs/yumemi/alignment.json",
+        "./songs/yumemi/melody.json",
+        "./songs/yumemi/accompaniment.mp3",
+        "./songs/yumemi/scoring-provenance.json"
+      ]
     }
   ]
 }

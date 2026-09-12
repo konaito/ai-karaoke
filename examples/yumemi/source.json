@@ -1,0 +1,7 @@
+{
+  "filename": "俺らのYUMEMI.mp3",
+  "origin": "user-provided local audio attachment",
+  "audioSha256": "6d4e0b745fa15b2c26f701f0a3627716df4777fe1d02fce91a1c051b7bb8f1da",
+  "duration": 212.120167,
+  "ffprobe": "ffprobe format duration, 48 kHz stereo MP3"
+}
