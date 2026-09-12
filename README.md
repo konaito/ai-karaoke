@@ -46,7 +46,7 @@ python3 -m http.server 4173
 
 ## PWAの更新
 
-本番配信先に新しい`sw.js`が配信されると、Service Workerが新しいキャッシュを準備します。アプリは起動時・タブ復帰時・フォーカス時・15分ごとに更新を確認し、再生していないときは自動で新しいWorkerへ切り替えてページを再読み込みします。歌唱中・再生中は勝手に中断せず、「更新があります」ボタンから適用できます。
+GitHub Pagesに新しい`sw.js`が配信されると、Service Workerが新しいキャッシュを準備します。アプリは起動時・タブ復帰時・フォーカス時・15分ごとに更新を確認し、再生していないときは自動で新しいWorkerへ切り替えてページを再読み込みします。歌唱中・再生中は勝手に中断せず、「更新があります」ボタンから適用できます。
 
 更新処理では`updateViaCache: "none"`でWorker本体のHTTPキャッシュを避け、インストール時の各アセットも再取得します。`CACHE_NAME`と`app.js`／`styles.css`のクエリバージョンを更新し、古いキャッシュを`activate`時に削除します。
 
@@ -58,13 +58,9 @@ python3 -m http.server 4173
 
 `wasm/src/lib.rs` のDSPは、中央定位の高域成分を抑え、低域の中央成分を残すボーカル低減と、マイクのRMS/自己相関ピッチ検出を担当します。歌唱位置は`alignment.json`のローカル解析済み文字タイムラインで追い、現在行の各文字を実測時刻に合わせて塗ります。
 
-## 本番デプロイ
+## GitHub Pages
 
-このリポジトリが本番のソースです。GitHub Pagesや別プロジェクトの`pages`ディレクトリへは配信しません。Vercelの静的配信先へ、リリースゲートを通過したコミットだけを本番デプロイします。
-
-```bash
-vercel --prod --yes --name ai-karaoke
-```
+`.github/workflows/pages.yml` は `main` の更新時にリポジトリ全体をGitHub Pagesへデプロイします。GitHubリポジトリの Settings → Pages → Source は `GitHub Actions` に設定してください。
 
 ## 日本のカラオケ採点との関係
 
@@ -87,4 +83,4 @@ DAMの精密採点Ai/DX-GとJOYSOUNDの分析採点AIを調査し、歌唱画面
 
 採点データは曲ごとの `melodySource` と `accompanimentSource` で指定します。両方の曲で採点を利用できます。他の曲の基準は流用しません。自己ベストも曲IDごとに保存します。
 
-楽曲追加の完了条件と全手順は [HARNESS.md](HARNESS.md)、エージェント向け入口は [AGENTS.md](AGENTS.md)。採点・実ジャケット・来歴が欠けると登録やCI／デプロイゲートを通りません。
+楽曲追加の完了条件と全手順は [HARNESS.md](HARNESS.md)、エージェント向け入口は [AGENTS.md](AGENTS.md)。採点・実ジャケット・来歴が欠けると登録やCI／Pagesデプロイゲートを通りません。

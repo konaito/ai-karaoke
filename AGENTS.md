@@ -4,7 +4,7 @@ This directory is the canonical home for the karaoke application and its song-an
 
 ## Song onboarding
 
-Follow `HARNESS.md`. A song is incomplete until its source audio, authoritative lyrics, captured ASR and replayable character timing, real jacket, separated accompaniment, confidence-gated melody, scoring provenance, per-song catalog references, browser QA, cache version update, CI, and (when deployment is requested) a successful configured non-Pages deployment plus live verification are present.
+Follow `HARNESS.md`. A song is incomplete until its source audio, authoritative lyrics, captured ASR and replayable character timing, real jacket, separated accompaniment, confidence-gated melody, scoring provenance, per-song catalog references, browser QA, cache version update, CI, and (when deployment is requested) a successful configured GitHub Pages deployment plus live verification are present.
 
 - Use `pipeline/karaoke.py` for capture/alignment/build and `scripts/prepare-scoring.py` for stems/melody/backing. Preserve inputs, raw captures and corrections. Never overwrite the previous capture to disguise a failed or different run.
 - Use `scripts/register-song.py --scoring ...` to register a new song. Missing scoring or a placeholder image must fail. For existing unscored songs use `song_harness.py attach-scoring`.
@@ -33,13 +33,14 @@ git diff --check
 
 ## Cache and publication
 
-Use `python3 scripts/song_harness.py bump <new-version>` before releasing data or code. It updates the app modules, JSON requests, worker cache and `release.json` together. Verify both songs in one app, including switching during playback, listening and karaoke modes, song-specific scoring, and the 393x740 layout. Localhost, deployed files, browser emulation and installed-device PWA are distinct evidence.
+Use `python3 scripts/song_harness.py bump <new-version>` before releasing data or code. It updates the app modules, JSON requests, worker cache and `release.json` together. Verify all songs in one app, including switching during playback, listening and karaoke modes, song-specific scoring, and the 393x740 layout. Localhost, deployed files, browser emulation and installed-device PWA are distinct evidence.
 
-When authorized to deploy: stage only intended files, push, open or update a PR, wait for its exact head's checks, merge, deploy through the explicitly configured non-Pages production path, run `verify-published` against that live origin, then open the public song URL and exercise playback. Do not declare completion from a push or a successful build alone.
+When authorized to deploy: stage only intended files, push, open or update a PR, wait for its exact head's checks, merge, wait for the Pages run for the merge SHA, run `verify-published` against `https://konaito.github.io/ai-karaoke/`, then open the public song URL and exercise playback. Do not declare completion from a push or a successful build alone.
 
 ## Deployment boundary
 
-- This HQ is the source of truth. Do not use GitHub Pages, Pages Actions, Sites, or files under another project's `pages` directory for deployment.
+- This HQ is the source of truth. Do not use Vercel, Sites, another host, or files under another project's `pages` directory for deployment.
+- GitHub Pages is the configured production host; verify the merge SHA's Pages workflow and live bytes before declaring completion.
 - Never publish credentials, signed media URLs, caches, virtual environments, raw stems, or unreviewed analysis output.
 
 ## Harness maintenance
